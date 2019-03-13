@@ -1,3 +1,7 @@
+drop schema if exists imp3d;
+create schema imp3d;
+use imp3d;
+
 CREATE TABLE utilisateur (
   Code            varchar(255) NOT NULL, 
   FabLabNom       varchar(255) NOT NULL, 
