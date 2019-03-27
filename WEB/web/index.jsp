@@ -52,15 +52,6 @@
                         </div>
                         <input name="action" id="login" type="hidden" value="login_req"/><br/>
                         <button type="submit" id="submitOK" name="submitOK">OK</button>
-                        <button onclick="Email.send({
-    SecureToken : "227c4932-7e86-47ad-9b99-df95a4cb5227",
-    To : 'mvraux@btslivh.eu',
-    From : "maxence.vraux@gmail.com",
-    Subject : "This is the subject",
-    Body : "And this is the body"
-}).then(
-  message => alert(message)
-);">Click me</button>
                     </form>
                     <p class="mini">V0.1 - Février 2019<br/>Développement : BTS SNIR Lycée V.Hugo Colomiers</p>
                 </center>
