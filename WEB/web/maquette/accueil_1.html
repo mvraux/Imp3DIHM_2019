@@ -1,46 +1,37 @@
-<%-- 
-    Document    : index.jsp
-    Description : page accueil anonyme
-    Created on  : Février 2019
-
-227c4932-7e86-47ad-9b99-df95a4cb5227
---%>
-
-<%@page import="com.persistence.ConnexionMySQL"%>
-<%@page import="java.sql.Connection"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<script src="https://smtpjs.com/v3/smtp.js"></script>
 <!DOCTYPE html>
 <html>
     <head>
         <title>Connection</title> 
-        <%@ include file="/includes/header.jspf" %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon-57x57.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+    <link rel="icon" href="../images/apple-touch-icon-57x57.png" />
+    <link rel="stylesheet" href="../js/jquery.mobile/jquery.mobile-1.4.5.min.css"/>
+    <link rel="stylesheet" href="../css/themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="../css/imp3DTheme.css"/>
+    <script type="text/javascript" src="../js/jquery/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+
     </head>
-    <body><%-- 
+    <body>
         <div data-role="page" id="page1">
             <div class="header" data-role="header" data-id="main-header" data-tap-toggle="false" 
                  data-theme="a" data-position="fixed" data-fullscreen="true">
                 <h1>Accueil</h1>
             </div>
-            --%>
+           
             <div role="main" class="ui-content">
                 <center>
                     <br/><br/><br/>
                     <h2>Suivi d'impression 3D au FabLab<br/>
                         du Lycée international Victor Hugo de Colomiers</h2>
                     <br/><br/>
-                    <div class="logo"><img src="images/imp3D.png" /></div>  
+                    <div class="logo"><img src="../images/imp3D.png" /></div>  
                     <br/>
-                    <div>
-                        <%
-                            String message = request.getParameter("message");
-                            if (message != null) {
-                                if (message.equalsIgnoreCase("pbLogin")) {
-                                    out.print("Vérifiez le mot de passe");
-                                }
-                            }
-                        %>
-                    </div>
                     <form id="formLogin" class="form" method="post" action="imp3DControl.jsp">
                         <div data-role="fieldcontain">
                             <label for="mdp">Adresse mail :</label>
@@ -53,10 +44,9 @@
                         <input name="action" id="login" type="hidden" data-theme="b" value="login_req"/><br/>
                         <button type="submit" id="submitOK" name="submitOK">OK</button>
                     </form>
-                    <p class="mini">V0.1 - Février 2019<br/>Développement : BTS SNIR Lycée V.Hugo Colomiers</p>
+                    <p class="mini">V0.1 - Mars 2019<br/>Développement : BTS SNIR Lycée V.Hugo Colomiers</p>
                 </center>
             </div>
         </div>
     </body>
 </html>
-
