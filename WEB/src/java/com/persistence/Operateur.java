@@ -9,6 +9,6 @@ package com.persistence;
  *
  * @author snir2g2
  */
-public class User {
+public class Operateur {
     
 }
