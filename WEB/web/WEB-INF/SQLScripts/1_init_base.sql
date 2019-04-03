@@ -51,7 +51,7 @@ CREATE TABLE imprimante3d (
 CREATE TABLE job (
   ID                 int(11) NOT NULL AUTO_INCREMENT, 
   Imprimante3DNom    varchar(255) NOT NULL, 
-  UtilisateurID      varchar(255) NOT NULL, 
+  UtilisateurCode      varchar(255) NOT NULL, 
   Nom                varchar(255) NOT NULL, 
   DateRealisation    date NOT NULL, 
   Etat               varchar(25) NOT NULL, 
@@ -92,6 +92,6 @@ ALTER TABLE utilisateur ADD CONSTRAINT FKutilisateu673020 FOREIGN KEY (FabLabNom
 ALTER TABLE imprimante3d ADD CONSTRAINT FKimprimante708551 FOREIGN KEY (FabLabNom) REFERENCES fablab (Nom);
 ALTER TABLE ambiance ADD CONSTRAINT FKambiance391513 FOREIGN KEY (FabLabNom) REFERENCES fablab (Nom);
 ALTER TABLE job ADD CONSTRAINT FKjob683260 FOREIGN KEY (Imprimante3DNom) REFERENCES imprimante3d (Nom);
-ALTER TABLE job ADD CONSTRAINT FKjob281956 FOREIGN KEY (UtilisateurID) REFERENCES utilisateur (Code);
+ALTER TABLE job ADD CONSTRAINT FKjob281956 FOREIGN KEY (UtilisateurCode) REFERENCES utilisateur (Code);
 
 
