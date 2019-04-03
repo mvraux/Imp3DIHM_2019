@@ -9,20 +9,20 @@
 
 use imp3d;
 
+/*IMPRIMANTE*/
+
+insert into imprimante3d (Nom,NbHeuresDeTravail,Etat,DureeRestante,CoutHoraire) values
+    ("uprint1",1500,"REPOS",22,800);
 /*FABLAB*/
 
-insert into fabLab ( Nom,MinTemperature,MaxTemperature,MinHumidite,MaxHumidite) values
-    ("FabLab_Victor_Hugo",15,35,30,70);
+insert into fabLab ( Nom,Imprimante3dNom,MinTemperature,MaxTemperature,MinHumidite,MaxHumidite) values
+    ("FabLab_Victor_Hugo","uprint1",15,35,30,70);
 
 /*OPERATEUR DE BASE*/
 
 insert into operateur (FabLabNom, Nom, Prenom, MotDePasse, Mail ) values
     ("FabLab_Victor_Hugo", "Dumas", "Jean pierre", "vhimp3d2019", "operateur@gmail.com" );
 
-/*IMPRIMANTE*/
-
-insert into imprimante3d (Nom,FabLabNom,NbHeuresDeTravail,Etat,DureeRestante,CoutHoraire) values
-    ("uprint1","FabLab_Victor_Hugo",1500,"REPOS",22,800);
 
 /*UTILISATEURS*/
 insert into utilisateur (Code, FabLabNom,Nom, Prenom, MotDePasse, Mail ,Etablissement ,DateInscription , NbJobsRealises ,NbEchecs , MailValide ) values
@@ -33,17 +33,17 @@ insert into utilisateur (Code, FabLabNom,Nom, Prenom, MotDePasse, Mail ,Etabliss
 
 /*JOB*/
 
-insert into job (Imprimante3dNom, UtilisateurID, Nom, DateRealisation , Etat, DureeConsommee, ResteAFaireEstimee, SupportConsomme, MatiereConsommee, SupportEstime, MatiereEstimee, Prix) values
-    ("uprint1","45A7W4D73","poignée","2019-01-17","FINI",18,0,40,12,0,0,14400);
+insert into job (UtilisateurCode, Nom, DateRealisation , Etat, DureeConsommee, ResteAFaireEstimee, SupportConsomme, MatiereConsommee, SupportEstime, MatiereEstimee, Prix) values
+    ("45A7W4D73","poignée","2019-01-17","FINI",18,0,40,12,0,0,14400);
 
-insert into job (Imprimante3dNom, UtilisateurID, Nom, DateRealisation , Etat, DureeConsommee, ResteAFaireEstimee, SupportConsomme, MatiereConsommee, SupportEstime, MatiereEstimee, Prix) values
-    ("uprint1","SDQ5S7GFS98S","cale","2019-01-17","FINI",5,0,15,12,0,0,720);
+insert into job (UtilisateurCode, Nom, DateRealisation , Etat, DureeConsommee, ResteAFaireEstimee, SupportConsomme, MatiereConsommee, SupportEstime, MatiereEstimee, Prix) values
+    ("SDQ5S7GFS98S","cale","2019-01-17","FINI",5,0,15,12,0,0,720);
 
-insert into job (Imprimante3dNom, UtilisateurID, Nom, DateRealisation , Etat, DureeConsommee, ResteAFaireEstimee, SupportConsomme, MatiereConsommee, SupportEstime, MatiereEstimee, Prix) values
-    ("uprint1","45A7W4D73","vis","2019-01-05","FINI",2,0,9,7,0,0,360);
+insert into job (UtilisateurCode, Nom, DateRealisation , Etat, DureeConsommee, ResteAFaireEstimee, SupportConsomme, MatiereConsommee, SupportEstime, MatiereEstimee, Prix) values
+    ("45A7W4D73","vis","2019-01-05","FINI",2,0,9,7,0,0,360);
 
-insert into job (Imprimante3dNom, UtilisateurID, Nom, DateRealisation , Etat, DureeConsommee, ResteAFaireEstimee, SupportConsomme, MatiereConsommee, SupportEstime, MatiereEstimee, Prix) values
-    ("uprint1","SDQ5S7GFS98S","pieceqq","2019-01-17","FINI",3,0,10,9,0,0,450);
+insert into job (UtilisateurCode, Nom, DateRealisation , Etat, DureeConsommee, ResteAFaireEstimee, SupportConsomme, MatiereConsommee, SupportEstime, MatiereEstimee, Prix) values
+    ("SDQ5S7GFS98S","pieceqq","2019-01-17","FINI",3,0,10,9,0,0,450);
 
 /*CODES*/
 

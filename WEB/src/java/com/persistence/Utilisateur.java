@@ -10,7 +10,7 @@ package com.persistence;
 import java.sql.*;
 
 public class Utilisateur {
-    private String    id;             //la clef primaire
+    private String    code;             //la clef primaire
     private boolean   mailValide;          // si le mail est valide // not null
     private int       nbJobsRealises;     // le nb de jobs réalisés // not null
     private int       nbEchecs;     // le nb d'échecs // not null
@@ -24,7 +24,7 @@ public class Utilisateur {
     /**
      * Créer un nouvel objet persistant 
      * @param con
-     * @param id
+     * @param code
      * @param mdp
      * @param mail
      * @param nom
@@ -40,12 +40,14 @@ public class Utilisateur {
      *                      ou le role est deja dans la BD
      * 
      */
-    static public Utilisateur create(Connection con, String nom, String prenom, String mdp, String mail, String etablissement,Timestamp dateregistered,boolean mailtrue,int nbjobs,int nbechecs)  throws Exception {
+    static public Utilisateur create(Connection con,String code,String fabnom, String nom, String prenom, String mdp, String mail, String etablissement,Timestamp dateregistered,boolean mailtrue,int nbjobs,int nbechecs)  throws Exception {
         Utilisateur user = new Utilisateur(nom, prenom,mdp,mail,etablissement,dateregistered,nbjobs,nbechecs,mailtrue);
         
         String queryString =
-         "insert into user (Nom, Prenom,MotDePasse,Mail,Etablissement,DateInscription,NbJobsRealises,NbEchecs,MailValide) "
+         "insert into Utilisateur (Code,FabLabNom,Nom, Prenom,MotDePasse,Mail,Etablissement,DateInscription,NbJobsRealises,NbEchecs,MailValide) "
             + " values ("
+                + Utils.toString(code) + ", "
+                + Utils.toString(fabnom) + ", "
                 + Utils.toString(nom) + ", "
                 + Utils.toString(prenom) + ", "
                 + Utils.toString(mdp) + ", " 
@@ -68,7 +70,7 @@ public class Utilisateur {
      * @throws SQLException impossible d'accéder à la ConnexionMySQL
      */
     public boolean delete(Connection con) throws Exception {
-        String queryString = "delete from user where Id='" + id + "'";
+        String queryString = "delete from Utilisateur where Code='" + code + "'";
         Statement lStat = con.createStatement();
         lStat.executeUpdate(queryString);
         return true;
@@ -81,7 +83,7 @@ public class Utilisateur {
      */
     public void save(Connection con) throws Exception {
         String queryString =
-         "update user set "
+         "update Utilisateur set "
                 + " MotdePasse =" + Utils.toString(mdp) + "," 
                 + " Nom =" + Utils.toString(nom) + ","  
                 + " Prenom =" + Utils.toString(prenom) + ","
@@ -91,7 +93,7 @@ public class Utilisateur {
                 + " NbJobsRealises =" + Utils.toString(nbJobsRealises) + ", " 
                 + " NbEchecs =" + Utils.toString(nbEchecs) + ", " 
                 + " MailValide =" + Utils.toString(mailValide)
-                + " where ID ='" + id + "'";
+                + " where ID ='" + code + "'";
         Statement lStat = con.createStatement();
         lStat.executeUpdate(queryString, Statement.NO_GENERATED_KEYS);
     }
@@ -147,8 +149,8 @@ public class Utilisateur {
         
     }
     
-    public String getId() {
-        return  id;
+    public String getCode() {
+        return  code;
     }
 
     public boolean isMailValide() {
