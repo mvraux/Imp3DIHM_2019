@@ -26,7 +26,7 @@ insert into operateur (FabLabNom, Nom, Prenom, MotDePasse, Mail ) values
 
 /*UTILISATEURS*/
 insert into utilisateur (Code, FabLabNom,Nom, Prenom, MotDePasse, Mail ,Etablissement ,DateInscription , NbJobsRealises ,NbEchecs , MailValide ) values
-    ("SDQ5S7GFS98S","FabLab_Victor_Hugo","Millet","Bertrand","mdpuser","user1@gmail.com","Lycée Bellevue","2018-05-22",2,1,TRUE);
+    ("SDQ5S7GFS98S","FabLab_Victor_Hugo","Millet","Bertrand","C65A7625E9CE93B77E3F8E5D5EA86"/*= mdpuser encrypted*/,"user1@gmail.com","Lycée Bellevue","2018-01-01",2,1,TRUE);
 
 insert into utilisateur (Code, FabLabNom,Nom, Prenom, MotDePasse, Mail ,Etablissement ,DateInscription , NbJobsRealises ,NbEchecs , MailValide ) values
     ("45A7W4D73","FabLab_Victor_Hugo","Lobe","Julie","mdpuser","user2@gmail.com","Rive gauche","2019-01-15",1,0,FALSE);
