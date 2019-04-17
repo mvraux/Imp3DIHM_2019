@@ -16,8 +16,8 @@ public class Utilisateur {
     private int       nbEchecs;     // le nb d'échecs // not null
     private Timestamp dateInscription;     // la date de son inscription
     private String    etablissement;        // not null, unique
-    private String    mdp;         // non null
     private String    mail;
+    private String    mdp;         // non null
     private String    nom;
     private String    prenom;
     
@@ -25,8 +25,9 @@ public class Utilisateur {
      * Créer un nouvel objet persistant 
      * @param con
      * @param code
-     * @param mdp
+     * @param fabnom
      * @param mail
+     * @param mdp
      * @param nom
      * @param prenom
      * @param etablissement
@@ -40,18 +41,22 @@ public class Utilisateur {
      *                      ou le role est deja dans la BD
      * 
      */
-    static public Utilisateur create(Connection con,String code,String fabnom, String nom, String prenom, String mdp, String mail, String etablissement,Timestamp dateregistered,boolean mailtrue,int nbjobs,int nbechecs)  throws Exception {
-        Utilisateur user = new Utilisateur(nom, prenom,mdp,mail,etablissement,dateregistered,nbjobs,nbechecs,mailtrue);
+    static public Utilisateur create(Connection con,String code,String fabnom, 
+            String nom, String prenom, String mail, String mdp, 
+            String etablissement,Timestamp dateregistered,boolean mailtrue,
+            int nbjobs,int nbechecs)  throws Exception {
+        Utilisateur user = new Utilisateur(code, nom, prenom,mail,mdp,
+                etablissement,dateregistered,nbjobs,nbechecs,mailtrue);
         
         String queryString =
-         "insert into Utilisateur (Code,FabLabNom,Nom, Prenom,MotDePasse,Mail,Etablissement,DateInscription,NbJobsRealises,NbEchecs,MailValide) "
+         "insert into Utilisateur (Code,FabLabNom,Nom, Prenom,Mail,MotDePasse,Etablissement,DateInscription,NbJobsRealises,NbEchecs,MailValide) "
             + " values ("
                 + Utils.toString(code) + ", "
                 + Utils.toString(fabnom) + ", "
                 + Utils.toString(nom) + ", "
                 + Utils.toString(prenom) + ", "
-                + Utils.toString(mdp) + ", " 
                 + Utils.toString(mail) + ", " 
+                + Utils.toString(mdp) + ", " 
                 + Utils.toString(etablissement) + ", " 
                 + Utils.toString(dateregistered) + ", "
                 + Utils.toString(nbjobs) + ", " 
@@ -70,7 +75,7 @@ public class Utilisateur {
      * @throws SQLException impossible d'accéder à la ConnexionMySQL
      */
     public boolean delete(Connection con) throws Exception {
-        String queryString = "delete from Utilisateur where Code='" + code + "'";
+        String queryString = "delete from Utilisateur where Mail='" + mail + "'";
         Statement lStat = con.createStatement();
         lStat.executeUpdate(queryString);
         return true;
@@ -84,16 +89,16 @@ public class Utilisateur {
     public void save(Connection con) throws Exception {
         String queryString =
          "update Utilisateur set "
-                + " MotdePasse =" + Utils.toString(mdp) + "," 
                 + " Nom =" + Utils.toString(nom) + ","  
                 + " Prenom =" + Utils.toString(prenom) + ","
                 + " Mail =" + Utils.toString(mail) + ", " 
+                + " MotdePasse =" + Utils.toString(mdp) + "," 
                 + " Etablissement =" + Utils.toString(etablissement) + ", " 
                 + " DateInscription =" + Utils.toString(dateInscription) + ", "
                 + " NbJobsRealises =" + Utils.toString(nbJobsRealises) + ", " 
                 + " NbEchecs =" + Utils.toString(nbEchecs) + ", " 
                 + " MailValide =" + Utils.toString(mailValide)
-                + " where ID ='" + code + "'";
+                + " where Code ='" + code + "'";
         Statement lStat = con.createStatement();
         lStat.executeUpdate(queryString, Statement.NO_GENERATED_KEYS);
     }
@@ -106,7 +111,7 @@ public class Utilisateur {
      * @throws java.lang.Exception
      */
     public static Utilisateur getByMail(Connection con, String mail) throws Exception {
-        String queryString = "select * from user where Mail='" + mail + "'";
+        String queryString = "select * from Utilisateur where Mail='" + mail + "'";
         Statement lStat = con.createStatement(
                                 ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                 ResultSet.CONCUR_READ_ONLY);
@@ -120,6 +125,7 @@ public class Utilisateur {
     }
     
     private static Utilisateur creerParRequete(ResultSet result) throws Exception {
+            String    lCode = result.getString("Code");
             String    lNom = result.getString("Nom");
             String    lPrenom = result.getString("Prenom");
             String    lMail = result.getString("Mail");
@@ -130,17 +136,18 @@ public class Utilisateur {
             int    lNbechecs = result.getInt("NbEchecs");
             boolean    lMailTrue = result.getBoolean("MailValide");
             
-            return    new Utilisateur(lNom,lPrenom,lMail,lMdp, lEtablissement, lDate, lNbjobs, lNbechecs, lMailTrue);
+            return new Utilisateur(lCode,lNom,lPrenom,lMail,lMdp, lEtablissement, lDate, lNbjobs, lNbechecs, lMailTrue);
     }
     
     /**
      * Cree et initialise completement User
      */
-    private Utilisateur( String nom1, String prenom1, String mdp1, String mail1,  String etablissement1, Timestamp dateregistered, int nbjobs, int nbechecs, boolean mailtrue) {
+    private Utilisateur( String code1, String nom1, String prenom1, String mail1, String mdp1, String etablissement1, Timestamp dateregistered, int nbjobs, int nbechecs, boolean mailtrue) {
+        this.code = code1;
         this.nom = nom1;
         this.prenom = prenom1;
-        this.mdp = mdp1;
         this.mail = mail1;
+        this.mdp = mdp1;
         this.etablissement = etablissement1;
         this.dateInscription = dateregistered;
         this.nbJobsRealises = nbjobs;
@@ -149,8 +156,8 @@ public class Utilisateur {
         
     }
     
-    public String getCode() {
-        return  code;
+    public String getCode(Connection con)  throws Exception {
+        return code;
     }
 
     public boolean isMailValide() {
@@ -198,7 +205,7 @@ public class Utilisateur {
     }
 
     public void setMdp(String mdp) {
-        this.mdp = mdp;
+        this.mdp = Utils.encryptPassword(mdp);
     }
 
     public String getMail() {
