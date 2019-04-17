@@ -24,7 +24,7 @@
     if (callBackType.equals("etat_cartouches")) {
         String idtypema = request.getParameter("MT");//Identifiant du type de la cartouche de matière
         String strdateremplacement = request.getParameter("RM");//Date de remplacement de la cartouche de matière sur la machine
-        Timestamp dateremplacement = Utils.stringToTimestamp(strdateremplacement);
+        Timestamp dateremplacement = Utils.stringToTimestamp(strdateremplacement);//Convertion string vers timestamp
         String strdatefabrmat = request.getParameter("DM");//Date de fabrication de la cartouche de matière
         Timestamp datefabrmat = Utils.stringToTimestamp(strdatefabrmat);//Conversion de String vers timestamp
         String numseriemat = request.getParameter("SM");//Numéro de serie de la cartouche de matière
@@ -32,9 +32,9 @@
         Float quantitematiere = Float.parseFloat(strquantitemat);//Conversion du String au Float
         String idtypesupp = request.getParameter("SP");//Identifiant du type de la cartouche de support
         String strdateremp = request.getParameter("RS");//Date de remplacement de la cartouche de support sur la machine
-        Timestamp dateremp = Utils.stringToTimestamp(strdateremp);
+        Timestamp dateremp = Utils.stringToTimestamp(strdateremp);//Conversion de String vers timestamp
         String strdatefabrsupp = request.getParameter("DS");//Date de fabricatrion  de la cartouche de support
-        Timestamp datefabrsupp = Utils.stringToTimestamp(strdatefabrsupp);
+        Timestamp datefabrsupp = Utils.stringToTimestamp(strdatefabrsupp);//Conversion de String vers timestamp
         String numseriesupp = request.getParameter("SS");//Numéro de série de la cartouche de support
         String strsupprest = request.getParameter("QS");//Quantité de support restante sur la cartouche
         Float supprest = Float.parseFloat(strsupprest);//conversion du String au Float
