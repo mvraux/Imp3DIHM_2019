@@ -158,18 +158,7 @@ public class Imprimante3dTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of setEtat method, of class Imprimante3d.
-     */
-    @Test
-    public void testSetEtat() {
-        System.out.println("setEtat");
-        String etat = "";
-        Imprimante3d instance = null;
-        instance.setEtat(etat);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+
 
     /**
      * Test of getDureerestante method, of class Imprimante3d.
@@ -185,18 +174,6 @@ public class Imprimante3dTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of setDureerestante method, of class Imprimante3d.
-     */
-    @Test
-    public void testSetDureerestante() {
-        System.out.println("setDureerestante");
-        double dureerestante = 0.0;
-        Imprimante3d instance = null;
-        instance.setDureerestante(dureerestante);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of getCoutHoraire method, of class Imprimante3d.

@@ -126,34 +126,17 @@ public class Fablab {
         return mintemp;
     }
 
-    public void setMintemp(double mintemp) {
-        this.mintemp = mintemp;
-    }
-
     public double getMaxtemp() {
         return maxtemp;
-    }
-
-    public void setMaxtemp(double maxtemp) {
-        this.maxtemp = maxtemp;
     }
 
     public double getMinhumidite() {
         return minhumidite;
     }
 
-    public void setMinhumidite(double minhumidite) {
-        this.minhumidite = minhumidite;
-    }
 
     public double getMaxhumidite() {
         return maxhumidite;
     }
-
-    public void setMaxhumidite(double maxhumidite) {
-        this.maxhumidite = maxhumidite;
-    }
-
-    
     
 }

@@ -141,16 +141,9 @@ public class Imprimante3d {
         return etat;
     }
 
-    public void setEtat(String etat) {
-        this.etat = etat;
-    }
 
     public double getDureerestante() {
         return dureerestante;
-    }
-
-    public void setDureerestante(double dureerestante) {
-        this.dureerestante = dureerestante;
     }
 
     public int getCoutHoraire() {

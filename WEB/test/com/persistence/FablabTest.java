@@ -132,18 +132,6 @@ public class FablabTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of setMintemp method, of class Fablab.
-     */
-    @Test
-    public void testSetMintemp() {
-        System.out.println("setMintemp");
-        double mintemp = 0.0;
-        Fablab instance = null;
-        instance.setMintemp(mintemp);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of getMaxtemp method, of class Fablab.
@@ -159,18 +147,6 @@ public class FablabTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of setMaxtemp method, of class Fablab.
-     */
-    @Test
-    public void testSetMaxtemp() {
-        System.out.println("setMaxtemp");
-        double maxtemp = 0.0;
-        Fablab instance = null;
-        instance.setMaxtemp(maxtemp);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of getMinhumidite method, of class Fablab.
@@ -186,18 +162,6 @@ public class FablabTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of setMinhumidite method, of class Fablab.
-     */
-    @Test
-    public void testSetMinhumidite() {
-        System.out.println("setMinhumidite");
-        double minhumidite = 0.0;
-        Fablab instance = null;
-        instance.setMinhumidite(minhumidite);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of getMaxhumidite method, of class Fablab.
@@ -213,17 +177,6 @@ public class FablabTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of setMaxhumidite method, of class Fablab.
-     */
-    @Test
-    public void testSetMaxhumidite() {
-        System.out.println("setMaxhumidite");
-        double maxhumidite = 0.0;
-        Fablab instance = null;
-        instance.setMaxhumidite(maxhumidite);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+
     
 }

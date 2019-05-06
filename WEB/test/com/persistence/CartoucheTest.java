@@ -118,19 +118,6 @@ public class CartoucheTest {
     }
 
     /**
-     * Test of setDateremplacement method, of class Cartouche.
-     */
-    @Test
-    public void testSetDateremplacement() {
-        System.out.println("setDateremplacement");
-        Timestamp dateremplacement = null;
-        Cartouche instance = null;
-        instance.setDateremplacement(dateremplacement);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of getDatefabrication method, of class Cartouche.
      */
     @Test
@@ -140,19 +127,6 @@ public class CartoucheTest {
         Timestamp expResult = null;
         Timestamp result = instance.getDatefabrication();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setDatefabrication method, of class Cartouche.
-     */
-    @Test
-    public void testSetDatefabrication() {
-        System.out.println("setDatefabrication");
-        Timestamp datefabrication = null;
-        Cartouche instance = null;
-        instance.setDatefabrication(datefabrication);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -171,18 +145,6 @@ public class CartoucheTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of setNumerodeserie method, of class Cartouche.
-     */
-    @Test
-    public void testSetNumerodeserie() {
-        System.out.println("setNumerodeserie");
-        String numerodeserie = "";
-        Cartouche instance = null;
-        instance.setNumerodeserie(numerodeserie);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of getQuantiterestante method, of class Cartouche.
@@ -198,18 +160,6 @@ public class CartoucheTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of setQuantiterestante method, of class Cartouche.
-     */
-    @Test
-    public void testSetQuantiterestante() {
-        System.out.println("setQuantiterestante");
-        int quantiterestante = 0;
-        Cartouche instance = null;
-        instance.setQuantiterestante(quantiterestante);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of getCoutaumetre method, of class Cartouche.

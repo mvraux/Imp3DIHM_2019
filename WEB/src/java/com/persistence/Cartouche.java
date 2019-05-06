@@ -137,32 +137,16 @@ public class Cartouche {
         return dateremplacement;
     }
 
-    public void setDateremplacement(Timestamp dateremplacement) {
-        this.dateremplacement = dateremplacement;
-    }
-
     public Timestamp getDatefabrication() {
         return datefabrication;
-    }
-
-    public void setDatefabrication(Timestamp datefabrication) {
-        this.datefabrication = datefabrication;
     }
 
     public String getNumerodeserie() {
         return numerodeserie;
     }
 
-    public void setNumerodeserie(String numerodeserie) {
-        this.numerodeserie = numerodeserie;
-    }
-
     public int getQuantiterestante() {
         return quantiterestante;
-    }
-
-    public void setQuantiterestante(int quantiterestante) {
-        this.quantiterestante = quantiterestante;
     }
 
     public int getCoutaumetre() {
