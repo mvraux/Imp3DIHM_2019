@@ -36,9 +36,9 @@ public class Utilisateur {
      * @param nbjobs
      * @param nbechecs
      * @return 
-     * @ return  un user si le role est unique sinon null
+     * @ return  un user 
      * @throws Exception    impossible d'accéder à la ConnexionMySQL
-     *                      ou le role est deja dans la BD
+     *                      ou le code est deja dans la BD
      * 
      */
     static public Utilisateur create(Connection con,String code,String fabnom, 
