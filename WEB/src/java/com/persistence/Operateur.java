@@ -135,7 +135,7 @@ public class Operateur {
     }
 
     public void setMdp(String mdp) {
-        this.mdp = mdp;
+        this.mdp =  Utils.encryptPassword(mdp);;
     }
 
     public String getMail() {

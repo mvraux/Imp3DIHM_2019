@@ -53,7 +53,7 @@ public class UtilisateurTest {
         String mail = "user@gmail.com";
         String mdp = "mdpuser";
         String etablissement = "lycee";
-        Timestamp dateregistered = new Timestamp(System.currentTimeMillis());;
+        Timestamp dateregistered = new Timestamp(System.currentTimeMillis());
         boolean mailtrue = false;
         int nbjobs = 0;
         int nbechecs = 0;

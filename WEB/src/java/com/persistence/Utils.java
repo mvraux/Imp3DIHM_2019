@@ -231,3 +231,4 @@ public final class Utils {
         System.out.println(encryptPassword("coucou"));
     }
 }
+

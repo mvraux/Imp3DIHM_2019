@@ -38,10 +38,10 @@ public class Codenouveau {
         Codenouveau codenv = new Codenouveau(code);
 
         String queryString
-                = "insert into Utilisateur (Code,FabLabNom) "
+                = "insert into Codenouveau (Code,FabLabNom) "
                 + " values ("
                 + Utils.toString(code) + ", "
-                + Utils.toString(fabnom) + ", "
+                + Utils.toString(fabnom)
                 + ")";
         Statement lStat = con.createStatement();
         lStat.executeUpdate(queryString, Statement.NO_GENERATED_KEYS);
@@ -71,7 +71,7 @@ public class Codenouveau {
     public void save(Connection con) throws Exception {
         String queryString
                 = "update Codenouveau set "
-                + " Code =" + Utils.toString(code) + ","
+                + " Code =" + Utils.toString(code)
                 + " where Code ='" + code + "'";
         Statement lStat = con.createStatement();
         lStat.executeUpdate(queryString, Statement.NO_GENERATED_KEYS);
