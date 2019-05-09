@@ -44,23 +44,21 @@ public class OperateurTest {
     @Test
     public void testCreate() throws Exception {
         System.out.println("create");
-        Connection con = null;
-        int ID = 0;
-        String fabnom = "";
-        String nom = "";
-        String prenom = "";
-        String mdp = "";
-        String mail = "";
-        Operateur expResult = null;
-        Operateur result = Operateur.create(con, ID, fabnom, nom, prenom, mdp, mail);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Connection con = ConnexionMySQL.newConnexion();
+        String fabnom = "FabLab_Victor_Hugo";
+        String nom = "DURAND";
+        String prenom = "Jean";
+        String mdp = "monmdp";
+        String mail = "monmail@gmail.com";
+        String expResult = "monmail@gmail.com";
+        Operateur result = Operateur.create(con, fabnom, nom, prenom, mdp, mail);
+        assertEquals(expResult, result.getMail());
+        result.delete(con);
     }
 
     /**
      * Test of delete method, of class Operateur.
-     */
+     *
     @Test
     public void testDelete() throws Exception {
         System.out.println("delete");
@@ -72,18 +70,20 @@ public class OperateurTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
+*/
     /**
      * Test of save method, of class Operateur.
      */
     @Test
     public void testSave() throws Exception {
         System.out.println("save");
-        Connection con = null;
-        Operateur instance = null;
+        Connection con = ConnexionMySQL.newConnexion();
+        Operateur instance = Operateur.getByMail(con, "operateur@gmail.com");
+        instance.setNom("DUMAS");
         instance.save(con);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals("DUMAS",instance.getNom());
+        instance.setNom("Dumas");
+        instance.save(con);
     }
 
     /**
@@ -92,121 +92,114 @@ public class OperateurTest {
     @Test
     public void testGetByMail() throws Exception {
         System.out.println("getByMail");
-        Connection con = null;
-        String mail = "";
-        Operateur expResult = null;
+        Connection con = ConnexionMySQL.newConnexion();
+        String mail = "operateur@gmail.com";
         Operateur result = Operateur.getByMail(con, mail);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals("operateur@gmail.com", result.getMail());
     }
 
     /**
      * Test of getNom method, of class Operateur.
      */
     @Test
-    public void testGetNom() {
+    public void testGetNom()throws Exception {
         System.out.println("getNom");
-        Operateur instance = null;
-        String expResult = "";
-        String result = instance.getNom();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Connection con = ConnexionMySQL.newConnexion();
+        Operateur instance = Operateur.getByMail(con, "operateur@gmail.com");
+        assertEquals("Dumas", instance.getNom());
     }
 
     /**
      * Test of setNom method, of class Operateur.
      */
     @Test
-    public void testSetNom() {
-        System.out.println("setNom");
-        String nom = "";
-        Operateur instance = null;
-        instance.setNom(nom);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testSetNom()throws Exception {
+         System.out.println("setNom");
+        Connection con = ConnexionMySQL.newConnexion();
+        Operateur instance = Operateur.getByMail(con, "operateur@gmail.com");
+        instance.setNom("nomtest");
+        instance.save(con);
+        assertEquals(instance.getNom(), "nomtest");
+        instance.setNom("Dumas");
+        instance.save(con);
     }
 
     /**
      * Test of getPrenom method, of class Operateur.
      */
     @Test
-    public void testGetPrenom() {
+    public void testGetPrenom() throws Exception {
         System.out.println("getPrenom");
-        Operateur instance = null;
-        String expResult = "";
-        String result = instance.getPrenom();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Connection con = ConnexionMySQL.newConnexion();
+        Operateur instance = Operateur.getByMail(con, "operateur@gmail.com");
+        assertEquals("Jean pierre", instance.getPrenom());
     }
 
     /**
      * Test of setPrenom method, of class Operateur.
      */
     @Test
-    public void testSetPrenom() {
-        System.out.println("setPrenom");
-        String prenom = "";
-        Operateur instance = null;
-        instance.setPrenom(prenom);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testSetPrenom()  throws Exception{
+         System.out.println("setPrenom");
+        Connection con = ConnexionMySQL.newConnexion();
+        Operateur instance = Operateur.getByMail(con, "operateur@gmail.com");
+        instance.setPrenom("nomtest");
+        instance.save(con);
+        assertEquals(instance.getPrenom(), "nomtest");
+        instance.setPrenom("Jean pierre");
+        instance.save(con);
     }
 
     /**
      * Test of getMdp method, of class Operateur.
      */
     @Test
-    public void testGetMdp() {
+    public void testGetMdp() throws Exception {
         System.out.println("getMdp");
-        Operateur instance = null;
-        String expResult = "";
-        String result = instance.getMdp();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Connection con = ConnexionMySQL.newConnexion();
+        Operateur instance = Operateur.getByMail(con, "operateur@gmail.com");
+        assertEquals(Utils.encryptPassword("vhimp3d2019"), instance.getMdp());
     }
 
     /**
      * Test of setMdp method, of class Operateur.
      */
     @Test
-    public void testSetMdp() {
+    public void testSetMdp()  throws Exception {
         System.out.println("setMdp");
-        String mdp = "";
-        Operateur instance = null;
-        instance.setMdp(mdp);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Connection con = ConnexionMySQL.newConnexion();
+        Operateur instance = Operateur.getByMail(con, "operateur@gmail.com");
+        instance.setMdp("mdptest");
+        instance.save(con);
+        assertEquals(Utils.encryptPassword("mdptest"), instance.getMdp());
+        instance.setMdp("vhimp3d2019");
+        instance.save(con);
     }
 
     /**
      * Test of getMail method, of class Operateur.
      */
     @Test
-    public void testGetMail() {
+    public void testGetMail()throws Exception {
         System.out.println("getMail");
-        Operateur instance = null;
-        String expResult = "";
-        String result = instance.getMail();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Connection con = ConnexionMySQL.newConnexion();
+        Operateur instance = Operateur.getByMail(con, "operateur@gmail.com");
+        assertEquals("operateur@gmail.com", instance.getMail());
     }
 
     /**
      * Test of setMail method, of class Operateur.
      */
     @Test
-    public void testSetMail() {
+    public void testSetMail()throws Exception {
         System.out.println("setMail");
-        String mail = "";
-        Operateur instance = null;
-        instance.setMail(mail);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Connection con = ConnexionMySQL.newConnexion();
+        Operateur instance = Operateur.getByMail(con, "operateur@gmail.com");
+        instance.setMail("nouveaumail@gmail.com");
+        instance.save(con);
+        assertEquals(instance.getMail(), "nouveaumail@gmail.com");
+        instance.setMail("operateur@gmail.com");
+        instance.save(con);
     }
     
 }

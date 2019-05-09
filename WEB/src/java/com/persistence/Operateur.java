@@ -44,14 +44,13 @@ public class Operateur {
      * 
      */
     
-        static public Operateur create(Connection con,int ID,String fabnom, 
+        static public Operateur create(Connection con,String fabnom, 
             String nom, String prenom, String mdp, String mail)  throws Exception {
         Operateur op = new Operateur(nom, prenom,mdp,mail);
         
         String queryString =
-         "insert into Utilisateur (ID,FabLabNom,Nom, Prenom,MotDePasse,Mail) "
+         "insert into Operateur (FabLabNom,Nom, Prenom,MotDePasse,Mail) "
             + " values ("
-                + Utils.toString(ID) + ", "
                 + Utils.toString(fabnom) + ", "
                 + Utils.toString(nom) + ", "
                 + Utils.toString(prenom) + ", "
@@ -59,7 +58,7 @@ public class Operateur {
                 + Utils.toString(mail)
             + ")";
         Statement lStat = con.createStatement();
-        lStat.executeUpdate(queryString, Statement.NO_GENERATED_KEYS);
+        lStat.executeUpdate(queryString, Statement.RETURN_GENERATED_KEYS);
         return op;
     }
         
@@ -87,10 +86,10 @@ public class Operateur {
                 + " Nom =" + Utils.toString(nom) + ","  
                 + " Prenom =" + Utils.toString(prenom) + ","
                 + " MotDePasse =" + Utils.toString(mdp) + ", " 
-                + " Mail =" + Utils.toString(mail) + "," 
+                + " Mail =" + Utils.toString(mail)
                 + " where Mail ='" + mail + "'";
         Statement lStat = con.createStatement();
-        lStat.executeUpdate(queryString, Statement.NO_GENERATED_KEYS);
+        lStat.executeUpdate(queryString, Statement.RETURN_GENERATED_KEYS);
     }
     public static Operateur getByMail(Connection con, String mail) throws Exception {
         String queryString = "select * from Operateur where Mail='" + mail + "'";

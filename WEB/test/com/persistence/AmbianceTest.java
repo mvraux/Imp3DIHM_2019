@@ -92,7 +92,6 @@ public class AmbianceTest {
         Timestamp date = Utils.stringToTimestamp("2019/01/12 00:00:00");
         Ambiance result = Ambiance.getByDate(con, date);
         assertEquals(Utils.stringToTimestamp("2019/01/12 00:00:00"), result.getDate());
-
     }
 
     /**

@@ -61,7 +61,6 @@ public class Job {
      * deja dans la BD
      *
      */
-
     static public Job create(Connection con, String usercode, String nom,
             Timestamp daterealisation, String etat, double dureeconsommee, double resteafaire,
             int supportconsomme, int matiereconsommee, int supportestime,
@@ -70,9 +69,10 @@ public class Job {
                 supportconsomme, matiereconsommee, supportestime, matiereestimee, prix);
 
         String queryString
-                = "insert into Utilisateur (Nom,DateRealisation,Etat,DureeConsommee,ResteAFaireEstimee,"
+                = "insert into Job (UtilisateurCode,Nom,DateRealisation,Etat,DureeConsommee,ResteAFaireEstimee,"
                 + "SupportConsomme,MatiereConsommee,SupportEstime,MatiereEstimee,Prix) "
                 + " values ("
+                + Utils.toString(usercode) + ", "
                 + Utils.toString(nom) + ", "
                 + Utils.toString(daterealisation) + ", "
                 + Utils.toString(etat) + ", "
@@ -85,7 +85,7 @@ public class Job {
                 + Utils.toString(prix)
                 + ")";
         Statement lStat = con.createStatement();
-        lStat.executeUpdate(queryString, Statement.NO_GENERATED_KEYS);
+        lStat.executeUpdate(queryString, Statement.RETURN_GENERATED_KEYS);
         return newjob;
     }
 
@@ -127,7 +127,7 @@ public class Job {
                 + " where Nom='" + nom + "'"
                 + " and DateRealisation='" + daterealisation + "';";
         Statement lStat = con.createStatement();
-        lStat.executeUpdate(queryString, Statement.NO_GENERATED_KEYS);
+        lStat.executeUpdate(queryString, Statement.RETURN_GENERATED_KEYS);
     }
 
     public static Job getByNom(Connection con, String nom) throws Exception {
@@ -184,11 +184,9 @@ public class Job {
         return resteafaire;
     }
 
-
     public int getSupportconsomme() {
         return supportconsomme;
     }
-
 
     public int getMatiereconsommee() {
         return matiereconsommee;
@@ -209,5 +207,5 @@ public class Job {
     public void setPrix(int prix) {
         this.prix = prix;
     }
-    
+
 }

@@ -21,7 +21,7 @@ insert into fabLab ( Nom,Imprimante3dNom,MinTemperature,MaxTemperature,MinHumidi
 /*OPERATEUR DE BASE*/
 
 insert into operateur (FabLabNom, Nom, Prenom, MotDePasse, Mail ) values
-    ("FabLab_Victor_Hugo", "Dumas", "Jean pierre", "vhimp3d2019", "operateur@gmail.com" );
+    ("FabLab_Victor_Hugo", "Dumas", "Jean pierre","F249E840CED9529375E9DA6F2887EC75" /* = encrypted "vhimp3d2019"*/, "operateur@gmail.com" );
 
 
 /*UTILISATEURS*/

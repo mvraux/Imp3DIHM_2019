@@ -45,11 +45,11 @@ public class JobTest {
     @Test
     public void testCreate() throws Exception {
         System.out.println("create");
-        Connection con = null;
-        String usercode = "";
-        String nom = "";
-        Timestamp daterealisation = null;
-        String etat = "";
+        Connection con = ConnexionMySQL.newConnexion();
+        String usercode = "SDQ5S7GFS98S";
+        String nom = "Pieceqq";
+        Timestamp daterealisation =  new Timestamp(System.currentTimeMillis());
+        String etat = "FINI";
         double dureeconsommee = 0.0;
         double resteafaire = 0.0;
         int supportconsomme = 0;
@@ -57,16 +57,17 @@ public class JobTest {
         int supportestime = 0;
         int matiereestimee = 0;
         int prix = 0;
-        Job expResult = null;
-        Job result = Job.create(con, usercode, nom, daterealisation, etat, dureeconsommee, resteafaire, supportconsomme, matiereconsommee, supportestime, matiereestimee, prix);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String expResult = "FINI";
+        Job result = Job.create(con, usercode, nom, daterealisation,
+                etat, dureeconsommee, resteafaire, supportconsomme, 
+                matiereconsommee, supportestime, matiereestimee, prix);
+        assertEquals(expResult, result.getEtat());
+        result.delete(con);
     }
 
     /**
      * Test of delete method, of class Job.
-     */
+     *
     @Test
     public void testDelete() throws Exception {
         System.out.println("delete");
@@ -77,7 +78,7 @@ public class JobTest {
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
+    } */
 
     /**
      * Test of save method, of class Job.
@@ -85,11 +86,13 @@ public class JobTest {
     @Test
     public void testSave() throws Exception {
         System.out.println("save");
-        Connection con = null;
-        Job instance = null;
-        instance.save(con);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Connection con = ConnexionMySQL.newConnexion();
+        Job job1 = Job.getByNom(con, "poignée");
+        job1.setPrix(20);
+        job1.save(con);
+        assertEquals(20, job1.getPrix());
+        job1.setPrix(14400);
+        job1.save(con);
     }
 
     /**

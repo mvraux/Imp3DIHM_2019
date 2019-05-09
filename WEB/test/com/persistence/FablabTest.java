@@ -18,22 +18,22 @@ import static org.junit.Assert.*;
  * @author snir2g2
  */
 public class FablabTest {
-    
+
     public FablabTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -44,46 +44,46 @@ public class FablabTest {
     @Test
     public void testCreate() throws Exception {
         System.out.println("create");
-        Connection con = null;
-        String nom = "";
-        String imp3dnom = "";
+        Connection con = ConnexionMySQL.newConnexion();
+        String nom = "fabtest";
+        String imp3dnom = "uprint1";
         double mintemp = 0.0;
-        double maxtemp = 0.0;
+        double maxtemp = 100.0;
         double minhumidite = 0.0;
-        double maxhumidite = 0.0;
-        Fablab expResult = null;
+        double maxhumidite = 100.0;
+        String expResult = "fabtest";
         Fablab result = Fablab.create(con, nom, imp3dnom, mintemp, maxtemp, minhumidite, maxhumidite);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult, result.getNom(con));
+        result.delete(con);
     }
 
     /**
      * Test of delete method, of class Fablab.
+     *
+     * @Test public void testDelete() throws Exception {
+     * System.out.println("delete"); Connection con = null; Fablab instance =
+     * null; boolean expResult = false; boolean result = instance.delete(con);
+     * assertEquals(expResult, result); // TODO review the generated test code
+     * and remove the default call to fail. fail("The test case is a
+     * prototype."); }
      */
-    @Test
-    public void testDelete() throws Exception {
-        System.out.println("delete");
-        Connection con = null;
-        Fablab instance = null;
-        boolean expResult = false;
-        boolean result = instance.delete(con);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
     /**
      * Test of save method, of class Fablab.
      */
     @Test
     public void testSave() throws Exception {
         System.out.println("save");
-        Connection con = null;
-        Fablab instance = null;
+        Connection con = ConnexionMySQL.newConnexion();
+        String nom = "fabtest";
+        String imp3dnom = "uprint1";
+        double temp = 26.8;
+        double hum = 45.9;
+        double maxtemp = 53.8;
+        double maxhum = 96.9;
+        Fablab instance = Fablab.create(con, nom, imp3dnom, temp, maxtemp,hum, maxhum);
         instance.save(con);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(53.8, instance.getMaxtemp(), 0.01);
+        instance.delete(con);
     }
 
     /**
@@ -92,13 +92,10 @@ public class FablabTest {
     @Test
     public void testGetByNom() throws Exception {
         System.out.println("getByNom");
-        Connection con = null;
-        String nom = "";
-        Fablab expResult = null;
-        Fablab result = Fablab.getByNom(con, nom);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Connection con = ConnexionMySQL.newConnexion();
+        String mail = "FabLab_Victor_Hugo";
+        Fablab result = Fablab.getByNom(con, mail);
+        assertEquals("FabLab_Victor_Hugo", result.getNom(con));
     }
 
     /**
@@ -107,76 +104,61 @@ public class FablabTest {
     @Test
     public void testGetNom() throws Exception {
         System.out.println("getNom");
-        Connection con = null;
-        Fablab instance = null;
-        String expResult = "";
-        String result = instance.getNom(con);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Connection con = ConnexionMySQL.newConnexion();
+        Fablab instance = Fablab.getByNom(con, "FabLab_Victor_Hugo");
+        assertEquals(35, instance.getMaxtemp(),0);
     }
-
-    
 
     /**
      * Test of getMintemp method, of class Fablab.
      */
     @Test
-    public void testGetMintemp() {
+    public void testGetMintemp()  throws Exception {
         System.out.println("getMintemp");
-        Fablab instance = null;
-        double expResult = 0.0;
+        Connection con = ConnexionMySQL.newConnexion();
+        Fablab instance = Fablab.getByNom(con, "FabLab_Victor_Hugo");
+        double expResult = 15.0;
         double result = instance.getMintemp();
         assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-
 
     /**
      * Test of getMaxtemp method, of class Fablab.
      */
     @Test
-    public void testGetMaxtemp() {
+    public void testGetMaxtemp() throws Exception {
         System.out.println("getMaxtemp");
-        Fablab instance = null;
-        double expResult = 0.0;
+        Connection con = ConnexionMySQL.newConnexion();
+        Fablab instance = Fablab.getByNom(con, "FabLab_Victor_Hugo");
+        double expResult = 35.0;
         double result = instance.getMaxtemp();
         assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-
 
     /**
      * Test of getMinhumidite method, of class Fablab.
      */
     @Test
-    public void testGetMinhumidite() {
+    public void testGetMinhumidite() throws Exception {
         System.out.println("getMinhumidite");
-        Fablab instance = null;
-        double expResult = 0.0;
+        Connection con = ConnexionMySQL.newConnexion();
+        Fablab instance = Fablab.getByNom(con, "FabLab_Victor_Hugo");
+        double expResult = 30.0;
         double result = instance.getMinhumidite();
         assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-
 
     /**
      * Test of getMaxhumidite method, of class Fablab.
      */
     @Test
-    public void testGetMaxhumidite() {
+    public void testGetMaxhumidite()throws Exception  {
         System.out.println("getMaxhumidite");
-        Fablab instance = null;
-        double expResult = 0.0;
+        Connection con = ConnexionMySQL.newConnexion();
+        Fablab instance = Fablab.getByNom(con, "FabLab_Victor_Hugo");
+        double expResult = 70.0;
         double result = instance.getMaxhumidite();
         assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
-
-    
 }

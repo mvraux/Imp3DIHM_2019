@@ -74,12 +74,12 @@ public class Fablab {
      */
     public void save(Connection con) throws Exception {
         String queryString =
-         "update Utilisateur set "
+         "update Fablab set "
                 + " Nom =" + Utils.toString(nom) + ","  
                 + " MinTemperature =" + Utils.toString(mintemp) + ","
                 + " MaxTemperature =" + Utils.toString(maxtemp) + "," 
                 + " MinHumidite =" + Utils.toString(minhumidite) + "," 
-                + " MaxHumidite =" + Utils.toString(maxhumidite) + "," 
+                + " MaxHumidite =" + Utils.toString(maxhumidite)
                 + " where Nom ='" + nom + "'";
         Statement lStat = con.createStatement();
         lStat.executeUpdate(queryString, Statement.NO_GENERATED_KEYS);

@@ -228,7 +228,7 @@ public final class Utils {
     
     // Test
     public static void main(String[] argv) {
-        System.out.println(encryptPassword("coucou"));
+        System.out.println(encryptPassword("vhimp3d2019"));
     }
 }
 

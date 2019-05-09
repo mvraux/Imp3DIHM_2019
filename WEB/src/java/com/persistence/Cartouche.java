@@ -34,28 +34,27 @@ public class Cartouche {
      * Créer un nouvel objet persistant
      *
      * @param con
-     * @param ID
-     * @param imp3dnom
+     * @param ID // clé auto-incrementée
+     * @param imp3dnom // clé etrangère
      * @param dateremplacement // remplacement de la cartouche
      * @param datefabrication
      * @param numerodeserie
      * @param quantiterestante
      * @param coutaumetre
      * @return
-     * @ return un user
+     * @ return une cartouche
      * @throws Exception impossible d'accéder à la ConnexionMySQL ou le code est
      * deja dans la BD
      *
      */
-    static public Cartouche create(Connection con, int ID, String imp3dnom,
+    static public Cartouche create(Connection con, String imp3dnom,
             Timestamp dateremplacement, Timestamp datefabrication,
             String numerodeserie, int quantiterestante, int coutaumetre) throws Exception {
         Cartouche cart = new Cartouche(dateremplacement, datefabrication, numerodeserie, quantiterestante, coutaumetre);
 
         String queryString
-                = "insert into Cartouche (Id,Imprimante3dNom,DateRemplacement,DateFabrication,NumeroDeSerie,QuantiteRestante,CoutAuMetre) "
+                = "insert into Cartouche (Imprimante3dNom,DateRemplacement,DateFabrication,NumeroDeSerie,QuantiteRestante,CoutAuMetre) "
                 + " values ("
-                + Utils.toString(ID) + ", "
                 + Utils.toString(imp3dnom) + ", "
                 + Utils.toString(dateremplacement) + ", "
                 + Utils.toString(datefabrication) + ", "
@@ -64,7 +63,7 @@ public class Cartouche {
                 + Utils.toString(coutaumetre)
                 + ")";
         Statement lStat = con.createStatement();
-        lStat.executeUpdate(queryString, Statement.NO_GENERATED_KEYS);
+        lStat.executeUpdate(queryString, Statement.RETURN_GENERATED_KEYS);
         return cart;
     }
 
@@ -90,15 +89,15 @@ public class Cartouche {
      */
     public void save(Connection con) throws Exception {
         String queryString
-                = "update Utilisateur set "
+                = "update Cartouche set "
                 + " DateRemplacement =" + Utils.toString(dateremplacement) + ","
                 + " DateFabrication =" + Utils.toString(datefabrication) + ","
                 + " NumeroDeSerie =" + Utils.toString(numerodeserie) + ", "
                 + " QuantiteRestante =" + Utils.toString(quantiterestante) + ","
-                + " CoutAuMetre =" + Utils.toString(coutaumetre) + ", "
+                + " CoutAuMetre =" + Utils.toString(coutaumetre)
                 + " where NumeroDeSerie ='" + numerodeserie + "'";
         Statement lStat = con.createStatement();
-        lStat.executeUpdate(queryString, Statement.NO_GENERATED_KEYS);
+        lStat.executeUpdate(queryString, Statement.RETURN_GENERATED_KEYS);
     }
 
     /**
@@ -110,7 +109,7 @@ public class Cartouche {
      * @throws java.lang.Exception
      */
     public static Cartouche getByNumero(Connection con, String numerodeserie) throws Exception {
-        String queryString = "select * from Utilisateur where NumeroDeSerie='" + numerodeserie + "'";
+        String queryString = "select * from Cartouche where NumeroDeSerie='" + numerodeserie + "'";
         Statement lStat = con.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
                 ResultSet.CONCUR_READ_ONLY);
