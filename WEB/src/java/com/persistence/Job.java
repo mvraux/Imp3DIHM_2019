@@ -7,6 +7,7 @@ package com.persistence;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 
@@ -97,9 +98,8 @@ public class Job {
      * @throws SQLException impossible d'accéder à la ConnexionMySQL
      */
     public boolean delete(Connection con) throws Exception {
-        String queryString = "delete * from Job"
-                + " where Nom='" + nom + "'"
-                + " and DateRealisation='" + daterealisation + "';";
+        String queryString = "delete from Job where nom ='"+nom+"'"
+                + "and DateRealisation='" + daterealisation + "'";
         Statement lStat = con.createStatement();
         lStat.executeUpdate(queryString);
         return true;
@@ -118,7 +118,7 @@ public class Job {
                 + " DateRealisation =" + Utils.toString(daterealisation) + ","
                 + " Etat =" + Utils.toString(etat) + ", "
                 + " DureeConsommee =" + Utils.toString(dureeconsommee) + ","
-                + " RestaAFaireEstimee =" + Utils.toString(resteafaire) + ", "
+                + " ResteAFaireEstimee =" + Utils.toString(resteafaire) + ", "
                 + " SupportConsomme =" + Utils.toString(supportconsomme) + ", "
                 + " MatiereConsommee =" + Utils.toString(matiereconsommee) + ", "
                 + " SupportEstime =" + Utils.toString(supportestime) + ", "
@@ -130,8 +130,8 @@ public class Job {
         lStat.executeUpdate(queryString, Statement.RETURN_GENERATED_KEYS);
     }
 
-    public static Job getByNom(Connection con, String nom) throws Exception {
-        String queryString = "select * from Job where Nom='" + nom + "'";
+    public static Job getByDate(Connection con, Timestamp date) throws Exception {
+        String queryString = "select * from Job where DateRealisation='" + date + "'";
         Statement lStat = con.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
                 ResultSet.CONCUR_READ_ONLY);
@@ -139,9 +139,9 @@ public class Job {
         // y en a t'il au moins un ?
         if (lResult.next()) {
             return creerParRequete(lResult);
-        } else {
-            return null;
         }
+        else
+            return null;
     }
 
     private static Job creerParRequete(ResultSet result) throws Exception {
@@ -159,6 +159,19 @@ public class Job {
         return new Job(lNom, lDate, letat, lduree, lreste, supportc,
                 matierec, supporte, matieree, lprix);
     }
+    
+    public int getID(Connection con) throws SQLException {
+        String queryString = "select ID from Job where DateRealisation='" + daterealisation + "'";
+        Statement lStat = con.createStatement(
+                ResultSet.TYPE_SCROLL_INSENSITIVE,
+                ResultSet.CONCUR_READ_ONLY);
+        ResultSet lResult = lStat.executeQuery(queryString);
+        // y en a t'il au moins un ?
+        if (lResult.next()) {
+            return lResult.getInt("ID");
+        }
+        return 0;
+    }
 
     public String getNom() {
         return nom;
@@ -166,10 +179,6 @@ public class Job {
 
     public Timestamp getDaterealisation() {
         return daterealisation;
-    }
-
-    public void setDaterealisation(Timestamp daterealisation) {
-        this.daterealisation = daterealisation;
     }
 
     public String getEtat() {

@@ -44,18 +44,18 @@ public class Imprimante3dTest {
     @Test
     public void testCreate() throws Exception {
         System.out.println("create");
-        Connection con = null;
-        String nom = "";
-        int jobid = 0;
+        Connection con =  ConnexionMySQL.newConnexion();;
+        String nom = "uprint2";
+        Job job = Job.getByDate(con, Utils.stringToTimestamp("2019/01/17 22:00:00"));
+        int id = job.getID(con);
         double nbheures = 0.0;
-        String etat = "";
-        double dureerestante = 0.0;
-        int couthoraire = 0;
-        Imprimante3d expResult = null;
-        Imprimante3d result = Imprimante3d.create(con, nom, jobid, nbheures, etat, dureerestante, couthoraire);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String etat = "TRAVAIL";
+        double dureerestante = 40.0;
+        int couthoraire = 80;
+        String expResult = "TRAVAIL";
+        Imprimante3d result = Imprimante3d.create(con, nom, id, nbheures, etat, dureerestante, couthoraire);
+        assertEquals(expResult, result.getEtat());
+        result.delete(con);
     }
 
     /**

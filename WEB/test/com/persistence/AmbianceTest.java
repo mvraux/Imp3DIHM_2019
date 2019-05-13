@@ -89,9 +89,9 @@ public class AmbianceTest {
     public void testGetByDate() throws Exception {
         System.out.println("getByDate");
         Connection con = ConnexionMySQL.newConnexion();
-        Timestamp date = Utils.stringToTimestamp("2019/01/12 00:00:00");
+        Timestamp date = Utils.stringToTimestamp("2019/02/19 00:00:00");
         Ambiance result = Ambiance.getByDate(con, date);
-        assertEquals(Utils.stringToTimestamp("2019/01/12 00:00:00"), result.getDate());
+        assertEquals(Utils.stringToTimestamp("2019/02/19 00:00:00"), result.getDate());
     }
 
     /**
@@ -101,7 +101,7 @@ public class AmbianceTest {
     public void testGetTemperature()throws Exception  {
         System.out.println("getTemperature");
         Connection con = ConnexionMySQL.newConnexion();
-        Ambiance instance = Ambiance.getByDate(con, Utils.stringToTimestamp("2019/01/12 00:00:00"));
+        Ambiance instance = Ambiance.getByDate(con, Utils.stringToTimestamp("2019/02/19 00:00:00"));
         double expResult = 12.0;
         double result = instance.getTemperature();
         assertEquals(expResult, result, 0.0);
@@ -114,8 +114,8 @@ public class AmbianceTest {
     public void testGetHumidite() throws Exception {
         System.out.println("getHumidite");
         Connection con = ConnexionMySQL.newConnexion();
-        Ambiance instance = Ambiance.getByDate(con, Utils.stringToTimestamp("2019/01/12 00:00:00"));
-        double expResult = 70.0;
+        Ambiance instance = Ambiance.getByDate(con, Utils.stringToTimestamp("2019/02/18 00:00:00"));
+        double expResult = 60.0;
         double result = instance.getHumidite();
         assertEquals(expResult, result, 0.0);
     }
@@ -127,8 +127,8 @@ public class AmbianceTest {
     public void testGetDate() throws Exception {
         System.out.println("getDate");
         Connection con = ConnexionMySQL.newConnexion();
-        Ambiance instance = Ambiance.getByDate(con, Utils.stringToTimestamp("2019/01/12 00:00:00"));
-        assertEquals(Utils.stringToTimestamp("2019/01/12 00:00:00"), instance.getDate());
+        Ambiance instance = Ambiance.getByDate(con, Utils.stringToTimestamp("2019/02/19 00:00:00"));
+        assertEquals(Utils.stringToTimestamp("2019/02/19 00:00:00"), instance.getDate());
     }
 
 }

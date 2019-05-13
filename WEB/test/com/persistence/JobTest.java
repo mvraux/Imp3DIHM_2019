@@ -48,7 +48,7 @@ public class JobTest {
         Connection con = ConnexionMySQL.newConnexion();
         String usercode = "SDQ5S7GFS98S";
         String nom = "Pieceqq";
-        Timestamp daterealisation =  new Timestamp(System.currentTimeMillis());
+        Timestamp daterealisation = Utils.stringToTimestamp("2019/05/17 22:00:00");
         String etat = "FINI";
         double dureeconsommee = 0.0;
         double resteafaire = 0.0;
@@ -87,7 +87,7 @@ public class JobTest {
     public void testSave() throws Exception {
         System.out.println("save");
         Connection con = ConnexionMySQL.newConnexion();
-        Job job1 = Job.getByNom(con, "poignée");
+        Job job1 = Job.getByDate(con, Utils.stringToTimestamp("2019/01/17 22:00:00"));
         job1.setPrix(20);
         job1.save(con);
         assertEquals(20, job1.getPrix());
@@ -99,181 +99,198 @@ public class JobTest {
      * Test of getByNom method, of class Job.
      */
     @Test
-    public void testGetByNom() throws Exception {
-        System.out.println("getByNom");
-        Connection con = null;
-        String nom = "";
-        Job expResult = null;
-        Job result = Job.getByNom(con, nom);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetByDate() throws Exception {
+        System.out.println("getByDate");
+        Connection con = ConnexionMySQL.newConnexion();
+        Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
+        Job result = Job.getByDate(con, date);
+        assertEquals(date, result.getDaterealisation());
     }
 
     /**
      * Test of getNom method, of class Job.
      */
     @Test
-    public void testGetNom() {
+    public void testGetNom()throws Exception {
         System.out.println("getNom");
-        Job instance = null;
-        String expResult = "";
+        Connection con = ConnexionMySQL.newConnexion();
+        Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
+        Job instance = Job.getByDate(con, date);
+        String expResult = "poignée";
         String result = instance.getNom();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getDaterealisation method, of class Job.
      */
     @Test
-    public void testGetDaterealisation() {
+    public void testGetDaterealisation()throws Exception {
         System.out.println("getDaterealisation");
-        Job instance = null;
-        Timestamp expResult = null;
+        Connection con = ConnexionMySQL.newConnexion();
+        Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
+        Job instance = Job.getByDate(con, date);
+        Timestamp expResult = date;
         Timestamp result = instance.getDaterealisation();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setDaterealisation method, of class Job.
-     */
-    @Test
-    public void testSetDaterealisation() {
-        System.out.println("setDaterealisation");
-        Timestamp daterealisation = null;
-        Job instance = null;
-        instance.setDaterealisation(daterealisation);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getEtat method, of class Job.
      */
     @Test
-    public void testGetEtat() {
+    public void testGetEtat()throws Exception {
         System.out.println("getEtat");
-        Job instance = null;
-        String expResult = "";
+        Connection con = ConnexionMySQL.newConnexion();
+        Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
+        Job instance = Job.getByDate(con, date);
+        String expResult = "FINI";
         String result = instance.getEtat();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getDureeconsommee method, of class Job.
      */
     @Test
-    public void testGetDureeconsommee() {
+    public void testGetDureeconsommee()throws Exception {
         System.out.println("getDureeconsommee");
-        Job instance = null;
-        double expResult = 0.0;
+        Connection con = ConnexionMySQL.newConnexion();
+        Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
+        Job instance = Job.getByDate(con, date);
+        double expResult = 18.0;
         double result = instance.getDureeconsommee();
         assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getResteafaire method, of class Job.
      */
     @Test
-    public void testGetResteafaire() {
+    public void testGetResteafaire()throws Exception {
         System.out.println("getResteafaire");
-        Job instance = null;
+        Connection con = ConnexionMySQL.newConnexion();
+        Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
+        Job instance = Job.getByDate(con, date);
         double expResult = 0.0;
         double result = instance.getResteafaire();
         assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getSupportconsomme method, of class Job.
      */
     @Test
-    public void testGetSupportconsomme() {
+    public void testGetSupportconsomme() throws Exception{
         System.out.println("getSupportconsomme");
-        Job instance = null;
-        int expResult = 0;
+        Connection con = ConnexionMySQL.newConnexion();
+        Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
+        Job instance = Job.getByDate(con, date);
+        int expResult = 40;
         int result = instance.getSupportconsomme();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
      * Test of getMatiereconsommee method, of class Job.
      */
     @Test
-    public void testGetMatiereconsommee() {
+    public void testGetMatiereconsommee()throws Exception {
         System.out.println("getMatiereconsommee");
-        Job instance = null;
-        int expResult = 0;
+        Connection con = ConnexionMySQL.newConnexion();
+        Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
+        Job instance = Job.getByDate(con, date);
+        int expResult = 12;
         int result = instance.getMatiereconsommee();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getSupportestime method, of class Job.
      */
     @Test
-    public void testGetSupportestime() {
+    public void testGetSupportestime()throws Exception {
         System.out.println("getSupportestime");
-        Job instance = null;
+        Connection con = ConnexionMySQL.newConnexion();
+        Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
+        Job instance = Job.getByDate(con, date);
         int expResult = 0;
         int result = instance.getSupportestime();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getMatiereestimee method, of class Job.
      */
     @Test
-    public void testGetMatiereestimee() {
+    public void testGetMatiereestimee()throws Exception {
         System.out.println("getMatiereestimee");
-        Job instance = null;
+        Connection con = ConnexionMySQL.newConnexion();
+        Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
+        Job instance = Job.getByDate(con, date);
         int expResult = 0;
         int result = instance.getMatiereestimee();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
      * Test of getPrix method, of class Job.
      */
     @Test
-    public void testGetPrix() {
+    public void testGetPrix()throws Exception {
         System.out.println("getPrix");
-        Job instance = null;
-        int expResult = 0;
+        Connection con = ConnexionMySQL.newConnexion();
+        Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
+        Job instance = Job.getByDate(con, date);
+        int expResult = 14400;
         int result = instance.getPrix();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
      * Test of setPrix method, of class Job.
      */
     @Test
-    public void testSetPrix() {
+    public void testSetPrix()throws Exception {
         System.out.println("setPrix");
-        int prix = 0;
+        Connection con = ConnexionMySQL.newConnexion();
+        Job instance = Job.getByDate(con, Utils.stringToTimestamp("2019/01/17 22:00:00"));
+        instance.setPrix(10);
+        instance.save(con);
+        assertEquals(instance.getPrix(), 10);
+        instance.setPrix(14400);
+        instance.save(con);
+    }
+
+    /**
+     * Test of getID method, of class Job.
+     */
+    @Test
+    public void testGetID() throws Exception {
+        System.out.println("getID");
+        Connection con = ConnexionMySQL.newConnexion();
+        Job instance = Job.getByDate(con, Utils.stringToTimestamp("2019/01/17 22:00:00"));
+        int expResult = 1;
+        int result = instance.getID(con);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of delete method, of class Job.
+     */
+  /*  @Test
+    public void testDelete() throws Exception {
+        System.out.println("delete");
+        Connection con = null;
         Job instance = null;
-        instance.setPrix(prix);
+        boolean expResult = false;
+        boolean result = instance.delete(con);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
+    }*/
     
 }
