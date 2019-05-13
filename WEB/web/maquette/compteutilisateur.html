@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FabLab - Gestion du compte</title> 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+        <link rel="apple-touch-icon" href="../images/apple-touch-icon-57x57.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+        <link rel="icon" href="../images/apple-touch-icon-57x57.png" />
+        <link rel="stylesheet" href="../js/jquery.mobile/jquery.mobile-1.4.5.min.css"/>
+        <link rel="stylesheet" href="../css/themes/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="../css/imp3DModification.css"/>
+        <script type="text/javascript" src="../js/jquery/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="../js/jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+
+    </head>
+    <body>
+        <div data-role="page" id="pagecompteutilisateur">
+            <div data-role="header" style="overflow:hidden;" data-theme="b">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#">Etat Imprimante</a></li>
+                        <li><a href="#">Accueil</a></li>
+                        <li><form id="btnDeconnection" method="post" action="connection.html">
+                                <input name="action" id="logout" type="hidden" value="logout"/>
+                                <button type="submit" id="submitOK" name="submitOK">
+                                    <img id="white" src="../css/images/icons-png/power-white.png" >
+                                    <img id="black" src="../css/images/icons-png/power-black.png" >
+                                </button></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div><!-- /header -->
+
+
+            <div role="main" class="ui-content">
+                <center>
+                    <br/>
+                    <h3>Modifier vos données :</h3>
+                    <div class="ui-grid-a">
+                        <div data-role="fieldcontain" class="xxx">
+                            <div data-role="fieldcontain">            
+                                <label for="inscriptionmail">Nouvelle adresse mail : </label>
+                                <input type="email" name="changermail" id="changermail" value="">
+                            </div>
+                            <div data-role="fieldcontain"> 
+                                <label for="inscriptionmail2">Confirmation Nouvelle Adresse : </label>
+                                <input type="email" name="changermail2" id="changermail2" value="">
+                            </div>
+                            <div data-role="fieldcontain">  
+                                <label for="inscriptionmdp">Mot de passe :</label>
+                                <input type="password" name="changermdp" id="changermdp"/>
+                            </div>
+                            <div data-role="fieldcontain">
+                                <label for="inscriptionmdp2">Confirmation mot de passe :</label>
+                                <input type="password" name="changermdp2" id="changermdp2"/>
+                            </div> 
+                            <div data-role="fieldcontain">
+                                <label for="inscriptionmdp2">Mot de passe :</label>
+                                <input type="password" name="mdpactuelchanger" id="mdpactuelchanger"/>
+                            </div>
+                                <input name="action" id="modifconfirm" type="hidden" data-theme="b" value="modifconfirm"/><br/>
+                                <button type="submit" id="submitOK" name="submitOK">Confirmer</button>
+                        </div>
+
+                        <br/><br/><br/>
+                        <h3>Vos Jobs :</h3>
+                        <table data-role="table" id="table-column-toggle" data-mode="columntoggle" class="ui-responsive table-stroke">
+                                 <thead></div>
+                                       <tr>
+                                             <th data-priority="10">Imprimante</th>
+                                             <th data-priority="9">Nom Job</th>
+                                             <th data-priority="7">Date</th>
+                                            <th data-priority="6">Etat</th>
+                                             <th data-priority="5">Durée (minutes)</th>
+                                            <th data-priority="1">Prix (euros)</th>
+                                           </tr>
+                                     </thead>
+                                 <tbody>
+                                       <tr>
+                                             <td>Imp-03</td>
+                                             <td>Clavier</td>
+                                             <td>16/04/19</td>
+                                             <td>En cours</td>
+                                             <td>136</td>
+                                             <td>25</td>
+                                           </tr>
+                                       <tr>
+                                             <td>Imp-01</td>
+                                             <td>Souris</td>
+                                             <td>25/12/19</td>
+                                             <td>Terminé</td>
+                                             <td>92</td>
+                                             <td>11</td>
+                                           </tr>
+                                       <tr>
+                                             <td>Imp-02</td>
+                                             <td>Ecran</td>
+                                             <td>15/03/19</td>
+                                             <td>Terminé</td>
+                                             <td>654</td>
+                                             <td>100</td>
+                                           </tr>
+                                     </tbody>
+                               </table>
+                        <br/><br/><br/>
+                        <h3>Suppression du compte :</h3>
+                        <a href="#popupDialog" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-delete ui-btn-icon-left ui-btn-b">Supprimer le compte</a>
+                        <div data-role="popup" id="popupDialog" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
+                                <div role="main" class="ui-content">
+                                        <h3 class="ui-title">Voulez-vous vraiment supprimer votre compte ?</h3>
+                                    <p>Pas de retour en arrière possible</p>
+                                        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Retour</a>
+                                        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back" data-transition="flow">Confirmer</a>
+                                    </div>
+                        </div>
+                    </div>
+                    <br/><br/><br/>
+                    <p class="mini">V0.1 - Mars 2019<br/>Développement : BTS SNIR Lycée V.Hugo Colomiers</p>
+                </center>
+            </div>
+        </div>
+    </body>
+</html>

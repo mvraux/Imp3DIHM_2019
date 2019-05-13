@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FabLab - Etat Imprimante Utilisateur</title> 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+        <link rel="apple-touch-icon" href="../images/apple-touch-icon-57x57.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+        <link rel="icon" href="../images/apple-touch-icon-57x57.png" />
+        <link rel="stylesheet" href="../js/jquery.mobile/jquery.mobile-1.4.5.min.css"/>
+        <link rel="stylesheet" href="../css/themes/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="../css/imp3DModification.css"/>
+        <script type="text/javascript" src="../js/jquery/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="../js/jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+    </head>
+    <body>
+        <div data-role="page" id="etatimprimanteutilisateur">
+            <div data-role="header" style="overflow:hidden;" data-theme="b">    
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#">Gestion du compte</a></li>
+                        <li><a href="#">Accueil</a></li>
+                        <li><form id="btnDeconnection" method="post" action="connection.html">
+                                <input name="action" id="logout" type="hidden" value="logout"/>
+                                <button type="submit" id="submitOK" name="submitOK">
+                                    <img id="white" src="../css/images/icons-png/power-white.png" >
+                                    <img id="black" src="../css/images/icons-png/power-black.png" >
+                                </button></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div><!-- /header -->
+
+
+            <div role="main" class="ui-content">
+                <center>
+                    <br/><br/><br/>
+                    <h2>Jobs en cours :</h2>
+                    <h2>"Nom du Job en cours"</h2>
+                    <br/>
+
+                    <div class="ui-grid-a">
+                        <div data-role="fieldcontain
+                             ">            
+
+                            <label for="progression">Progression du Job en cours : </label>
+                            <div id="divEtat">
+                                <div id="divEtatImp"><FONT color="White">Temps restant : 4 minutes</font></div>
+                            </div>
+
+                            <div class="ui-block-a">
+                                <table data-role="table" id="table-column-toggle" data-mode="columntoggle" class="ui-responsive table-stroke">
+                                         <thead></div>
+                                               <tr>
+                                                     <th data-priority="10">Imprimante</th>
+                                                     <th data-priority="9">Nom Job</th>
+                                                     <th data-priority="7">Date</th>
+                                                    <th data-priority="6">Etat</th>
+                                                     <th data-priority="5">Durée (minutes)</th>
+                                                    <th data-priority="1">Prix (euros)</th>
+                                                   </tr>
+                                             </thead>
+                                         <tbody>
+                                               <tr>
+                                                     <td>Imp-03</td>
+                                                     <td>Clavier</td>
+                                                     <td>16/04/19</td>
+                                                     <td>En cours</td>
+                                                     <td>136</td>
+                                                     <td>25</td>
+                                                   </tr>
+                                               <tr>
+                                                     <td>Imp-01</td>
+                                                     <td>Souris</td>
+                                                     <td>25/12/19</td>
+                                                     <td>Terminé</td>
+                                                     <td>92</td>
+                                                     <td>11</td>
+                                                   </tr>
+                                               <tr>
+                                                     <td>Imp-02</td>
+                                                     <td>Ecran</td>
+                                                     <td>15/03/19</td>
+                                                     <td>Terminé</td>
+                                                     <td>654</td>
+                                                     <td>100</td>
+                                                   </tr>
+                                             </tbody>
+                                       </table>
+
+                            </div>
+                        </div>
+                        <br/><br/><br/>
+                        <div class="ui-block-b">
+                            <label for="camera">Caméra :</label>
+                            <div><img src="../images/surveillance.jpg" id="surveillance"/></div>
+                        </div>
+                    </div>
+
+
+                    <p class="mini">V0.1 - Mars 2019<br/>Développement : BTS SNIR Lycée V.Hugo Colomiers</p>
+                </center>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,53 +1,57 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Connection</title> 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-    <link rel="apple-touch-icon" href="../images/apple-touch-icon-57x57.png"/>
-    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
-    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
-    <link rel="icon" href="../images/apple-touch-icon-57x57.png" />
-    <link rel="stylesheet" href="../js/jquery.mobile/jquery.mobile-1.4.5.min.css"/>
-    <link rel="stylesheet" href="../css/themes/jquery.mobile.icons.min.css" />
-    <link rel="stylesheet" href="../css/imp3DTheme.css"/>
-    <script type="text/javascript" src="../js/jquery/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
-
+        <title>FabLab - Accueil</title> 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+        <link rel="apple-touch-icon" href="../images/apple-touch-icon-57x57.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+        <link rel="icon" href="../images/apple-touch-icon-57x57.png" />
+        <link rel="stylesheet" href="../js/jquery.mobile/jquery.mobile-1.4.5.min.css"/>
+        <link rel="stylesheet" href="../css/themes/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="../css/imp3DModification.css"/>
+        <script type="text/javascript" src="../js/jquery/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="../js/jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
     </head>
+
     <body>
-        <div data-role="page" id="page1">
-            <div class="header" data-role="header" data-id="main-header" data-tap-toggle="false" 
-                 data-theme="a" data-position="fixed" data-fullscreen="true">
-                <h1>Accueil</h1>
-            </div>
-            <div class="header" data-role="header" data-id="main-header" data-tap-toggle="false" 
-                 data-theme="a" data-position="fixed" data-fullscreen="true">
-                <h1>Pas encore inscrit ? Inscrivez-vous !</h1>
-            </div>
+        <div data-role="page" id="pageaccueil">
+
+            <div data-role="header" style="overflow:hidden;" data-theme="b">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#">Déjà inscrit ? Connectez-vous !</a></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div><!-- /header -->
+
+
             <div role="main" class="ui-content">
                 <center>
                     <br/><br/><br/>
-                    <h2>Accueil<br/>
-                        Suivi d'impression 3D au FabLab<br/>
+                    <h2>Suivi d'impression 3D au FabLab<br/>
                         du Lycée international Victor Hugo de Colomiers</h2>
                     <br/><br/>
-                    <div class="logo"><img src="../images/imp3D.png" /></div>  
+
+                    <div><img src="../images/imp3D.png" id="image"/></div>  
                     <br/>
-                    <form id="formLogin" class="form" method="post" action="imp3DControl.jsp">
-                        <div data-role="fieldcontain">
-                            <label for="mdp">Adresse mail :</label>
-                            <input type="text" name="mail" id="id"/>
-                        </div>
-                        <div data-role="fieldcontain">
-                            <label for="mdp">Mot de passe :</label>
-                            <input type="password" name="mdp" id="mdp"/>
-                        </div>
-                        <input name="action" id="login" type="hidden" data-theme="b" value="login_req"/><br/>
-                        <button type="submit" id="submitOK" name="submitOK">Connection</button>
-                    </form>
+                    <h3>Le Fablab sert à BLABLAB LABLABLABLA
+                        BLABLABLABLABLAB LABLABLABL ABLABLABLABA 
+                        BLA BLABLA BLABLABLABL ABLABLABLABL ABLA 
+                        BLAB LABLABLABLABLABLABL AAAAAAAAAAAAAv</h3>
+                    <div data-role="fieldcontain" class="xxx">
+                        <form id="formLogin" class="form" method="post" action="imp3DControl.jsp">
+
+
+                            <label for="code">Pour vous inscrire, entrez votre code personnel: </label>
+                            <input type="text" name="code" id="codeaccueil" value="">
+                            <button type="submit" id="accueilinscription" name="accueilinscription">Débuter Inscription</button>
+                            <h5>Vous n'avez pas de code personnel ? Contactez un responsable du Fablab pour en obtenir un !</h5>
+                        </form>
+                    </div>
                     <p class="mini">V0.1 - Mars 2019<br/>Développement : BTS SNIR Lycée V.Hugo Colomiers</p>
                 </center>
             </div>

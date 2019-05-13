@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FabLab - Connection</title> 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+        <link rel="apple-touch-icon" href="../images/apple-touch-icon-57x57.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+        <link rel="icon" href="../images/apple-touch-icon-57x57.png" />
+        <link rel="stylesheet" href="../js/jquery.mobile/jquery.mobile-1.4.5.min.css"/>
+        <link rel="stylesheet" href="../css/themes/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="../css/imp3DModification.css"/>
+        <script type="text/javascript" src="../js/jquery/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="../js/jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+
+    </head>
+    <body>
+        <div data-role="page" id="pageconnection">
+            <div data-role="header" style="overflow:hidden;" data-theme="b">
+                    <div data-role="navbar">
+                        <ul>
+                            <li><a href="#">Pas encore inscrit ? Faîtes le !</a></li>
+                            </ul>
+                        </div><!-- /navbar -->
+            </div><!-- /header -->
+            
+            <div role="main" class="ui-content">
+                <center>
+                    <br/><br/><br/>
+                    <h2>Suivi d'impression 3D au FabLab<br/>
+                        du Lycée international Victor Hugo de Colomiers</h2>
+                    <br/><br/>
+                    <div><img src="../images/imp3D.png" id="image"/></div>  
+                    <br/>
+                    
+                    
+                    
+                    
+                    <div data-role="fieldcontain" class="xxx">
+                        <form id="formLogin" class="form" method="post" action="imp3DControl.jsp">
+                            
+                            <div data-role="fieldcontain">            
+                                <label for="inscriptionmail">Adresse mail : </label>
+                                <input type="email" name="connectionmail" id="connectionmail" value="">
+                            </div>  
+                            
+                            <div data-role="fieldcontain">
+                                <label for="connectionmdp">Mot de passe :</label>
+                                <input type="password" name="connectionmdp" id="connectionmdp" value=""/>
+                            </div>
+
+                            
+                            
+                            <input name="action" id="login" type="hidden" data-theme="b" value="login_req"/><br/>
+                            <button type="submit" id="submitOK" name="submitOK">Connection</button>
+
+                            <br/><br/><br/>
+                            <br/><br/><br/>
+
+                            <div class="ui-grid-b">
+
+                            <div data-role="fieldcontain">            
+                                <label for="mailoublie">Vous avez oublié votre mot de passe ?<br/>Saisissez votre mail ici !</label>
+                                <input type="email" name="mailoublie" id="mailoublie" value="">
+                            </div>  
+                                    <a href="#popupBlink" id="btnBlink" data-rel="popup" data-position-to="window" 
+                                       class="ui-btn ui-corner-all ui-shadow" data-transition="pop">Renvoyer un mail</a>
+
+                                <div data-role="fieldcontain">     
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <p class="mini">V0.1 - Mars 2019<br/>Développement : BTS SNIR Lycée V.Hugo Colomiers</p>
+                </center>
+            </div>
+        </div>
+    </body>
+</html>

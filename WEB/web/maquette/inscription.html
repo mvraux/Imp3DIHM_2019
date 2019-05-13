@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FabLab - Inscription</title> 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+        <link rel="apple-touch-icon" href="../images/apple-touch-icon-57x57.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+        <link rel="icon" href="../images/apple-touch-icon-57x57.png" />
+        <link rel="stylesheet" href="../js/jquery.mobile/jquery.mobile-1.4.5.min.css"/>
+        <link rel="stylesheet" href="../css/themes/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="../css/imp3DModification.css"/>
+        <script type="text/javascript" src="../js/jquery/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="../js/jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+
+    </head>
+    <body>
+        <div data-role="page" id="pageinscription">
+            <div data-role="header" style="overflow:hidden;" data-theme="b">
+                    <div data-role="navbar">
+                        <ul>
+                            <li><a href="#">Déjà inscrit ? Connectez-vous !</a></li>
+                            </ul>
+                        </div><!-- /navbar -->
+            </div><!-- /header -->
+            
+            <div role="main" class="ui-content">
+                <center>
+                    <br/><br/><br/>
+                    <br/><br/>  
+                    <br/>
+
+                    <div data-role="fieldcontain" class="xxx">
+                        <form id="formLogin" class="form" method="post" action="imp3DControl.jsp">
+
+                                    <div data-role="fieldcontain">            
+                                        <label for="code">Code : </label>
+                                        <input type="text" disabled="disabled" name="code" id="code" value="12345876">
+                                    </div>
+                                    <div data-role="fieldcontain"> 
+                                        <label for="inscriptionetablissement">Etablissement : </label>
+                                        <input type="text" name="inscriptionetablissement" id="inscriptionetablissement" value="">
+                                    </div>
+                                    <div data-role="fieldcontain">            
+                                        <label for="inscriptionnom">Nom : </label>
+                                        <input type="text" name="inscriptionnom" id="inscriptionnom" value="">
+                                    </div>
+                                    <div data-role="fieldcontain"> 
+                                        <label for="inscriptionprenom">Prenom : </label>
+                                        <input type="text" name="inscriptionprenom" id="inscriptionprenom" value="">
+                                    </div>
+                                    <div data-role="fieldcontain">            
+                                        <label for="inscriptionmail">Adresse mail : </label>
+                                        <input type="email" name="inscriptionmail" id="inscriptionmail" value="">
+                                    </div>
+                                    <div data-role="fieldcontain"> 
+                                        <label for="inscriptionmail2">Confirmation Adresse mail : </label>
+                                        <input type="email" name="inscriptionmail2" id="inscriptionmail2" value="">
+                                    </div>
+                                    <div data-role="fieldcontain">  
+                                        <label for="inscriptionmdp">Mot de passe :</label>
+                                        <input type="password" name="inscriptionmdp" id="inscriptionmdp"/>
+                                    </div>
+                                    <div data-role="fieldcontain">
+                                        <label for="inscriptionmdp2">Confirmation mot de passe :</label>
+                                        <input type="password" name="inscriptionmdp2" id="inscriptionmdp2"/>
+                                </div>
+                            <div data-role="fieldcontain">
+    <input type="checkbox" name="reglement" id="reglement" data-mini="true">
+    <label for="reglement">Je confirme avoir lu le règlement et je l'accepte</label>
+                                <input name="action" id="login" type="hidden" data-theme="b" value="login_req"/><br/>
+                                <button type="submit" id="submitOK" name="submitOK">Inscription</button>
+</div>
+
+                        </form>
+                    </div>
+                    <p class="mini">V0.1 - Mars 2019<br/>Développement : BTS SNIR Lycée V.Hugo Colomiers</p>
+                </center>
+            </div>
+        </div>
+    </body>
+</html>

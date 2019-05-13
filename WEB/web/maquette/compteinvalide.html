@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FabLab Comptes Invalides</title> 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+        <link rel="apple-touch-icon" href="../images/apple-touch-icon-57x57.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+        <link rel="icon" href="../images/apple-touch-icon-57x57.png" />
+        <link rel="stylesheet" href="../js/jquery.mobile/jquery.mobile-1.4.5.min.css"/>
+        <link rel="stylesheet" href="../css/themes/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="../css/imp3DModification.css"/>
+        <script type="text/javascript" src="../js/jquery/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="../js/jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+
+    </head>
+    <body>
+        <div data-role="page" id="pagecompteinvalide">
+            <div data-role="header" style="overflow:hidden;" data-theme="b">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#">Accueil</a></li>
+                        <li><form id="btnDeconnection" method="post" action="connection.html">
+                                <input name="action" id="logout" type="hidden" value="logout"/>
+                                <button type="submit" id="submitOK" name="submitOK">
+                                    <img id="white" src="../css/images/icons-png/power-white.png" >
+                                    <img id="black" src="../css/images/icons-png/power-black.png" >
+                                </button></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div><!-- /header -->
+            
+            <div role="main" class="ui-content">
+                <center>
+                    <br/><br/><br/><br/>
+                    <h2><FONT color="red">Votre compte n'a pas encore été validé !</font></h2>
+                    <br/>
+                    <div data-role="fieldcontain" class="xxx">
+                        <h5>Pour valider le compte, veuillez cliquer sur le lien que vous avez reçu par mail.</h5>
+                        <br/><br/>
+
+                        <h5>Vous n'avez pas reçu de mail ?</h5>
+                        <button type="submit" id="oublierenvoie" name="oublierenvoie">Renvoyer un mail</button>
+                        <br/><br/>
+                        <h5>Vous vous êtes trompé de mail à l'inscription ?</h5>
+                        <div data-role="fieldcontain">            
+                            <label for="inscriptionmail">Nouvelle adresse mail : </label>
+                            <input type="email" name="oubliemail" id="oubliemail" value="">
+                        </div>
+                        <div data-role="fieldcontain"> 
+                            <label for="inscriptionmail2">Confirmation Adresse mail : </label>
+                            <input type="email" name="oubliemail2" id="oubliemail2" value="">
+                        </div>
+                        <button type="submit" id="oubliemailbouton" name="oubliemailbouton">Changer de mail</button>
+                        <br/><br/>
+                        <p class="mini">V0.1 - Mars 2019<br/>Développement : BTS SNIR Lycée V.Hugo Colomiers</p>
+                </center>
+            </div>
+        </div>
+    </body>
+</html>
