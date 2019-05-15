@@ -24,7 +24,7 @@ public class Imprimante3d {
 
     /**
      * Créer un nouvel objet persistant
-     *
+     * @param con
      * @param nom
      * @param jobid
      * @param nbheures
@@ -57,13 +57,6 @@ public class Imprimante3d {
 
     }
 
-    /**
-     * suppression de l'objet Imprimante3d dans la BD
-     *
-     * @param con
-     * @return
-     * @throws SQLException impossible d'accéder à la ConnexionMySQL
-     */
     public boolean delete(Connection con) throws Exception {
         String queryString = "delete from Imprimante3d where Nom='" + nom + "'";
         Statement lStat = con.createStatement();
@@ -71,12 +64,6 @@ public class Imprimante3d {
         return true;
     }
 
-    /**
-     * update de l'objet Imprimante3d dans la ConnexionMySQL
-     *
-     * @param con
-     * @throws Exception impossible d'accéder à la ConnexionMySQL
-     */
     public void save(Connection con) throws Exception {
         String queryString
                 = "update Imprimante3d set "
@@ -84,7 +71,7 @@ public class Imprimante3d {
                 + " NbHeuresDeTravail =" + Utils.toString(nbhdetravail) + ","
                 + " Etat =" + Utils.toString(etat) + ", "
                 + " DureeRestante =" + Utils.toString(dureerestante) + ","
-                + " CoutHoraire =" + Utils.toString(couthoraire) + ", "
+                + " CoutHoraire =" + Utils.toString(couthoraire)
                 +" where Nom ='" + nom + "'";
         Statement lStat = con.createStatement();
         lStat.executeUpdate(queryString, Statement.NO_GENERATED_KEYS);
@@ -117,7 +104,7 @@ public class Imprimante3d {
     /**
      * Cree et initialise completement Imprimante3d
      */
-    public Imprimante3d(String nom, double nbhdetravail, String etat, double dureerestante, int CoutHoraire) {
+    public Imprimante3d(String nom, double nbhdetravail, String etat, double dureerestante, int couthoraire) {
         this.nom = nom;
         this.nbhdetravail = nbhdetravail;
         this.etat = etat;
@@ -150,7 +137,7 @@ public class Imprimante3d {
         return couthoraire;
     }
 
-    public void setCoutHoraire(int CoutHoraire) {
+    public void setCoutHoraire(int couthoraire) {
         this.couthoraire = couthoraire;
     }
 

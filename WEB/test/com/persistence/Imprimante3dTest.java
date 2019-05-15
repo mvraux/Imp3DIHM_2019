@@ -18,22 +18,22 @@ import static org.junit.Assert.*;
  * @author snir2g2
  */
 public class Imprimante3dTest {
-    
+
     public Imprimante3dTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -44,9 +44,9 @@ public class Imprimante3dTest {
     @Test
     public void testCreate() throws Exception {
         System.out.println("create");
-        Connection con =  ConnexionMySQL.newConnexion();;
+        Connection con = ConnexionMySQL.newConnexion();
         String nom = "uprint2";
-        Job job = Job.getByDate(con, Utils.stringToTimestamp("2019/01/17 22:00:00"));
+        Job job = Job.getByDate(con, Utils.stringToTimestamp("2019/04/04 00:00:00"));
         int id = job.getID(con);
         double nbheures = 0.0;
         String etat = "TRAVAIL";
@@ -60,30 +60,28 @@ public class Imprimante3dTest {
 
     /**
      * Test of delete method, of class Imprimante3d.
+     *
+     * @Test public void testDelete() throws Exception {
+     * System.out.println("delete"); Connection con = null; Imprimante3d
+     * instance = null; boolean expResult = false; boolean result =
+     * instance.delete(con); assertEquals(expResult, result); // TODO review the
+     * generated test code and remove the default call to fail. fail("The test
+     * case is a prototype."); }
      */
-    @Test
-    public void testDelete() throws Exception {
-        System.out.println("delete");
-        Connection con = null;
-        Imprimante3d instance = null;
-        boolean expResult = false;
-        boolean result = instance.delete(con);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
     /**
      * Test of save method, of class Imprimante3d.
      */
     @Test
     public void testSave() throws Exception {
         System.out.println("save");
-        Connection con = null;
-        Imprimante3d instance = null;
-        instance.save(con);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Connection con = ConnexionMySQL.newConnexion();
+        int expResult = 4785;
+        Imprimante3d result = Imprimante3d.getByNom(con, "uprint1");
+        result.setCoutHoraire(4785);
+        result.save(con);
+        assertEquals(expResult, result.getCoutHoraire());
+        result.setCoutHoraire(800);
+        result.save(con);
     }
 
     /**
@@ -92,114 +90,107 @@ public class Imprimante3dTest {
     @Test
     public void testGetByNom() throws Exception {
         System.out.println("getByNom");
-        Connection con = null;
-        String nom = "";
-        Imprimante3d expResult = null;
+        Connection con = ConnexionMySQL.newConnexion();
+        String nom = "uprint1";
+        String expResult = "REPOS";
         Imprimante3d result = Imprimante3d.getByNom(con, nom);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult, result.getEtat());
     }
 
     /**
      * Test of getNom method, of class Imprimante3d.
      */
     @Test
-    public void testGetNom() {
+    public void testGetNom() throws Exception {
         System.out.println("getNom");
-        Imprimante3d instance = null;
-        String expResult = "";
-        String result = instance.getNom();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Connection con = ConnexionMySQL.newConnexion();
+        String nom = "uprint1";
+        String expResult = "uprint1";
+        Imprimante3d result = Imprimante3d.getByNom(con, nom);
+        assertEquals(expResult, result.getNom());
     }
-
-
 
     /**
      * Test of getNbhdetravail method, of class Imprimante3d.
      */
     @Test
-    public void testGetNbhdetravail() {
+    public void testGetNbhdetravail() throws Exception  {
         System.out.println("getNbhdetravail");
-        Imprimante3d instance = null;
-        double expResult = 0.0;
-        double result = instance.getNbhdetravail();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Connection con = ConnexionMySQL.newConnexion();
+        String nom = "uprint1";
+        double expResult = 1500;
+        Imprimante3d result = Imprimante3d.getByNom(con, nom);
+        assertEquals(expResult, result.getNbhdetravail(),0);
+
     }
 
     /**
      * Test of setNbhdetravail method, of class Imprimante3d.
      */
     @Test
-    public void testSetNbhdetravail() {
+    public void testSetNbhdetravail() throws Exception  {
         System.out.println("setNbhdetravail");
-        double nbhdetravail = 0.0;
-        Imprimante3d instance = null;
-        instance.setNbhdetravail(nbhdetravail);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Connection con = ConnexionMySQL.newConnexion();
+        Imprimante3d instance = Imprimante3d.getByNom(con, "uprint1");
+        instance.setNbhdetravail(18);
+        instance.save(con);
+        assertEquals(18, instance.getNbhdetravail(),0);
+        instance.setNbhdetravail(1500);
+        instance.save(con);
     }
 
     /**
      * Test of getEtat method, of class Imprimante3d.
      */
     @Test
-    public void testGetEtat() {
+    public void testGetEtat()throws Exception  {
         System.out.println("getEtat");
-        Imprimante3d instance = null;
-        String expResult = "";
-        String result = instance.getEtat();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Connection con = ConnexionMySQL.newConnexion();
+        String nom = "uprint1";
+        String expResult = "REPOS";
+        Imprimante3d result = Imprimante3d.getByNom(con, nom);
+        assertEquals(expResult, result.getEtat());
     }
-
-
 
     /**
      * Test of getDureerestante method, of class Imprimante3d.
      */
     @Test
-    public void testGetDureerestante() {
+    public void testGetDureerestante()throws Exception {
         System.out.println("getDureerestante");
-        Imprimante3d instance = null;
-        double expResult = 0.0;
-        double result = instance.getDureerestante();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Connection con = ConnexionMySQL.newConnexion();
+        String nom = "uprint1";
+        double expResult = 22;
+        Imprimante3d result = Imprimante3d.getByNom(con, nom);
+        assertEquals(expResult, result.getDureerestante(),0);
     }
-
 
     /**
      * Test of getCoutHoraire method, of class Imprimante3d.
      */
     @Test
-    public void testGetCoutHoraire() {
+    public void testGetCoutHoraire()throws Exception {
         System.out.println("getCoutHoraire");
-        Imprimante3d instance = null;
-        int expResult = 0;
-        int result = instance.getCoutHoraire();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Connection con = ConnexionMySQL.newConnexion();
+        String nom = "uprint1";
+        int expResult = 800;
+        Imprimante3d result = Imprimante3d.getByNom(con, nom);
+        assertEquals(expResult, result.getCoutHoraire(),0);
     }
 
     /**
      * Test of setCoutHoraire method, of class Imprimante3d.
      */
     @Test
-    public void testSetCoutHoraire() {
+    public void testSetCoutHoraire() throws Exception{
         System.out.println("setCoutHoraire");
-        int CoutHoraire = 0;
-        Imprimante3d instance = null;
-        instance.setCoutHoraire(CoutHoraire);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Connection con = ConnexionMySQL.newConnexion();
+        Imprimante3d instance = Imprimante3d.getByNom(con, "uprint1");
+        instance.setCoutHoraire(18);
+        instance.save(con);
+        assertEquals(18, instance.getCoutHoraire());
+        instance.setCoutHoraire(800);
+        instance.save(con);
     }
-    
+
 }
