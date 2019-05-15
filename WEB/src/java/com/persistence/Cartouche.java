@@ -129,7 +129,7 @@ public class Cartouche {
         int lquantite = result.getInt("QuantiteRestante");
         int lcout = result.getInt("CoutAuMetre");
 
-        return new Cartouche(lDateR,lDateF,lNum,lquantite,lcout);
+        return new Cartouche(lDateR, lDateF, lNum, lquantite, lcout);
     }
 
     public Timestamp getDateremplacement() {

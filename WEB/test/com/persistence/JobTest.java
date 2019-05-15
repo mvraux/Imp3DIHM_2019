@@ -7,6 +7,7 @@ package com.persistence;
 
 import java.sql.Connection;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,22 +20,22 @@ import static org.junit.Assert.*;
  * @author snir2g2
  */
 public class JobTest {
-    
+
     public JobTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -59,26 +60,11 @@ public class JobTest {
         int prix = 0;
         String expResult = "FINI";
         Job result = Job.create(con, usercode, nom, daterealisation,
-                etat, dureeconsommee, resteafaire, supportconsomme, 
+                etat, dureeconsommee, resteafaire, supportconsomme,
                 matiereconsommee, supportestime, matiereestimee, prix);
         assertEquals(expResult, result.getEtat());
         result.delete(con);
     }
-
-    /**
-     * Test of delete method, of class Job.
-     *
-    @Test
-    public void testDelete() throws Exception {
-        System.out.println("delete");
-        Connection con = null;
-        Job instance = null;
-        boolean expResult = false;
-        boolean result = instance.delete(con);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    } */
 
     /**
      * Test of save method, of class Job.
@@ -111,7 +97,7 @@ public class JobTest {
      * Test of getNom method, of class Job.
      */
     @Test
-    public void testGetNom()throws Exception {
+    public void testGetNom() throws Exception {
         System.out.println("getNom");
         Connection con = ConnexionMySQL.newConnexion();
         Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
@@ -125,7 +111,7 @@ public class JobTest {
      * Test of getDaterealisation method, of class Job.
      */
     @Test
-    public void testGetDaterealisation()throws Exception {
+    public void testGetDaterealisation() throws Exception {
         System.out.println("getDaterealisation");
         Connection con = ConnexionMySQL.newConnexion();
         Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
@@ -139,7 +125,7 @@ public class JobTest {
      * Test of getEtat method, of class Job.
      */
     @Test
-    public void testGetEtat()throws Exception {
+    public void testGetEtat() throws Exception {
         System.out.println("getEtat");
         Connection con = ConnexionMySQL.newConnexion();
         Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
@@ -153,7 +139,7 @@ public class JobTest {
      * Test of getDureeconsommee method, of class Job.
      */
     @Test
-    public void testGetDureeconsommee()throws Exception {
+    public void testGetDureeconsommee() throws Exception {
         System.out.println("getDureeconsommee");
         Connection con = ConnexionMySQL.newConnexion();
         Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
@@ -167,7 +153,7 @@ public class JobTest {
      * Test of getResteafaire method, of class Job.
      */
     @Test
-    public void testGetResteafaire()throws Exception {
+    public void testGetResteafaire() throws Exception {
         System.out.println("getResteafaire");
         Connection con = ConnexionMySQL.newConnexion();
         Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
@@ -181,7 +167,7 @@ public class JobTest {
      * Test of getSupportconsomme method, of class Job.
      */
     @Test
-    public void testGetSupportconsomme() throws Exception{
+    public void testGetSupportconsomme() throws Exception {
         System.out.println("getSupportconsomme");
         Connection con = ConnexionMySQL.newConnexion();
         Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
@@ -196,7 +182,7 @@ public class JobTest {
      * Test of getMatiereconsommee method, of class Job.
      */
     @Test
-    public void testGetMatiereconsommee()throws Exception {
+    public void testGetMatiereconsommee() throws Exception {
         System.out.println("getMatiereconsommee");
         Connection con = ConnexionMySQL.newConnexion();
         Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
@@ -210,7 +196,7 @@ public class JobTest {
      * Test of getSupportestime method, of class Job.
      */
     @Test
-    public void testGetSupportestime()throws Exception {
+    public void testGetSupportestime() throws Exception {
         System.out.println("getSupportestime");
         Connection con = ConnexionMySQL.newConnexion();
         Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
@@ -224,7 +210,7 @@ public class JobTest {
      * Test of getMatiereestimee method, of class Job.
      */
     @Test
-    public void testGetMatiereestimee()throws Exception {
+    public void testGetMatiereestimee() throws Exception {
         System.out.println("getMatiereestimee");
         Connection con = ConnexionMySQL.newConnexion();
         Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
@@ -239,7 +225,7 @@ public class JobTest {
      * Test of getPrix method, of class Job.
      */
     @Test
-    public void testGetPrix()throws Exception {
+    public void testGetPrix() throws Exception {
         System.out.println("getPrix");
         Connection con = ConnexionMySQL.newConnexion();
         Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
@@ -254,7 +240,7 @@ public class JobTest {
      * Test of setPrix method, of class Job.
      */
     @Test
-    public void testSetPrix()throws Exception {
+    public void testSetPrix() throws Exception {
         System.out.println("setPrix");
         Connection con = ConnexionMySQL.newConnexion();
         Job instance = Job.getByDate(con, Utils.stringToTimestamp("2019/01/17 22:00:00"));
@@ -277,20 +263,20 @@ public class JobTest {
         int result = instance.getID(con);
         assertEquals(expResult, result);
     }
-
+    
     /**
-     * Test of delete method, of class Job.
+     * Test of getListeDesJobs method, of class Job.
      */
-  /*  @Test
-    public void testDelete() throws Exception {
-        System.out.println("delete");
+    @Test
+    public void testGetListeDesJobs() throws Exception {
+        System.out.println("getListeDesJobs");
         Connection con = null;
-        Job instance = null;
-        boolean expResult = false;
-        boolean result = instance.delete(con);
+        ArrayList<Job> expResult = null;
+        ArrayList<Job> result = Job.getListeDesJobs(con);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }*/
+    }
+
     
 }

@@ -59,16 +59,6 @@ public class Imprimante3dTest {
     }
 
     /**
-     * Test of delete method, of class Imprimante3d.
-     *
-     * @Test public void testDelete() throws Exception {
-     * System.out.println("delete"); Connection con = null; Imprimante3d
-     * instance = null; boolean expResult = false; boolean result =
-     * instance.delete(con); assertEquals(expResult, result); // TODO review the
-     * generated test code and remove the default call to fail. fail("The test
-     * case is a prototype."); }
-     */
-    /**
      * Test of save method, of class Imprimante3d.
      */
     @Test
@@ -114,13 +104,13 @@ public class Imprimante3dTest {
      * Test of getNbhdetravail method, of class Imprimante3d.
      */
     @Test
-    public void testGetNbhdetravail() throws Exception  {
+    public void testGetNbhdetravail() throws Exception {
         System.out.println("getNbhdetravail");
         Connection con = ConnexionMySQL.newConnexion();
         String nom = "uprint1";
         double expResult = 1500;
         Imprimante3d result = Imprimante3d.getByNom(con, nom);
-        assertEquals(expResult, result.getNbhdetravail(),0);
+        assertEquals(expResult, result.getNbhdetravail(), 0);
 
     }
 
@@ -128,13 +118,13 @@ public class Imprimante3dTest {
      * Test of setNbhdetravail method, of class Imprimante3d.
      */
     @Test
-    public void testSetNbhdetravail() throws Exception  {
+    public void testSetNbhdetravail() throws Exception {
         System.out.println("setNbhdetravail");
         Connection con = ConnexionMySQL.newConnexion();
         Imprimante3d instance = Imprimante3d.getByNom(con, "uprint1");
         instance.setNbhdetravail(18);
         instance.save(con);
-        assertEquals(18, instance.getNbhdetravail(),0);
+        assertEquals(18, instance.getNbhdetravail(), 0);
         instance.setNbhdetravail(1500);
         instance.save(con);
     }
@@ -143,7 +133,7 @@ public class Imprimante3dTest {
      * Test of getEtat method, of class Imprimante3d.
      */
     @Test
-    public void testGetEtat()throws Exception  {
+    public void testGetEtat() throws Exception {
         System.out.println("getEtat");
         Connection con = ConnexionMySQL.newConnexion();
         String nom = "uprint1";
@@ -156,33 +146,33 @@ public class Imprimante3dTest {
      * Test of getDureerestante method, of class Imprimante3d.
      */
     @Test
-    public void testGetDureerestante()throws Exception {
+    public void testGetDureerestante() throws Exception {
         System.out.println("getDureerestante");
         Connection con = ConnexionMySQL.newConnexion();
         String nom = "uprint1";
         double expResult = 22;
         Imprimante3d result = Imprimante3d.getByNom(con, nom);
-        assertEquals(expResult, result.getDureerestante(),0);
+        assertEquals(expResult, result.getDureerestante(), 0);
     }
 
     /**
      * Test of getCoutHoraire method, of class Imprimante3d.
      */
     @Test
-    public void testGetCoutHoraire()throws Exception {
+    public void testGetCoutHoraire() throws Exception {
         System.out.println("getCoutHoraire");
         Connection con = ConnexionMySQL.newConnexion();
         String nom = "uprint1";
         int expResult = 800;
         Imprimante3d result = Imprimante3d.getByNom(con, nom);
-        assertEquals(expResult, result.getCoutHoraire(),0);
+        assertEquals(expResult, result.getCoutHoraire(), 0);
     }
 
     /**
      * Test of setCoutHoraire method, of class Imprimante3d.
      */
     @Test
-    public void testSetCoutHoraire() throws Exception{
+    public void testSetCoutHoraire() throws Exception {
         System.out.println("setCoutHoraire");
         Connection con = ConnexionMySQL.newConnexion();
         Imprimante3d instance = Imprimante3d.getByNom(con, "uprint1");

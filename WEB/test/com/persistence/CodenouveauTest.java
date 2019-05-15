@@ -54,26 +54,11 @@ public class CodenouveauTest {
     }
 
     /**
-     * Test of delete method, of class Codenouveau.
-     
-    @Test
-    public void testDelete() throws Exception {
-        System.out.println("delete");
-        Connection con = null;
-        Codenouveau instance = null;
-        boolean expResult = false;
-        boolean result = instance.delete(con);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-*/
-    /**
      * Test of save method, of class Codenouveau.
      */
     @Test
     public void testSave() throws Exception {
-       System.out.println("save");
+        System.out.println("save");
         Connection con = ConnexionMySQL.newConnexion();
         String fabnom = "FabLab_Victor_Hugo";
         String codenv = "48876Q9SD46";
@@ -99,7 +84,7 @@ public class CodenouveauTest {
      * Test of getCode method, of class Codenouveau.
      */
     @Test
-    public void testGetCode()throws Exception {
+    public void testGetCode() throws Exception {
         System.out.println("getCode");
         Connection con = ConnexionMySQL.newConnexion();
         Codenouveau instance = Codenouveau.getByCode(con, "48876Q9SD4");

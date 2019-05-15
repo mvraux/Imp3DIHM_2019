@@ -59,16 +59,6 @@ public class CartoucheTest {
     }
 
     /**
-     * Test of delete method, of class Cartouche.
-     *
-     * @Test public void testDelete() throws Exception {
-     * System.out.println("delete"); Connection con = null; Cartouche instance =
-     * null; boolean expResult = false; boolean result = instance.delete(con);
-     * assertEquals(expResult, result); // TODO review the generated test code
-     * and remove the default call to fail. fail("The test case is a
-     * prototype."); }
-     */
-    /**
      * Test of save method, of class Cartouche.
      */
     @Test

@@ -56,14 +56,6 @@ public class AmbianceTest {
     }
 
     /**
-     * Test of delete method, of class Ambiance.
-     *
-     * @Test public void testDelete() throws Exception {
-     * System.out.println("delete"); Connection con = null; Ambiance instance =
-     * null; boolean expResult = false; boolean result = instance.delete(con);
-     * assertEquals(expResult, result); }
-     */
-    /**
      * Test of save method, of class Ambiance.
      */
     @Test
@@ -98,7 +90,7 @@ public class AmbianceTest {
      * Test of getTemperature method, of class Ambiance.
      */
     @Test
-    public void testGetTemperature()throws Exception  {
+    public void testGetTemperature() throws Exception {
         System.out.println("getTemperature");
         Connection con = ConnexionMySQL.newConnexion();
         Ambiance instance = Ambiance.getByDate(con, Utils.stringToTimestamp("2019/02/19 00:00:00"));

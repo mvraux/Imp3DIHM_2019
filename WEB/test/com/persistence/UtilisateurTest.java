@@ -7,6 +7,7 @@ package com.persistence;
 
 import java.sql.Connection;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -63,17 +64,6 @@ public class UtilisateurTest {
         result.delete(con);
     }
 
-    /**
-     * Test of delete method, of class Utilisateur.
-     *
-     * @Test public void testDelete() throws Exception {
-     * System.out.println("delete"); Connection con =
-     * ConnexionMySQL.newConnexion(); Utilisateur instance = null; boolean
-     * expResult = false; boolean result = instance.delete(con);
-     * assertEquals(expResult, result); // TODO review the generated test code
-     * and remove the default call to fail. fail("The test case is a
-     * prototype."); }
-     */
     /**
      * Test of save method, of class Utilisateur.
      */
@@ -309,7 +299,7 @@ public class UtilisateurTest {
      * Test of setNom method, of class Utilisateur.
      */
     @Test
-    public void testSetNom() throws Exception { 
+    public void testSetNom() throws Exception {
         System.out.println("setNom");
         Connection con = ConnexionMySQL.newConnexion();
         Utilisateur instance = Utilisateur.getByMail(con, "user1@gmail.com");
@@ -324,7 +314,7 @@ public class UtilisateurTest {
      * Test of getPrenom method, of class Utilisateur.
      */
     @Test
-    public void testGetPrenom()throws Exception {
+    public void testGetPrenom() throws Exception {
         System.out.println("getPrenom");
         Connection con = ConnexionMySQL.newConnexion();
         Utilisateur instance = Utilisateur.getByMail(con, "user1@gmail.com");
@@ -344,6 +334,19 @@ public class UtilisateurTest {
         assertEquals(instance.getPrenom(), "nomtest");
         instance.setPrenom("Bertrand");
         instance.save(con);
+    }
+
+    /**
+     * Test of getListeDesUtilisateurs method, of class Utilisateur.
+     */
+    @Test
+    public void testGetListeDesUtilisateurs() throws Exception {
+        System.out.println("getListeDesUtilisateurs");
+        Connection con = ConnexionMySQL.newConnexion();
+        String expResult = "FINI";
+        ArrayList<Job> resultarray = Job.getListeDesJobs(con);
+        Job result = resultarray.get(1);
+        assertEquals(expResult, result.getEtat());
     }
 
 }

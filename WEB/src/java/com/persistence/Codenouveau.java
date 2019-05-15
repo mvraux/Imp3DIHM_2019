@@ -76,37 +76,37 @@ public class Codenouveau {
         Statement lStat = con.createStatement();
         lStat.executeUpdate(queryString, Statement.NO_GENERATED_KEYS);
     }
-    
-     /**
+
+    /**
      * Retourne un user trouve par son pseudo, saved is true
+     *
      * @param con
-     * @param  mail du mail à trouver
+     * @param mail du mail à trouver
      * @return user trouve par mail
      * @throws java.lang.Exception
      */
     public static Codenouveau getByCode(Connection con, String code) throws Exception {
         String queryString = "select * from Codenouveau where Code='" + code + "'";
         Statement lStat = con.createStatement(
-                                ResultSet.TYPE_SCROLL_INSENSITIVE, 
-                                ResultSet.CONCUR_READ_ONLY);
+                ResultSet.TYPE_SCROLL_INSENSITIVE,
+                ResultSet.CONCUR_READ_ONLY);
         ResultSet lResult = lStat.executeQuery(queryString);
         // y en a t'il au moins un ?
         if (lResult.next()) {
             return creerParRequete(lResult);
-        }
-        else
+        } else {
             return null;
+        }
     }
-    
-     private static Codenouveau creerParRequete(ResultSet result) throws Exception {
-            String    lCode = result.getString("Code");
-            
-            return new Codenouveau(lCode);
+
+    private static Codenouveau creerParRequete(ResultSet result) throws Exception {
+        String lCode = result.getString("Code");
+
+        return new Codenouveau(lCode);
     }
 
     public String getCode() {
         return code;
     }
-
 
 }

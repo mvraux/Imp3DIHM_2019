@@ -58,16 +58,6 @@ public class FablabTest {
     }
 
     /**
-     * Test of delete method, of class Fablab.
-     *
-     * @Test public void testDelete() throws Exception {
-     * System.out.println("delete"); Connection con = null; Fablab instance =
-     * null; boolean expResult = false; boolean result = instance.delete(con);
-     * assertEquals(expResult, result); // TODO review the generated test code
-     * and remove the default call to fail. fail("The test case is a
-     * prototype."); }
-     */
-    /**
      * Test of save method, of class Fablab.
      */
     @Test
@@ -80,7 +70,7 @@ public class FablabTest {
         double hum = 45.9;
         double maxtemp = 53.8;
         double maxhum = 96.9;
-        Fablab instance = Fablab.create(con, nom, imp3dnom, temp, maxtemp,hum, maxhum);
+        Fablab instance = Fablab.create(con, nom, imp3dnom, temp, maxtemp, hum, maxhum);
         instance.save(con);
         assertEquals(53.8, instance.getMaxtemp(), 0.01);
         instance.delete(con);
@@ -106,14 +96,14 @@ public class FablabTest {
         System.out.println("getNom");
         Connection con = ConnexionMySQL.newConnexion();
         Fablab instance = Fablab.getByNom(con, "FabLab_Victor_Hugo");
-        assertEquals(35, instance.getMaxtemp(),0);
+        assertEquals(35, instance.getMaxtemp(), 0);
     }
 
     /**
      * Test of getMintemp method, of class Fablab.
      */
     @Test
-    public void testGetMintemp()  throws Exception {
+    public void testGetMintemp() throws Exception {
         System.out.println("getMintemp");
         Connection con = ConnexionMySQL.newConnexion();
         Fablab instance = Fablab.getByNom(con, "FabLab_Victor_Hugo");
@@ -152,7 +142,7 @@ public class FablabTest {
      * Test of getMaxhumidite method, of class Fablab.
      */
     @Test
-    public void testGetMaxhumidite()throws Exception  {
+    public void testGetMaxhumidite() throws Exception {
         System.out.println("getMaxhumidite");
         Connection con = ConnexionMySQL.newConnexion();
         Fablab instance = Fablab.getByNom(con, "FabLab_Victor_Hugo");

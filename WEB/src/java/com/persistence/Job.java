@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 /**
  *
@@ -98,7 +99,7 @@ public class Job {
      * @throws SQLException impossible d'accéder à la ConnexionMySQL
      */
     public boolean delete(Connection con) throws Exception {
-        String queryString = "delete from Job where nom ='"+nom+"'"
+        String queryString = "delete from Job where nom ='" + nom + "'"
                 + "and DateRealisation='" + daterealisation + "'";
         Statement lStat = con.createStatement();
         lStat.executeUpdate(queryString);
@@ -139,9 +140,9 @@ public class Job {
         // y en a t'il au moins un ?
         if (lResult.next()) {
             return creerParRequete(lResult);
-        }
-        else
+        } else {
             return null;
+        }
     }
 
     private static Job creerParRequete(ResultSet result) throws Exception {
@@ -159,7 +160,33 @@ public class Job {
         return new Job(lNom, lDate, letat, lduree, lreste, supportc,
                 matierec, supporte, matieree, lprix);
     }
-    
+
+    public static ArrayList<Job> getListeDesJobs(Connection con) throws Exception {
+        ArrayList<Job> jobs = new ArrayList<>();
+        String queryString = "select * from Job order by DateRealisation desc";
+        Statement lStat = con.createStatement(
+                ResultSet.TYPE_SCROLL_INSENSITIVE,
+                ResultSet.CONCUR_READ_ONLY);
+        ResultSet lResult = lStat.executeQuery(queryString);
+        while (lResult.next()) {
+            String lNom = lResult.getString("Nom");
+            Timestamp lDate = lResult.getTimestamp("DateRealisation");
+            String letat = lResult.getString("Etat");
+            double lduree = lResult.getDouble("DureeConsommee");
+            double lreste = lResult.getDouble("ResteAFaireEstimee");
+            int supportc = lResult.getInt("SupportConsomme");
+            int matierec = lResult.getInt("MatiereConsommee");
+            int supporte = lResult.getInt("SupportEstime");
+            int matieree = lResult.getInt("MatiereEstimee");
+            int lprix = lResult.getInt("Prix");
+            Job job = new Job(lNom, lDate, letat, lduree, lreste, supportc,
+                    matierec, supporte, matieree, lprix);
+
+            jobs.add(job);
+        }
+        return jobs;
+    }
+
     public int getID(Connection con) throws SQLException {
         String queryString = "select ID from Job where DateRealisation='" + daterealisation + "'";
         Statement lStat = con.createStatement(

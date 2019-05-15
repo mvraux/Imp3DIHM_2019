@@ -6,6 +6,7 @@
 package com.persistence;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,22 +19,22 @@ import static org.junit.Assert.*;
  * @author snir2g2
  */
 public class OperateurTest {
-    
+
     public OperateurTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -57,21 +58,6 @@ public class OperateurTest {
     }
 
     /**
-     * Test of delete method, of class Operateur.
-     *
-    @Test
-    public void testDelete() throws Exception {
-        System.out.println("delete");
-        Connection con = null;
-        Operateur instance = null;
-        boolean expResult = false;
-        boolean result = instance.delete(con);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-*/
-    /**
      * Test of save method, of class Operateur.
      */
     @Test
@@ -81,7 +67,7 @@ public class OperateurTest {
         Operateur instance = Operateur.getByMail(con, "operateur@gmail.com");
         instance.setNom("DUMAS");
         instance.save(con);
-        assertEquals("DUMAS",instance.getNom());
+        assertEquals("DUMAS", instance.getNom());
         instance.setNom("Dumas");
         instance.save(con);
     }
@@ -102,7 +88,7 @@ public class OperateurTest {
      * Test of getNom method, of class Operateur.
      */
     @Test
-    public void testGetNom()throws Exception {
+    public void testGetNom() throws Exception {
         System.out.println("getNom");
         Connection con = ConnexionMySQL.newConnexion();
         Operateur instance = Operateur.getByMail(con, "operateur@gmail.com");
@@ -113,8 +99,8 @@ public class OperateurTest {
      * Test of setNom method, of class Operateur.
      */
     @Test
-    public void testSetNom()throws Exception {
-         System.out.println("setNom");
+    public void testSetNom() throws Exception {
+        System.out.println("setNom");
         Connection con = ConnexionMySQL.newConnexion();
         Operateur instance = Operateur.getByMail(con, "operateur@gmail.com");
         instance.setNom("nomtest");
@@ -139,8 +125,8 @@ public class OperateurTest {
      * Test of setPrenom method, of class Operateur.
      */
     @Test
-    public void testSetPrenom()  throws Exception{
-         System.out.println("setPrenom");
+    public void testSetPrenom() throws Exception {
+        System.out.println("setPrenom");
         Connection con = ConnexionMySQL.newConnexion();
         Operateur instance = Operateur.getByMail(con, "operateur@gmail.com");
         instance.setPrenom("nomtest");
@@ -165,7 +151,7 @@ public class OperateurTest {
      * Test of setMdp method, of class Operateur.
      */
     @Test
-    public void testSetMdp()  throws Exception {
+    public void testSetMdp() throws Exception {
         System.out.println("setMdp");
         Connection con = ConnexionMySQL.newConnexion();
         Operateur instance = Operateur.getByMail(con, "operateur@gmail.com");
@@ -180,7 +166,7 @@ public class OperateurTest {
      * Test of getMail method, of class Operateur.
      */
     @Test
-    public void testGetMail()throws Exception {
+    public void testGetMail() throws Exception {
         System.out.println("getMail");
         Connection con = ConnexionMySQL.newConnexion();
         Operateur instance = Operateur.getByMail(con, "operateur@gmail.com");
@@ -191,7 +177,7 @@ public class OperateurTest {
      * Test of setMail method, of class Operateur.
      */
     @Test
-    public void testSetMail()throws Exception {
+    public void testSetMail() throws Exception {
         System.out.println("setMail");
         Connection con = ConnexionMySQL.newConnexion();
         Operateur instance = Operateur.getByMail(con, "operateur@gmail.com");
@@ -201,5 +187,19 @@ public class OperateurTest {
         instance.setMail("operateur@gmail.com");
         instance.save(con);
     }
+
     
+    /**
+     * Test of getListeDesOperateurs method, of class Operateur.
+     */
+    @Test
+    public void testGetListeDesOperateurs() throws Exception {
+        System.out.println("getListeDesOperateurs");
+        Connection con = ConnexionMySQL.newConnexion();
+        String expResult = "tech";
+        ArrayList<Operateur> resultarray = Operateur.getListeDesOperateurs(con);
+        Operateur result = resultarray.get(1);
+        assertEquals(expResult, result.getNom());
+    }
+
 }

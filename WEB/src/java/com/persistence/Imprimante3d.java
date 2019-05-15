@@ -24,6 +24,7 @@ public class Imprimante3d {
 
     /**
      * Créer un nouvel objet persistant
+     *
      * @param con
      * @param nom
      * @param jobid
@@ -72,7 +73,7 @@ public class Imprimante3d {
                 + " Etat =" + Utils.toString(etat) + ", "
                 + " DureeRestante =" + Utils.toString(dureerestante) + ","
                 + " CoutHoraire =" + Utils.toString(couthoraire)
-                +" where Nom ='" + nom + "'";
+                + " where Nom ='" + nom + "'";
         Statement lStat = con.createStatement();
         lStat.executeUpdate(queryString, Statement.NO_GENERATED_KEYS);
     }
@@ -127,7 +128,6 @@ public class Imprimante3d {
     public String getEtat() {
         return etat;
     }
-
 
     public double getDureerestante() {
         return dureerestante;
