@@ -60,10 +60,10 @@ insert into codenouveau (Code, FabLabNom) values
 
 /*CARTOUCHE*/
 
-insert into cartouche (Imprimante3DNom, DateRemplacement, NumeroDeSerie, QuantiteRestante, CoutAuMetre) values
-    ("uprint1","2019-01-01","CARTEST4991-SUP",487,1500);
-insert into cartouche (Imprimante3DNom, DateRemplacement,DateFabrication, NumeroDeSerie, QuantiteRestante, CoutAuMetre) values
-    ("uprint1","2019-01-01","2018-12-01","CARTEST4991-MAT",487,1500);
+insert into cartouche (Imprimante3DNom, DateRemplacement,TypeCartouche, NumeroDeSerie, QuantiteRestante, CoutAuMetre) values
+    ("uprint1","2019-01-01","SUPPORT","CARTESTSUP",487,1500);
+insert into cartouche (Imprimante3DNom, DateRemplacement,DateFabrication,TypeCartouche, NumeroDeSerie, QuantiteRestante, CoutAuMetre) values
+    ("uprint1","2019-01-01","2018-12-01","MATIERE","CARTESTMAT",487,1500);
 
 /*AMBIANCE*/
 

@@ -49,11 +49,12 @@ public class CartoucheTest {
         String imp3dnom = "uprint1";
         Timestamp dateremplacement = new Timestamp(System.currentTimeMillis());
         Timestamp datefabrication = new Timestamp(System.currentTimeMillis());
+        String type = "MATIERE";
         String numerodeserie = "0123456789";
         int quantiterestante = 40;
         int coutaumetre = 10;
         String expResult = "0123456789";
-        Cartouche result = Cartouche.create(con, imp3dnom, dateremplacement, datefabrication, numerodeserie, quantiterestante, coutaumetre);
+        Cartouche result = Cartouche.create(con, imp3dnom, dateremplacement, datefabrication,type, numerodeserie, quantiterestante, coutaumetre);
         assertEquals(expResult, result.getNumerodeserie());
         result.delete(con);
     }
@@ -65,7 +66,7 @@ public class CartoucheTest {
     public void testSave() throws Exception {
         System.out.println("save");
         Connection con = ConnexionMySQL.newConnexion();
-        Cartouche instance = Cartouche.getByNumero(con, "CARTEST4991-SUP");
+        Cartouche instance = Cartouche.getByNumero(con, "CARTESTSUP");
         instance.setCoutaumetre(1250);
         instance.save(con);
         assertEquals(1250, instance.getCoutaumetre());
@@ -80,9 +81,9 @@ public class CartoucheTest {
     public void testGetByNumero() throws Exception {
         System.out.println("getByNumero");
         Connection con = ConnexionMySQL.newConnexion();
-        String numerodeserie = "CARTEST4991-SUP";
+        String numerodeserie = "CARTESTSUP";
         Cartouche result = Cartouche.getByNumero(con, numerodeserie);
-        assertEquals("CARTEST4991-SUP", result.getNumerodeserie());
+        assertEquals("CARTESTSUP", result.getNumerodeserie());
     }
 
     /**
@@ -92,7 +93,7 @@ public class CartoucheTest {
     public void testGetDateremplacement() throws Exception {
         System.out.println("getDateremplacement");
         Connection con = ConnexionMySQL.newConnexion();
-        Cartouche instance = Cartouche.getByNumero(con, "CARTEST4991-MAT");
+        Cartouche instance = Cartouche.getByNumero(con, "CARTESTMAT");
         Timestamp expResult = Utils.stringToTimestamp("2019/01/01 00:00:00");
         Timestamp result = instance.getDateremplacement();
         assertEquals(expResult, result);
@@ -105,7 +106,7 @@ public class CartoucheTest {
     public void testGetDatefabrication() throws Exception {
         System.out.println("getDatefabrication");
         Connection con = ConnexionMySQL.newConnexion();
-        Cartouche instance = Cartouche.getByNumero(con, "CARTEST4991-MAT");
+        Cartouche instance = Cartouche.getByNumero(con, "CARTESTMAT");
         Timestamp expResult = Utils.stringToTimestamp("2018/12/01 00:00:00");
         Timestamp result = instance.getDatefabrication();
         assertEquals(expResult, result);
@@ -118,8 +119,8 @@ public class CartoucheTest {
     public void testGetNumerodeserie() throws Exception {
         System.out.println("getNumerodeserie");
         Connection con = ConnexionMySQL.newConnexion();
-        Cartouche instance = Cartouche.getByNumero(con, "CARTEST4991-MAT");
-        String expResult = "CARTEST4991-MAT";
+        Cartouche instance = Cartouche.getByNumero(con, "CARTESTMAT");
+        String expResult = "CARTESTMAT";
         String result = instance.getNumerodeserie();
         assertEquals(expResult, result);
     }
@@ -131,7 +132,7 @@ public class CartoucheTest {
     public void testGetQuantiterestante() throws Exception {
         System.out.println("getQuantiterestante");
         Connection con = ConnexionMySQL.newConnexion();
-        Cartouche instance = Cartouche.getByNumero(con, "CARTEST4991-MAT");
+        Cartouche instance = Cartouche.getByNumero(con, "CARTESTMAT");
         int expResult = 487;
         int result = instance.getQuantiterestante();
         assertEquals(expResult, result);
@@ -144,7 +145,7 @@ public class CartoucheTest {
     public void testGetCoutaumetre() throws Exception {
         System.out.println("getCoutaumetre");
         Connection con = ConnexionMySQL.newConnexion();
-        Cartouche instance = Cartouche.getByNumero(con, "CARTEST4991-MAT");
+        Cartouche instance = Cartouche.getByNumero(con, "CARTESTMAT");
         int expResult = 1500;
         int result = instance.getCoutaumetre();
         assertEquals(expResult, result);
@@ -158,12 +159,27 @@ public class CartoucheTest {
         System.out.println("setCoutaumetre");
         int coutaumetre = 1284;
         Connection con = ConnexionMySQL.newConnexion();
-        Cartouche instance = Cartouche.getByNumero(con, "CARTEST4991-MAT");
+        Cartouche instance = Cartouche.getByNumero(con, "CARTESTMAT");
         instance.setCoutaumetre(coutaumetre);
         instance.save(con);
         assertEquals(1284, instance.getCoutaumetre());
         instance.setCoutaumetre(1500);
         instance.save(con);
     }
+
+
+    /**
+     * Test of getTypeCartouche method, of class Cartouche.
+     */
+    @Test
+    public void testGetTypecartouche() throws Exception {
+        System.out.println("getTypecartouche");
+        Connection con = ConnexionMySQL.newConnexion();
+        Cartouche instance = Cartouche.getByNumero(con, "CARTESTMAT");
+        String expResult = "MATIERE";
+        String result = instance.getTypecartouche();
+        assertEquals(expResult, result);
+    }
+
 
 }

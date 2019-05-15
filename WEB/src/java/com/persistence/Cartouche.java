@@ -18,13 +18,15 @@ public class Cartouche {
 
     private Timestamp dateremplacement;
     private Timestamp datefabrication;
+    private String typecartouche;
     private String numerodeserie;
     private int quantiterestante;
     private int coutaumetre;
 
-    public Cartouche(Timestamp dateremplacement, Timestamp datefabrication, String numerodeserie, int quantiterestante, int coutaumetre) {
+    public Cartouche(Timestamp dateremplacement, Timestamp datefabrication, String typecartouche, String numerodeserie, int quantiterestante, int coutaumetre) {
         this.dateremplacement = dateremplacement;
         this.datefabrication = datefabrication;
+        this.typecartouche = typecartouche;
         this.numerodeserie = numerodeserie;
         this.quantiterestante = quantiterestante;
         this.coutaumetre = coutaumetre;
@@ -38,6 +40,7 @@ public class Cartouche {
      * @param imp3dnom // clé etrangère
      * @param dateremplacement // remplacement de la cartouche
      * @param datefabrication
+     * @param typecartouche // MATIERE ou SUPPORT
      * @param numerodeserie
      * @param quantiterestante
      * @param coutaumetre
@@ -48,16 +51,17 @@ public class Cartouche {
      *
      */
     static public Cartouche create(Connection con, String imp3dnom,
-            Timestamp dateremplacement, Timestamp datefabrication,
+            Timestamp dateremplacement, Timestamp datefabrication, String typecartouche,
             String numerodeserie, int quantiterestante, int coutaumetre) throws Exception {
-        Cartouche cart = new Cartouche(dateremplacement, datefabrication, numerodeserie, quantiterestante, coutaumetre);
+        Cartouche cart = new Cartouche(dateremplacement, datefabrication, typecartouche, numerodeserie, quantiterestante, coutaumetre);
 
         String queryString
-                = "insert into Cartouche (Imprimante3dNom,DateRemplacement,DateFabrication,NumeroDeSerie,QuantiteRestante,CoutAuMetre) "
+                = "insert into Cartouche (Imprimante3dNom,DateRemplacement,DateFabrication,TypeCartouche,NumeroDeSerie,QuantiteRestante,CoutAuMetre) "
                 + " values ("
                 + Utils.toString(imp3dnom) + ", "
                 + Utils.toString(dateremplacement) + ", "
                 + Utils.toString(datefabrication) + ", "
+                + Utils.toString(typecartouche) + ", "
                 + Utils.toString(numerodeserie) + ", "
                 + Utils.toString(quantiterestante) + ", "
                 + Utils.toString(coutaumetre)
@@ -92,6 +96,7 @@ public class Cartouche {
                 = "update Cartouche set "
                 + " DateRemplacement =" + Utils.toString(dateremplacement) + ","
                 + " DateFabrication =" + Utils.toString(datefabrication) + ","
+                + " TypeCartouche =" + Utils.toString(typecartouche) + ","
                 + " NumeroDeSerie =" + Utils.toString(numerodeserie) + ", "
                 + " QuantiteRestante =" + Utils.toString(quantiterestante) + ","
                 + " CoutAuMetre =" + Utils.toString(coutaumetre)
@@ -101,7 +106,7 @@ public class Cartouche {
     }
 
     /**
-     * Retourne un user trouve par son pseudo, saved is true
+     * Retourne un user trouve par son numéro, saved is true
      *
      * @param con
      * @param mail du mail à trouver
@@ -125,11 +130,16 @@ public class Cartouche {
     private static Cartouche creerParRequete(ResultSet result) throws Exception {
         Timestamp lDateR = result.getTimestamp("DateRemplacement");
         Timestamp lDateF = result.getTimestamp("DateFabrication");
+        String lType = result.getString("TypeCartouche");
         String lNum = result.getString("NumeroDeSerie");
         int lquantite = result.getInt("QuantiteRestante");
         int lcout = result.getInt("CoutAuMetre");
 
-        return new Cartouche(lDateR, lDateF, lNum, lquantite, lcout);
+        return new Cartouche(lDateR, lDateF,lType, lNum, lquantite, lcout);
+    }
+
+    public String getTypecartouche() {
+        return typecartouche;
     }
 
     public Timestamp getDateremplacement() {

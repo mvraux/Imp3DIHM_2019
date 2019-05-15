@@ -13,6 +13,7 @@ CREATE TABLE Cartouche (
   Imprimante3dNom  varchar(255) NOT NULL, 
   DateRemplacement timestamp NOT NULL, 
   DateFabrication  timestamp, 
+  TypeCartouche  varchar(255) NOT NULL, 
   NumeroDeSerie    varchar(255) NOT NULL UNIQUE, 
   QuantiteRestante int(10), 
   CoutAuMetre      int(10) NOT NULL, 
