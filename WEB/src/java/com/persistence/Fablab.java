@@ -27,7 +27,6 @@ public class Fablab {
      *
      * @param con
      * @param nom
-     * @param imp3dnom
      * @param mintemp
      * @param maxtemp
      * @param minhumidite
@@ -38,15 +37,14 @@ public class Fablab {
      * deja dans la BD
      *
      */
-    static public Fablab create(Connection con, String nom, String imp3dnom,
+    static public Fablab create(Connection con, String nom,
             double mintemp, double maxtemp, double minhumidite, double maxhumidite) throws Exception {
         Fablab fab = new Fablab(nom, mintemp, maxtemp, minhumidite, maxhumidite);
 
         String queryString
-                = "insert into Fablab (Nom,Imprimante3dNom,MinTemperature,MaxTemperature,MinHumidite,MaxHumidite) "
+                = "insert into Fablab (Nom,MinTemperature,MaxTemperature,MinHumidite,MaxHumidite) "
                 + " values ("
                 + Utils.toString(nom) + ", "
-                + Utils.toString(imp3dnom) + ", "
                 + Utils.toString(mintemp) + ", "
                 + Utils.toString(maxtemp) + ", "
                 + Utils.toString(minhumidite) + ", "

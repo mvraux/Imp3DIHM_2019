@@ -60,7 +60,8 @@ public class UtilisateurTest {
         int nbechecs = 0;
         Utilisateur result = Utilisateur.create(con, code, fabnom, nom, prenom,
                 mail, mdp, etablissement, dateregistered, mailtrue, nbjobs, nbechecs);
-        assertEquals("user@gmail.com", result.getMail());
+        Utilisateur user = Utilisateur.getByMail(con, mail);
+        assertEquals("user@gmail.com", user.getMail());
         result.delete(con);
     }
 
@@ -343,10 +344,10 @@ public class UtilisateurTest {
     public void testGetListeDesUtilisateurs() throws Exception {
         System.out.println("getListeDesUtilisateurs");
         Connection con = ConnexionMySQL.newConnexion();
-        String expResult = "FINI";
-        ArrayList<Job> resultarray = Job.getListeDesJobs(con);
-        Job result = resultarray.get(1);
-        assertEquals(expResult, result.getEtat());
+        String expResult = "Millet";
+        ArrayList<Utilisateur> resultarray = Utilisateur.getListeDesUtilisateurs(con);
+        Utilisateur result = resultarray.get(1);
+        assertEquals(expResult, result.getNom());
     }
 
 }

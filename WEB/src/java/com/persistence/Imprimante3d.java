@@ -27,7 +27,7 @@ public class Imprimante3d {
      *
      * @param con
      * @param nom
-     * @param jobid
+     * @param fabnom
      * @param nbheures
      * @param etat
      * @param dureerestante
@@ -38,15 +38,15 @@ public class Imprimante3d {
      * deja dans la BD
      *
      */
-    static public Imprimante3d create(Connection con, String nom, int jobid,
+    static public Imprimante3d create(Connection con, String nom, String fabnom,
             double nbheures, String etat, double dureerestante, int couthoraire) throws Exception {
         Imprimante3d imp = new Imprimante3d(nom, nbheures, etat, dureerestante, couthoraire);
 
         String queryString
-                = "insert into Imprimante3d (Nom,JobID,NbHeuresDeTravail,Etat,DureeRestante,CoutHoraire) "
+                = "insert into Imprimante3d (Nom,FabLabNom,NbHeuresDeTravail,Etat,DureeRestante,CoutHoraire) "
                 + " values ("
                 + Utils.toString(nom) + ", "
-                + Utils.toString(jobid) + ", "
+                + Utils.toString(fabnom) + ", "
                 + Utils.toString(nbheures) + ", "
                 + Utils.toString(etat) + ", "
                 + Utils.toString(dureerestante) + ", "

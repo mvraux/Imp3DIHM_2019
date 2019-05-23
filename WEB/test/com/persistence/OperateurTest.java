@@ -53,7 +53,8 @@ public class OperateurTest {
         String mail = "monmail@gmail.com";
         String expResult = "monmail@gmail.com";
         Operateur result = Operateur.create(con, fabnom, nom, prenom, mdp, mail);
-        assertEquals(expResult, result.getMail());
+        Operateur op = Operateur.getByMail(con, mail);
+        assertEquals(expResult, op.getMail());
         result.delete(con);
     }
 

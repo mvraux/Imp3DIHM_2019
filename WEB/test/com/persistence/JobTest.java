@@ -47,6 +47,7 @@ public class JobTest {
     public void testCreate() throws Exception {
         System.out.println("create");
         Connection con = ConnexionMySQL.newConnexion();
+        String impnom = "uprint1";
         String usercode = "SDQ5S7GFS98S";
         String nom = "Pieceqq";
         Timestamp daterealisation = Utils.stringToTimestamp("2019/05/17 22:00:00");
@@ -59,10 +60,11 @@ public class JobTest {
         int matiereestimee = 0;
         int prix = 0;
         String expResult = "FINI";
-        Job result = Job.create(con, usercode, nom, daterealisation,
+        Job result = Job.create(con,impnom, usercode, nom, daterealisation,
                 etat, dureeconsommee, resteafaire, supportconsomme,
                 matiereconsommee, supportestime, matiereestimee, prix);
-        assertEquals(expResult, result.getEtat());
+        Job job1 = Job.getByDate(con, Utils.stringToTimestamp("2019/05/17 22:00:00"));
+        assertEquals(expResult, job1.getEtat());
         result.delete(con);
     }
 
@@ -270,12 +272,11 @@ public class JobTest {
     @Test
     public void testGetListeDesJobs() throws Exception {
         System.out.println("getListeDesJobs");
-        Connection con = null;
-        ArrayList<Job> expResult = null;
-        ArrayList<Job> result = Job.getListeDesJobs(con);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Connection con = ConnexionMySQL.newConnexion();
+        String expResult = "FINI";
+        ArrayList<Job> resultarray = Job.getListeDesJobs(con);
+        Job result = resultarray.get(1);
+        assertEquals(expResult, result.getEtat());
     }
 
     

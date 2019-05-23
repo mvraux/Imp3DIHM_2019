@@ -47,14 +47,15 @@ public class Imprimante3dTest {
         Connection con = ConnexionMySQL.newConnexion();
         String nom = "uprint2";
         Job job = Job.getByDate(con, Utils.stringToTimestamp("2019/04/04 00:00:00"));
-        int id = job.getID(con);
+        String fabnom = "FabLab_Victor_Hugo";
         double nbheures = 0.0;
         String etat = "TRAVAIL";
         double dureerestante = 40.0;
         int couthoraire = 80;
         String expResult = "TRAVAIL";
-        Imprimante3d result = Imprimante3d.create(con, nom, id, nbheures, etat, dureerestante, couthoraire);
-        assertEquals(expResult, result.getEtat());
+        Imprimante3d result = Imprimante3d.create(con, nom, fabnom, nbheures, etat, dureerestante, couthoraire);
+        Imprimante3d imp = Imprimante3d.getByNom(con, nom);
+        assertEquals(expResult, imp.getEtat());
         result.delete(con);
     }
 
@@ -82,7 +83,7 @@ public class Imprimante3dTest {
         System.out.println("getByNom");
         Connection con = ConnexionMySQL.newConnexion();
         String nom = "uprint1";
-        String expResult = "REPOS";
+        String expResult = "TRAVAIL";
         Imprimante3d result = Imprimante3d.getByNom(con, nom);
         assertEquals(expResult, result.getEtat());
     }
@@ -137,7 +138,7 @@ public class Imprimante3dTest {
         System.out.println("getEtat");
         Connection con = ConnexionMySQL.newConnexion();
         String nom = "uprint1";
-        String expResult = "REPOS";
+        String expResult = "TRAVAIL";
         Imprimante3d result = Imprimante3d.getByNom(con, nom);
         assertEquals(expResult, result.getEtat());
     }

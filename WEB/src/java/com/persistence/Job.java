@@ -46,6 +46,7 @@ public class Job {
      * Créer un nouvel objet persistant
      *
      * @param con
+     * @param impnom // nom de l'imprimante
      * @param usercode // code utilisateur
      * @param nom
      * @param daterealisation
@@ -63,7 +64,7 @@ public class Job {
      * deja dans la BD
      *
      */
-    static public Job create(Connection con, String usercode, String nom,
+    static public Job create(Connection con,String impnom, String usercode, String nom,
             Timestamp daterealisation, String etat, double dureeconsommee, double resteafaire,
             int supportconsomme, int matiereconsommee, int supportestime,
             int matiereestimee, int prix) throws Exception {
@@ -71,9 +72,10 @@ public class Job {
                 supportconsomme, matiereconsommee, supportestime, matiereestimee, prix);
 
         String queryString
-                = "insert into Job (UtilisateurCode,Nom,DateRealisation,Etat,DureeConsommee,ResteAFaireEstimee,"
+                = "insert into Job (Imprimante3dNom,UtilisateurCode,Nom,DateRealisation,Etat,DureeConsommee,ResteAFaireEstimee,"
                 + "SupportConsomme,MatiereConsommee,SupportEstime,MatiereEstimee,Prix) "
                 + " values ("
+                + Utils.toString(impnom) + ", "
                 + Utils.toString(usercode) + ", "
                 + Utils.toString(nom) + ", "
                 + Utils.toString(daterealisation) + ", "

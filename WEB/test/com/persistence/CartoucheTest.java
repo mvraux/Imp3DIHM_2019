@@ -55,7 +55,8 @@ public class CartoucheTest {
         int coutaumetre = 10;
         String expResult = "0123456789";
         Cartouche result = Cartouche.create(con, imp3dnom, dateremplacement, datefabrication,type, numerodeserie, quantiterestante, coutaumetre);
-        assertEquals(expResult, result.getNumerodeserie());
+       Cartouche cart = Cartouche.getByNumero(con, numerodeserie);
+        assertEquals(expResult, cart.getNumerodeserie());
         result.delete(con);
     }
 

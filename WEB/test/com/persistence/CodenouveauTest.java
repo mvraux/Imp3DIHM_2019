@@ -49,7 +49,8 @@ public class CodenouveauTest {
         String code = "195648";
         String fabnom = "FabLab_Victor_Hugo";
         Codenouveau result = Codenouveau.create(con, code, fabnom);
-        assertEquals("195648", result.getCode());
+        Codenouveau nvcode = Codenouveau.getByCode(con, code);
+        assertEquals("195648", nvcode.getCode());
         result.delete(con);
     }
 

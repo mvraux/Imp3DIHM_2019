@@ -52,8 +52,9 @@ public class FablabTest {
         double minhumidite = 0.0;
         double maxhumidite = 100.0;
         String expResult = "fabtest";
-        Fablab result = Fablab.create(con, nom, imp3dnom, mintemp, maxtemp, minhumidite, maxhumidite);
-        assertEquals(expResult, result.getNom(con));
+        Fablab result = Fablab.create(con, nom, mintemp, maxtemp, minhumidite, maxhumidite);
+        Fablab fab = Fablab.getByNom(con, nom);
+        assertEquals(expResult, fab.getNom(con));
         result.delete(con);
     }
 
@@ -65,12 +66,11 @@ public class FablabTest {
         System.out.println("save");
         Connection con = ConnexionMySQL.newConnexion();
         String nom = "fabtest";
-        String imp3dnom = "uprint1";
         double temp = 26.8;
         double hum = 45.9;
         double maxtemp = 53.8;
         double maxhum = 96.9;
-        Fablab instance = Fablab.create(con, nom, imp3dnom, temp, maxtemp, hum, maxhum);
+        Fablab instance = Fablab.create(con, nom, temp, maxtemp, hum, maxhum);
         instance.save(con);
         assertEquals(53.8, instance.getMaxtemp(), 0.01);
         instance.delete(con);

@@ -49,9 +49,10 @@ public class AmbianceTest {
         String fabnom = "FabLab_Victor_Hugo";
         double temperature = 22.2;
         double humidite = 22.2;
-        Timestamp date = new Timestamp(System.currentTimeMillis());
+        Timestamp date = Utils.stringToTimestamp("2018/01/01 00:00:00");
         Ambiance result = Ambiance.create(con, fabnom, temperature, humidite, date);
-        assertEquals(date, result.getDate());
+        Ambiance amb = Ambiance.getByDate(con, date);
+        assertEquals(date, amb.getDate());
         result.delete(con);
     }
 
