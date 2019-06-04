@@ -1,7 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Fichier : AmbianceTest.java
+ * Description : Classe de test de la classe Ambiance.java en JUnit
+ * Created on  : Mars 2019
+ * Author      : Vraux
  */
 package com.persistence;
 
@@ -49,13 +50,20 @@ public class AmbianceTest {
         String fabnom = "FabLab_Victor_Hugo";
         double temperature = 22.2;
         double humidite = 22.2;
-        Timestamp date = Utils.stringToTimestamp("2018/01/01 00:00:00");
+        Timestamp date = new Timestamp(System.currentTimeMillis());
         Ambiance result = Ambiance.create(con, fabnom, temperature, humidite, date);
-        Ambiance amb = Ambiance.getByDate(con, date);
-        assertEquals(date, amb.getDate());
+        assertEquals(date, result.getDate());
         result.delete(con);
     }
 
+    /**
+     * Test of delete method, of class Ambiance.
+     *
+     * @Test public void testDelete() throws Exception {
+     * System.out.println("delete"); Connection con = null; Ambiance instance =
+     * null; boolean expResult = false; boolean result = instance.delete(con);
+     * assertEquals(expResult, result); }
+     */
     /**
      * Test of save method, of class Ambiance.
      */
@@ -91,7 +99,7 @@ public class AmbianceTest {
      * Test of getTemperature method, of class Ambiance.
      */
     @Test
-    public void testGetTemperature() throws Exception {
+    public void testGetTemperature()throws Exception  {
         System.out.println("getTemperature");
         Connection con = ConnexionMySQL.newConnexion();
         Ambiance instance = Ambiance.getByDate(con, Utils.stringToTimestamp("2019/02/19 00:00:00"));

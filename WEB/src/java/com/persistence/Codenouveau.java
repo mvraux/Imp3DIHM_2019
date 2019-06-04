@@ -1,24 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/**
+    Document    : CodeNouveau.java
+    Description : Classe d'interface de la table CodeNouveau
+    Created on  : Mars 2019
+    Author      : Vraux
+*/
 package com.persistence;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.Timestamp;
+import java.sql.*;
 
 /**
  *
  * @author snir2g2
  */
-public class Codenouveau {
+public class CodeNouveau {
 
     private String code; //clef primaire
 
-    public Codenouveau(String code) {
+    public CodeNouveau(String code) {
         this.code = code;
     }
 
@@ -34,8 +32,8 @@ public class Codenouveau {
      * deja dans la BD
      *
      */
-    static public Codenouveau create(Connection con, String code, String fabnom) throws Exception {
-        Codenouveau codenv = new Codenouveau(code);
+    static public CodeNouveau create(Connection con, String code, String fabnom) throws Exception {
+        CodeNouveau codenv = new CodeNouveau(code);
 
         String queryString
                 = "insert into Codenouveau (Code,FabLabNom) "
@@ -76,37 +74,37 @@ public class Codenouveau {
         Statement lStat = con.createStatement();
         lStat.executeUpdate(queryString, Statement.NO_GENERATED_KEYS);
     }
-
-    /**
+    
+     /**
      * Retourne un user trouve par son pseudo, saved is true
-     *
      * @param con
-     * @param mail du mail à trouver
+     * @param code
      * @return user trouve par mail
      * @throws java.lang.Exception
      */
-    public static Codenouveau getByCode(Connection con, String code) throws Exception {
+    public static CodeNouveau getByCode(Connection con, String code) throws Exception {
         String queryString = "select * from Codenouveau where Code='" + code + "'";
         Statement lStat = con.createStatement(
-                ResultSet.TYPE_SCROLL_INSENSITIVE,
-                ResultSet.CONCUR_READ_ONLY);
+                                ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                ResultSet.CONCUR_READ_ONLY);
         ResultSet lResult = lStat.executeQuery(queryString);
         // y en a t'il au moins un ?
         if (lResult.next()) {
             return creerParRequete(lResult);
-        } else {
-            return null;
         }
+        else
+            return null;
     }
-
-    private static Codenouveau creerParRequete(ResultSet result) throws Exception {
-        String lCode = result.getString("Code");
-
-        return new Codenouveau(lCode);
+    
+     private static CodeNouveau creerParRequete(ResultSet result) throws Exception {
+            String    lCode = result.getString("Code");
+            
+            return new CodeNouveau(lCode);
     }
 
     public String getCode() {
         return code;
     }
+
 
 }

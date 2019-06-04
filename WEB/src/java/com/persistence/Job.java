@@ -1,15 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/**
+    Document    : Job.java
+    Description : Classe d'interface de la table Job
+    Created on  : Mars 2019
+    Author      : Vraux
+*/
 package com.persistence;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.util.ArrayList;
 
 /**
@@ -17,46 +14,51 @@ import java.util.ArrayList;
  * @author snir2g2
  */
 public class Job {
-
+    private String userCode;
     private String nom;
-    private Timestamp daterealisation;
+    private Timestamp dateRealisation;
     private String etat;
-    private double dureeconsommee;
-    private double resteafaire;
-    private int supportconsomme;
-    private int matiereconsommee;
-    private int supportestime;
-    private int matiereestimee;
+    private int dureeConsommee;
+    private int resteAFaire;
+    private double supportConsomme;
+    private double matiereConsommee;
+    private double supportEstime;
+    private double matiereEstimee;
     private int prix;
+    private String imprimante3dNom;
 
-    public Job(String nom, Timestamp daterealisation, String etat, double dureeconsommee, double resteafaire, int supportconsomme, int matiereconsommee, int supportestime, int matiereestimee, int prix) {
+    public Job(String userCode, String nom, Timestamp daterealisation, String etat, 
+            int dureeconsommee, int resteafaire, double supportconsomme, 
+            double matiereconsommee, double supportestime, double matiereestimee, 
+            int prix, String imprimante3dNom) {
+        this.userCode = userCode;
         this.nom = nom;
-        this.daterealisation = daterealisation;
+        this.dateRealisation = daterealisation;
         this.etat = etat;
-        this.dureeconsommee = dureeconsommee;
-        this.resteafaire = resteafaire;
-        this.supportconsomme = supportconsomme;
-        this.matiereconsommee = matiereconsommee;
-        this.supportestime = supportestime;
-        this.matiereestimee = matiereestimee;
+        this.dureeConsommee = dureeconsommee;
+        this.resteAFaire = resteafaire;
+        this.supportConsomme = supportconsomme;
+        this.matiereConsommee = matiereconsommee;
+        this.supportEstime = supportestime;
+        this.matiereEstimee = matiereestimee;
         this.prix = prix;
+        this.imprimante3dNom = imprimante3dNom;
     }
 
     /**
      * Créer un nouvel objet persistant
      *
      * @param con
-     * @param impnom // nom de l'imprimante
-     * @param usercode // code utilisateur
+     * @param userCode // code utilisateur
      * @param nom
-     * @param daterealisation
+     * @param dateRealisation
      * @param etat // etat du job : "en cours", "fini" ou "neant"
-     * @param dureeconsommee
-     * @param resteafaire
-     * @param supportconsomme
-     * @param matiereconsommee
-     * @param supportestime
-     * @param matiereestimee
+     * @param dureeConsommee
+     * @param resteAFaire
+     * @param supportConsomme
+     * @param matiereConsommee
+     * @param supportEstime
+     * @param matiereEstimee
      * @param prix
      * @return
      * @ return un user
@@ -64,29 +66,29 @@ public class Job {
      * deja dans la BD
      *
      */
-    static public Job create(Connection con,String impnom, String usercode, String nom,
-            Timestamp daterealisation, String etat, double dureeconsommee, double resteafaire,
-            int supportconsomme, int matiereconsommee, int supportestime,
-            int matiereestimee, int prix) throws Exception {
-        Job newjob = new Job(nom, daterealisation, etat, dureeconsommee, resteafaire,
-                supportconsomme, matiereconsommee, supportestime, matiereestimee, prix);
+    static public Job create(Connection con, String userCode, String nom,
+            Timestamp dateRealisation, String etat, int dureeConsommee, int resteAFaire,
+            double supportConsomme, double matiereConsommee, double supportEstime,
+            double matiereEstimee, int prix, String imprimante3dNom) throws Exception {
+        Job newjob = new Job(userCode, nom, dateRealisation, etat, dureeConsommee, resteAFaire,
+                supportConsomme, matiereConsommee, supportEstime, matiereEstimee, prix, imprimante3dNom);
 
         String queryString
-                = "insert into Job (Imprimante3dNom,UtilisateurCode,Nom,DateRealisation,Etat,DureeConsommee,ResteAFaireEstimee,"
-                + "SupportConsomme,MatiereConsommee,SupportEstime,MatiereEstimee,Prix) "
+                = "insert into Job (UtilisateurCode,Nom,DateRealisation,Etat,DureeConsommee,ResteAFaireEstimee,"
+                + "SupportConsomme,MatiereConsommee,SupportEstime,MatiereEstimee,Prix,Imprimante3dNom) "
                 + " values ("
-                + Utils.toString(impnom) + ", "
-                + Utils.toString(usercode) + ", "
+                + Utils.toString(userCode) + ", "
                 + Utils.toString(nom) + ", "
-                + Utils.toString(daterealisation) + ", "
+                + Utils.toString(dateRealisation) + ", "
                 + Utils.toString(etat) + ", "
-                + Utils.toString(dureeconsommee) + ", "
-                + Utils.toString(resteafaire) + ", "
-                + Utils.toString(supportconsomme) + ", "
-                + Utils.toString(matiereconsommee) + ", "
-                + Utils.toString(supportestime) + ", "
-                + Utils.toString(matiereestimee) + ", "
-                + Utils.toString(prix)
+                + Utils.toString(dureeConsommee) + ", "
+                + Utils.toString(resteAFaire) + ", "
+                + Utils.toString(supportConsomme) + ", "
+                + Utils.toString(matiereConsommee) + ", "
+                + Utils.toString(supportEstime) + ", "
+                + Utils.toString(matiereEstimee) + ", "
+                + Utils.toString(prix) + ", "
+                + Utils.toString(imprimante3dNom)
                 + ")";
         Statement lStat = con.createStatement();
         lStat.executeUpdate(queryString, Statement.RETURN_GENERATED_KEYS);
@@ -101,8 +103,8 @@ public class Job {
      * @throws SQLException impossible d'accéder à la ConnexionMySQL
      */
     public boolean delete(Connection con) throws Exception {
-        String queryString = "delete from Job where nom ='" + nom + "'"
-                + "and DateRealisation='" + daterealisation + "'";
+        String queryString = "delete from Job where nom ='"+nom+"'"
+                            + "and DateRealisation='" + dateRealisation + "'";
         Statement lStat = con.createStatement();
         lStat.executeUpdate(queryString);
         return true;
@@ -117,18 +119,20 @@ public class Job {
     public void save(Connection con) throws Exception {
         String queryString
                 = "update Job set "
+                + " UtilisateurCode =" + Utils.toString(userCode) + ","
                 + " Nom =" + Utils.toString(nom) + ","
-                + " DateRealisation =" + Utils.toString(daterealisation) + ","
+                + " DateRealisation =" + Utils.toString(dateRealisation) + ","
                 + " Etat =" + Utils.toString(etat) + ", "
-                + " DureeConsommee =" + Utils.toString(dureeconsommee) + ","
-                + " ResteAFaireEstimee =" + Utils.toString(resteafaire) + ", "
-                + " SupportConsomme =" + Utils.toString(supportconsomme) + ", "
-                + " MatiereConsommee =" + Utils.toString(matiereconsommee) + ", "
-                + " SupportEstime =" + Utils.toString(supportestime) + ", "
-                + " MatiereEstimee =" + Utils.toString(matiereestimee) + ", "
-                + " Prix =" + Utils.toString(prix)
+                + " DureeConsommee =" + Utils.toString(dureeConsommee) + ","
+                + " ResteAFaireEstimee =" + Utils.toString(resteAFaire) + ", "
+                + " SupportConsomme =" + Utils.toString(supportConsomme) + ", "
+                + " MatiereConsommee =" + Utils.toString(matiereConsommee) + ", "
+                + " SupportEstime =" + Utils.toString(supportEstime) + ", "
+                + " MatiereEstimee =" + Utils.toString(matiereEstimee) + ", "
+                + " Prix =" + Utils.toString(prix) + ", "
+                + " Imprimante3dNom =" + Utils.toString(imprimante3dNom)
                 + " where Nom='" + nom + "'"
-                + " and DateRealisation='" + daterealisation + "';";
+                + " and DateRealisation='" + dateRealisation + "';";
         Statement lStat = con.createStatement();
         lStat.executeUpdate(queryString, Statement.RETURN_GENERATED_KEYS);
     }
@@ -142,55 +146,102 @@ public class Job {
         // y en a t'il au moins un ?
         if (lResult.next()) {
             return creerParRequete(lResult);
-        } else {
-            return null;
         }
+        else
+            return null;
     }
 
-    private static Job creerParRequete(ResultSet result) throws Exception {
-        String lNom = result.getString("Nom");
-        Timestamp lDate = result.getTimestamp("DateRealisation");
-        String letat = result.getString("Etat");
-        double lduree = result.getDouble("DureeConsommee");
-        double lreste = result.getDouble("ResteAFaireEstimee");
-        int supportc = result.getInt("SupportConsomme");
-        int matierec = result.getInt("MatiereConsommee");
-        int supporte = result.getInt("SupportEstime");
-        int matieree = result.getInt("MatiereEstimee");
-        int lprix = result.getInt("Prix");
-
-        return new Job(lNom, lDate, letat, lduree, lreste, supportc,
-                matierec, supporte, matieree, lprix);
-    }
-
-    public static ArrayList<Job> getListeDesJobs(Connection con) throws Exception {
-        ArrayList<Job> jobs = new ArrayList<>();
-        String queryString = "select * from Job order by DateRealisation desc";
+    public static Job getByNom(Connection con, String nom) throws Exception {
+        String queryString = "select * from Job where Nom='" + nom + "'";
         Statement lStat = con.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
                 ResultSet.CONCUR_READ_ONLY);
         ResultSet lResult = lStat.executeQuery(queryString);
-        while (lResult.next()) {
-            String lNom = lResult.getString("Nom");
-            Timestamp lDate = lResult.getTimestamp("DateRealisation");
-            String letat = lResult.getString("Etat");
-            double lduree = lResult.getDouble("DureeConsommee");
-            double lreste = lResult.getDouble("ResteAFaireEstimee");
-            int supportc = lResult.getInt("SupportConsomme");
-            int matierec = lResult.getInt("MatiereConsommee");
-            int supporte = lResult.getInt("SupportEstime");
-            int matieree = lResult.getInt("MatiereEstimee");
-            int lprix = lResult.getInt("Prix");
-            Job job = new Job(lNom, lDate, letat, lduree, lreste, supportc,
-                    matierec, supporte, matieree, lprix);
+        // y en a t'il au moins un ?
+        if (lResult.next()) {
+            return creerParRequete(lResult);
+        }
+        else
+            return null;
+    }
 
-            jobs.add(job);
+    public static Job getJobEnCours(Connection con) throws Exception {
+        String queryString = "select * from Job where Etat='EN_COURS'";
+        Statement lStat = con.createStatement(
+                ResultSet.TYPE_SCROLL_INSENSITIVE,
+                ResultSet.CONCUR_READ_ONLY);
+        ResultSet lResult = lStat.executeQuery(queryString);
+        // y en a t'il au moins un ?
+        if (lResult.next()) {
+            return creerParRequete(lResult);
+        }
+        else
+            return null;
+    }
+    
+    public static int nbJobsParUserCode(Connection con, String code) throws Exception {
+        String queryString = "select count(*) as count from Job where UtilisateurCode='" + code + "'";
+        Statement lStat = con.createStatement(
+                ResultSet.TYPE_SCROLL_INSENSITIVE,
+                ResultSet.CONCUR_READ_ONLY);
+        ResultSet lResult = lStat.executeQuery(queryString);
+        if (lResult.next())
+            return (lResult.getInt("count"));
+        else 
+            return 0;
+    }
+    
+    public static ArrayList<Job> getListeDesJobs(Connection con) throws Exception {
+        ArrayList<Job> jobs = new ArrayList<>();
+        
+        String queryString = "select * from Job order by DateRealisation desc";
+        Statement lStat = con.createStatement(
+                                            ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                            ResultSet.CONCUR_READ_ONLY);
+        ResultSet lResult = lStat.executeQuery(queryString);  
+        while (lResult.next()) {
+            jobs.add(creerParRequete(lResult));
+        }
+        return jobs;
+    }
+        
+    public static ArrayList<Job> getListeDeMesJobs(Connection con, String userCode) 
+                                                                throws Exception {
+        ArrayList<Job> jobs = new ArrayList<>();
+        
+        String queryString = "select * from Job where UtilisateurCode='"
+                            + userCode + "' order by DateRealisation desc";
+        Statement lStat = con.createStatement(
+                                            ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                            ResultSet.CONCUR_READ_ONLY);
+        ResultSet lResult = lStat.executeQuery(queryString);  
+        while (lResult.next()) {
+            jobs.add(creerParRequete(lResult));
         }
         return jobs;
     }
 
+    private static Job creerParRequete(ResultSet result) throws Exception {
+        String lUserCode = result.getString("UtilisateurCode");
+        String lNom = result.getString("Nom");
+        Timestamp lDate = result.getTimestamp("DateRealisation");
+        String letat = result.getString("Etat");
+        int lduree = result.getInt("DureeConsommee");
+        int lreste = result.getInt("ResteAFaireEstimee");
+        double supportc = result.getDouble("SupportConsomme");
+        double matierec = result.getDouble("MatiereConsommee");
+        double supporte = result.getDouble("SupportEstime");
+        double matieree = result.getDouble("MatiereEstimee");
+        int lprix = result.getInt("Prix");
+        String lImprimante3dNom = result.getString("Imprimante3dNom");
+
+        return new Job(lUserCode, lNom, lDate, letat, lduree, lreste, supportc,
+                matierec, supporte, matieree, lprix, lImprimante3dNom);
+    }
+    
     public int getID(Connection con) throws SQLException {
-        String queryString = "select ID from Job where DateRealisation='" + daterealisation + "'";
+        String queryString = "select ID from Job where DateRealisation='" 
+                                                        + dateRealisation + "'";
         Statement lStat = con.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
                 ResultSet.CONCUR_READ_ONLY);
@@ -202,40 +253,44 @@ public class Job {
         return 0;
     }
 
+    public String getUserCode() {
+        return userCode;
+    }
+
     public String getNom() {
         return nom;
     }
 
-    public Timestamp getDaterealisation() {
-        return daterealisation;
+    public Timestamp getDateRealisation() {
+        return dateRealisation;
     }
 
     public String getEtat() {
         return etat;
     }
 
-    public double getDureeconsommee() {
-        return dureeconsommee;
+    public int getDureeConsommee() {
+        return dureeConsommee;
     }
 
-    public double getResteafaire() {
-        return resteafaire;
+    public int getResteAFaire() {
+        return resteAFaire;
     }
 
-    public int getSupportconsomme() {
-        return supportconsomme;
+    public double getSupportConsomme() {
+        return supportConsomme;
     }
 
-    public int getMatiereconsommee() {
-        return matiereconsommee;
+    public double getMatiereConsommee() {
+        return matiereConsommee;
     }
 
-    public int getSupportestime() {
-        return supportestime;
+    public double getSupportEstime() {
+        return supportEstime;
     }
 
-    public int getMatiereestimee() {
-        return matiereestimee;
+    public double getMatiereEstimee() {
+        return matiereEstimee;
     }
 
     public int getPrix() {
@@ -245,5 +300,37 @@ public class Job {
     public void setPrix(int prix) {
         this.prix = prix;
     }
+    
+    public String getImprimante3dNom() {
+        return imprimante3dNom;
+    }
 
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
+
+    public void setDureeConsommee(int dureeConsommee) {
+        this.dureeConsommee = dureeConsommee;
+    }
+
+    public void setResteAFaire(int resteAFaire) {
+        this.resteAFaire = resteAFaire;
+    }
+
+    public void setSupportConsomme(double supportConsomme) {
+        this.supportConsomme = supportConsomme;
+    }
+
+    public void setMatiereConsommee(double matiereConsommee) {
+        this.matiereConsommee = matiereConsommee;
+    }
+
+    public void setSupportEstime(double supportEstime) {
+        this.supportEstime = supportEstime;
+    }
+
+    public void setMatiereEstimee(double matiereEstimee) {
+        this.matiereEstimee = matiereEstimee;
+    }
+    
 }

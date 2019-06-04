@@ -1,9 +1,11 @@
 /*
  * Fichier : Utils.java
- * Description : Classe librairie
- * Cette classe propose quelques fonctions utiles
- * formatage des données en provenance de requête SQL
- * et en particulier l'encryptage du mot de passe par la méthode 'MD5'
+ * Description : Classe statique (librairie)
+ *          Cette classe propose quelques fonctions utiles
+ *          formatage des données en provenance de requête SQL
+ *          et en particulier l'encryptage du mot de passe par la méthode 'MD5'
+ * Created on  : Mars 2014
+ * Author      : TS SNIR 2014
  */
 
 package com.persistence;
@@ -25,9 +27,12 @@ import java.util.*;
  */
 public final class Utils {
     /**
-     * DateFormat for all Date type
+     * DateFormat for all Date type 
      */
-    static private SimpleDateFormat staticDateStandard = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    static private SimpleDateFormat staticDateStandard 
+                        = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    static private SimpleDateFormat staticDateStandard2 
+                        = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     /**
      * Static tools function class
      */
@@ -108,13 +113,22 @@ public final class Utils {
     }
     
     
-    
     public static Timestamp stringToTimestamp(String dateIn) throws Exception {
         //Méthode de conversion d'un String vers un Timestamp.
         //Nécessaire à l'utilisation des méthodes setDateVidange() et setDateControleTechnique()
         //qui ne peuvent pas reçevoir de Timestamp en paramètre.
         String dt = dateIn;
 	Date date = staticDateStandard.parse(dt);
+	java.sql.Timestamp timestamp = new java.sql.Timestamp(date.getTime());
+        return timestamp;
+    }
+    
+    public static Timestamp string2ToTimestamp(String dateIn) throws Exception {
+        //Méthode de conversion d'un String vers un Timestamp.
+        //Nécessaire à l'utilisation des méthodes setDateVidange() et setDateControleTechnique()
+        //qui ne peuvent pas reçevoir de Timestamp en paramètre.
+        String dt = dateIn;
+	Date date = staticDateStandard2.parse(dt);
 	java.sql.Timestamp timestamp = new java.sql.Timestamp(date.getTime());
         return timestamp;
     }

@@ -1,49 +1,36 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/**
+    Document    : Cartouche.java
+    Description : Classe d'interface de la table Cartouche
+    Created on  : Mars 2019
+    Author      : Vraux
+*/
 package com.persistence;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.Timestamp;
+import java.sql.*;
 
 /**
  *
  * @author snir2g2
  */
 public class Cartouche {
-
-    private Timestamp dateremplacement;
-    private Timestamp datefabrication;
-    private String typecartouche;
-    private String numerodeserie;
-    private int quantiterestante;
-    private int coutaumetre;
-
-    public Cartouche(Timestamp dateremplacement, Timestamp datefabrication, String typecartouche, String numerodeserie, int quantiterestante, int coutaumetre) {
-        this.dateremplacement = dateremplacement;
-        this.datefabrication = datefabrication;
-        this.typecartouche = typecartouche;
-        this.numerodeserie = numerodeserie;
-        this.quantiterestante = quantiterestante;
-        this.coutaumetre = coutaumetre;
-    }
+    private Timestamp dateRemplacement;
+    private Timestamp dateFabrication;
+    private String numeroDeSerie;
+    private String indentifiantType;
+    private double quantiteRestante;
+    private int coutAuCm3;
 
     /**
      * Créer un nouvel objet persistant
      *
      * @param con
-     * @param ID // clé auto-incrementée
-     * @param imp3dnom // clé etrangère
-     * @param dateremplacement // remplacement de la cartouche
-     * @param datefabrication
-     * @param typecartouche // MATIERE ou SUPPORT
-     * @param numerodeserie
-     * @param quantiterestante
-     * @param coutaumetre
+     * @param imp3dnom          // clé etrangère
+     * @param dateRemplacement  // remplacement de la cartouche
+     * @param dateFabrication
+     * @param numeroDeSerie
+     * @param identifiantType
+     * @param quantiteRestante
+     * @param coutAuCm3
      * @return
      * @ return une cartouche
      * @throws Exception impossible d'accéder à la ConnexionMySQL ou le code est
@@ -51,20 +38,23 @@ public class Cartouche {
      *
      */
     static public Cartouche create(Connection con, String imp3dnom,
-            Timestamp dateremplacement, Timestamp datefabrication, String typecartouche,
-            String numerodeserie, int quantiterestante, int coutaumetre) throws Exception {
-        Cartouche cart = new Cartouche(dateremplacement, datefabrication, typecartouche, numerodeserie, quantiterestante, coutaumetre);
+            Timestamp dateRemplacement, Timestamp dateFabrication,
+            String numeroDeSerie, String identifiantType, 
+            double quantiteRestante, int coutAuCm3) throws Exception {
+        Cartouche cart = new Cartouche(dateRemplacement, dateFabrication, 
+                  numeroDeSerie, identifiantType, quantiteRestante, coutAuCm3);
 
         String queryString
-                = "insert into Cartouche (Imprimante3dNom,DateRemplacement,DateFabrication,TypeCartouche,NumeroDeSerie,QuantiteRestante,CoutAuMetre) "
-                + " values ("
+                = "insert into Cartouche (Imprimante3dNom,DateRemplacement,"
+                + "DateFabrication,NumeroDeSerie,IndentifiantType,"
+                + "QuantiteRestante,CoutAuCm3) values ("
                 + Utils.toString(imp3dnom) + ", "
-                + Utils.toString(dateremplacement) + ", "
-                + Utils.toString(datefabrication) + ", "
-                + Utils.toString(typecartouche) + ", "
-                + Utils.toString(numerodeserie) + ", "
-                + Utils.toString(quantiterestante) + ", "
-                + Utils.toString(coutaumetre)
+                + Utils.toString(dateRemplacement) + ", "
+                + Utils.toString(dateFabrication) + ", "
+                + Utils.toString(numeroDeSerie) + ", "
+                + Utils.toString(identifiantType) + ", "
+                + Utils.toString(quantiteRestante) + ", "
+                + Utils.toString(coutAuCm3)
                 + ")";
         Statement lStat = con.createStatement();
         lStat.executeUpdate(queryString, Statement.RETURN_GENERATED_KEYS);
@@ -79,7 +69,8 @@ public class Cartouche {
      * @throws SQLException impossible d'accéder à la ConnexionMySQL
      */
     public boolean delete(Connection con) throws Exception {
-        String queryString = "delete from Cartouche where NumeroDeSerie='" + numerodeserie + "'";
+        String queryString = "delete from Cartouche where NumeroDeSerie='" 
+                                                         + numeroDeSerie + "'";
         Statement lStat = con.createStatement();
         lStat.executeUpdate(queryString);
         return true;
@@ -94,27 +85,28 @@ public class Cartouche {
     public void save(Connection con) throws Exception {
         String queryString
                 = "update Cartouche set "
-                + " DateRemplacement =" + Utils.toString(dateremplacement) + ","
-                + " DateFabrication =" + Utils.toString(datefabrication) + ","
-                + " TypeCartouche =" + Utils.toString(typecartouche) + ","
-                + " NumeroDeSerie =" + Utils.toString(numerodeserie) + ", "
-                + " QuantiteRestante =" + Utils.toString(quantiterestante) + ","
-                + " CoutAuMetre =" + Utils.toString(coutaumetre)
-                + " where NumeroDeSerie ='" + numerodeserie + "'";
+                + " DateRemplacement =" + Utils.toString(dateRemplacement) + ","
+                + " DateFabrication =" + Utils.toString(dateFabrication) + ","
+                + " NumeroDeSerie =" + Utils.toString(numeroDeSerie) + ", "
+                + " IndentifiantType =" + Utils.toString(indentifiantType) + ", "
+                + " QuantiteRestante =" + Utils.toString(quantiteRestante) + ","
+                + " CoutAuCm3 =" + Utils.toString(coutAuCm3)
+                + " where NumeroDeSerie ='" + numeroDeSerie + "'";
         Statement lStat = con.createStatement();
         lStat.executeUpdate(queryString, Statement.RETURN_GENERATED_KEYS);
     }
 
     /**
-     * Retourne un user trouve par son numéro, saved is true
+     * Retourne un user trouve par son pseudo, saved is true
      *
      * @param con
-     * @param mail du mail à trouver
+     * @param numeroDeSerie
      * @return user trouve par mail
      * @throws java.lang.Exception
      */
-    public static Cartouche getByNumero(Connection con, String numerodeserie) throws Exception {
-        String queryString = "select * from Cartouche where NumeroDeSerie='" + numerodeserie + "'";
+    public static Cartouche getByNumero(Connection con, String numeroDeSerie) throws Exception {
+        String queryString = "select * from Cartouche where NumeroDeSerie='" 
+                                                        + numeroDeSerie + "'";
         Statement lStat = con.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
                 ResultSet.CONCUR_READ_ONLY);
@@ -130,40 +122,74 @@ public class Cartouche {
     private static Cartouche creerParRequete(ResultSet result) throws Exception {
         Timestamp lDateR = result.getTimestamp("DateRemplacement");
         Timestamp lDateF = result.getTimestamp("DateFabrication");
-        String lType = result.getString("TypeCartouche");
         String lNum = result.getString("NumeroDeSerie");
-        int lquantite = result.getInt("QuantiteRestante");
-        int lcout = result.getInt("CoutAuMetre");
+        String lIdentType = result.getString("IndentifiantType");
+        int lQuantite = result.getInt("QuantiteRestante");
+        int lCout = result.getInt("CoutAuCm3");
 
-        return new Cartouche(lDateR, lDateF,lType, lNum, lquantite, lcout);
+        return new Cartouche(lDateR,lDateF,lNum,lIdentType,lQuantite,lCout);
     }
 
-    public String getTypecartouche() {
-        return typecartouche;
+    private Cartouche(Timestamp dateRemplacement, Timestamp dateFabrication, 
+    String numeroDeSerie, String lIdentType, double quantiteRestante, int coutAuCm3) {
+        this.dateRemplacement = dateRemplacement;
+        this.dateFabrication = dateFabrication;
+        this.numeroDeSerie = numeroDeSerie;
+        this.indentifiantType = lIdentType;
+        this.quantiteRestante = quantiteRestante;
+        this.coutAuCm3 = coutAuCm3;
     }
 
-    public Timestamp getDateremplacement() {
-        return dateremplacement;
+    public Timestamp getDateRemplacement() {
+        return dateRemplacement;
     }
 
-    public Timestamp getDatefabrication() {
-        return datefabrication;
+    public Timestamp getDateFabrication() {
+        return dateFabrication;
     }
 
-    public String getNumerodeserie() {
-        return numerodeserie;
+    public String getNumeroDeSerie() {
+        return numeroDeSerie;
     }
 
-    public int getQuantiterestante() {
-        return quantiterestante;
+    public String getIndentifiantType() {
+        return indentifiantType;
     }
 
-    public int getCoutaumetre() {
-        return coutaumetre;
+    public double getQuantiteRestante() {
+        return quantiteRestante;
     }
 
-    public void setCoutaumetre(int coutaumetre) {
-        this.coutaumetre = coutaumetre;
+    public int getCoutaucm3() {
+        return coutAuCm3;
+    }
+    
+    public void setCoutaucm3(int coutAuCm3) {
+        this.coutAuCm3 = coutAuCm3;
+    }
+
+    public void setDateRemplacement(Timestamp dateRemplacement) {
+        this.dateRemplacement = dateRemplacement;
+    }
+
+    public void setDateFabrication(Timestamp dateFabrication) {
+        this.dateFabrication = dateFabrication;
+    }
+
+    public void setNumeroDeSerie(String numeroDeSerie) {
+        this.numeroDeSerie = numeroDeSerie;
+    }
+    
+    public void setIndentifiantType(String indentifiantType) {
+        this.indentifiantType = indentifiantType;
+    }
+
+    public void setQuantiteRestante(double quantiteRestante) {
+        this.quantiteRestante = quantiteRestante;
+    }
+
+    public void setCoutAuCm3(int coutAuCm3) {
+        this.coutAuCm3 = coutAuCm3;
     }
 
 }

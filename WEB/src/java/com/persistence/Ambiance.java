@@ -1,14 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/**
+    Document    : Ambiance.java
+    Description : Classe d'interface de la table Ambiance
+    Created on  : Mars 2019
+    Author      : Vraux
+*/
 package com.persistence;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.Timestamp;
+import java.sql.*;
 
 /**
  *
@@ -93,7 +91,7 @@ public class Ambiance {
      * Retourne un user trouve par son pseudo, saved is true
      *
      * @param con
-     * @param mail du mail à trouver
+     * @param date
      * @return user trouve par mail
      * @throws java.lang.Exception
      */

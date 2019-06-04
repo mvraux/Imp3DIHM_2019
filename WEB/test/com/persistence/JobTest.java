@@ -1,13 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Fichier : JobTest.java
+ * Description : Classe de test de la classe Job.java en JUnit
+ * Created on  : Mars 2019
+ * Author      : Vraux
  */
 package com.persistence;
 
 import java.sql.Connection;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -20,22 +20,22 @@ import static org.junit.Assert.*;
  * @author snir2g2
  */
 public class JobTest {
-
+    
     public JobTest() {
     }
-
+    
     @BeforeClass
     public static void setUpClass() {
     }
-
+    
     @AfterClass
     public static void tearDownClass() {
     }
-
+    
     @Before
     public void setUp() {
     }
-
+    
     @After
     public void tearDown() {
     }
@@ -47,26 +47,40 @@ public class JobTest {
     public void testCreate() throws Exception {
         System.out.println("create");
         Connection con = ConnexionMySQL.newConnexion();
-        String impnom = "uprint1";
         String usercode = "SDQ5S7GFS98S";
-        String nom = "Pieceqq";
+        String nom = "Piece2";
         Timestamp daterealisation = Utils.stringToTimestamp("2019/05/17 22:00:00");
         String etat = "FINI";
-        double dureeconsommee = 0.0;
-        double resteafaire = 0.0;
-        int supportconsomme = 0;
-        int matiereconsommee = 0;
-        int supportestime = 0;
-        int matiereestimee = 0;
+        int dureeconsommee = 0;
+        int resteafaire = 0;
+        double supportconsomme = 0.0;
+        double matiereconsommee = 0.0;
+        double supportestime = 0.0;
+        double matiereestimee = 0.0;
         int prix = 0;
+        String imprimante3dnom = "uprint1";
         String expResult = "FINI";
-        Job result = Job.create(con,impnom, usercode, nom, daterealisation,
-                etat, dureeconsommee, resteafaire, supportconsomme,
-                matiereconsommee, supportestime, matiereestimee, prix);
-        Job job1 = Job.getByDate(con, Utils.stringToTimestamp("2019/05/17 22:00:00"));
-        assertEquals(expResult, job1.getEtat());
+        Job result = Job.create(con, usercode, nom, daterealisation,
+                etat, dureeconsommee, resteafaire, supportconsomme, 
+                matiereconsommee, supportestime, matiereestimee, prix, imprimante3dnom);
+        assertEquals(expResult, result.getEtat());
         result.delete(con);
     }
+
+    /**
+     * Test of delete method, of class Job.
+     *
+    @Test
+    public void testDelete() throws Exception {
+        System.out.println("delete");
+        Connection con = null;
+        Job instance = null;
+        boolean expResult = false;
+        boolean result = instance.delete(con);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    } */
 
     /**
      * Test of save method, of class Job.
@@ -92,14 +106,14 @@ public class JobTest {
         Connection con = ConnexionMySQL.newConnexion();
         Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
         Job result = Job.getByDate(con, date);
-        assertEquals(date, result.getDaterealisation());
+        assertEquals(date, result.getDateRealisation());
     }
 
     /**
      * Test of getNom method, of class Job.
      */
     @Test
-    public void testGetNom() throws Exception {
+    public void testGetNom()throws Exception {
         System.out.println("getNom");
         Connection con = ConnexionMySQL.newConnexion();
         Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
@@ -113,13 +127,13 @@ public class JobTest {
      * Test of getDaterealisation method, of class Job.
      */
     @Test
-    public void testGetDaterealisation() throws Exception {
+    public void testGetDateRealisation()throws Exception {
         System.out.println("getDaterealisation");
         Connection con = ConnexionMySQL.newConnexion();
         Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
         Job instance = Job.getByDate(con, date);
         Timestamp expResult = date;
-        Timestamp result = instance.getDaterealisation();
+        Timestamp result = instance.getDateRealisation();
         assertEquals(expResult, result);
     }
 
@@ -127,7 +141,7 @@ public class JobTest {
      * Test of getEtat method, of class Job.
      */
     @Test
-    public void testGetEtat() throws Exception {
+    public void testGetEtat()throws Exception {
         System.out.println("getEtat");
         Connection con = ConnexionMySQL.newConnexion();
         Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
@@ -141,13 +155,13 @@ public class JobTest {
      * Test of getDureeconsommee method, of class Job.
      */
     @Test
-    public void testGetDureeconsommee() throws Exception {
-        System.out.println("getDureeconsommee");
+    public void testGetDureeConsommee() throws Exception {
+        System.out.println("getDureeConsommee");
         Connection con = ConnexionMySQL.newConnexion();
         Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
         Job instance = Job.getByDate(con, date);
-        double expResult = 18.0;
-        double result = instance.getDureeconsommee();
+        int expResult = 12000;
+        int result = instance.getDureeConsommee();
         assertEquals(expResult, result, 0.0);
     }
 
@@ -155,28 +169,28 @@ public class JobTest {
      * Test of getResteafaire method, of class Job.
      */
     @Test
-    public void testGetResteafaire() throws Exception {
-        System.out.println("getResteafaire");
+    public void testGetResteAFaire() throws Exception {
+        System.out.println("getResteAFaire");
         Connection con = ConnexionMySQL.newConnexion();
         Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
         Job instance = Job.getByDate(con, date);
-        double expResult = 0.0;
-        double result = instance.getResteafaire();
-        assertEquals(expResult, result, 0.0);
+        double expResult = 0;
+        double result = instance.getResteAFaire();
+        assertEquals(expResult, result, 0);
     }
 
     /**
      * Test of getSupportconsomme method, of class Job.
      */
     @Test
-    public void testGetSupportconsomme() throws Exception {
-        System.out.println("getSupportconsomme");
+    public void testGetSupportConsomme() throws Exception{
+        System.out.println("getSupportConsomme");
         Connection con = ConnexionMySQL.newConnexion();
         Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
         Job instance = Job.getByDate(con, date);
-        int expResult = 40;
-        int result = instance.getSupportconsomme();
-        assertEquals(expResult, result);
+        double expResult = 40.32;
+        double result = instance.getSupportConsomme();
+        assertEquals(expResult, result, 0);
 
     }
 
@@ -184,42 +198,42 @@ public class JobTest {
      * Test of getMatiereconsommee method, of class Job.
      */
     @Test
-    public void testGetMatiereconsommee() throws Exception {
-        System.out.println("getMatiereconsommee");
+    public void testGetMatiereConsommee()throws Exception {
+        System.out.println("getMatiereConsommee");
         Connection con = ConnexionMySQL.newConnexion();
         Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
         Job instance = Job.getByDate(con, date);
-        int expResult = 12;
-        int result = instance.getMatiereconsommee();
-        assertEquals(expResult, result);
+        double expResult = 12.18;
+        double result = instance.getMatiereConsommee();
+        assertEquals(expResult, result, 0);
     }
 
     /**
      * Test of getSupportestime method, of class Job.
      */
     @Test
-    public void testGetSupportestime() throws Exception {
-        System.out.println("getSupportestime");
+    public void testGetSupportEstime()throws Exception {
+        System.out.println("getSupportEstime");
         Connection con = ConnexionMySQL.newConnexion();
         Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
         Job instance = Job.getByDate(con, date);
-        int expResult = 0;
-        int result = instance.getSupportestime();
-        assertEquals(expResult, result);
+        double expResult = 0.0;
+        double result = instance.getSupportEstime();
+        assertEquals(expResult, result, 0);
     }
 
     /**
      * Test of getMatiereestimee method, of class Job.
      */
     @Test
-    public void testGetMatiereestimee() throws Exception {
-        System.out.println("getMatiereestimee");
+    public void testGetMatiereestimee()throws Exception {
+        System.out.println("getMatiereEstimee");
         Connection con = ConnexionMySQL.newConnexion();
         Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
         Job instance = Job.getByDate(con, date);
-        int expResult = 0;
-        int result = instance.getMatiereestimee();
-        assertEquals(expResult, result);
+        double expResult = 0.0;
+        double result = instance.getMatiereEstimee();
+        assertEquals(expResult, result, 0);
 
     }
 
@@ -227,7 +241,7 @@ public class JobTest {
      * Test of getPrix method, of class Job.
      */
     @Test
-    public void testGetPrix() throws Exception {
+    public void testGetPrix()throws Exception {
         System.out.println("getPrix");
         Connection con = ConnexionMySQL.newConnexion();
         Timestamp date = Utils.stringToTimestamp("2019/01/17 22:00:00");
@@ -242,7 +256,7 @@ public class JobTest {
      * Test of setPrix method, of class Job.
      */
     @Test
-    public void testSetPrix() throws Exception {
+    public void testSetPrix()throws Exception {
         System.out.println("setPrix");
         Connection con = ConnexionMySQL.newConnexion();
         Job instance = Job.getByDate(con, Utils.stringToTimestamp("2019/01/17 22:00:00"));
@@ -265,19 +279,20 @@ public class JobTest {
         int result = instance.getID(con);
         assertEquals(expResult, result);
     }
-    
-    /**
-     * Test of getListeDesJobs method, of class Job.
-     */
-    @Test
-    public void testGetListeDesJobs() throws Exception {
-        System.out.println("getListeDesJobs");
-        Connection con = ConnexionMySQL.newConnexion();
-        String expResult = "FINI";
-        ArrayList<Job> resultarray = Job.getListeDesJobs(con);
-        Job result = resultarray.get(1);
-        assertEquals(expResult, result.getEtat());
-    }
 
+    /**
+     * Test of delete method, of class Job.
+     */
+  /*  @Test
+    public void testDelete() throws Exception {
+        System.out.println("delete");
+        Connection con = null;
+        Job instance = null;
+        boolean expResult = false;
+        boolean result = instance.delete(con);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }*/
     
 }

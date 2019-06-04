@@ -1,7 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Fichier : Imprimante3dTest.java
+ * Description : Classe de test de la classe Imprimante3d.java en JUnit
+ * Created on  : Mars 2019
+ * Author      : Vraux
  */
 package com.persistence;
 
@@ -18,22 +19,22 @@ import static org.junit.Assert.*;
  * @author snir2g2
  */
 public class Imprimante3dTest {
-
+    
     public Imprimante3dTest() {
     }
-
+    
     @BeforeClass
     public static void setUpClass() {
     }
-
+    
     @AfterClass
     public static void tearDownClass() {
     }
-
+    
     @Before
     public void setUp() {
     }
-
+    
     @After
     public void tearDown() {
     }
@@ -44,22 +45,17 @@ public class Imprimante3dTest {
     @Test
     public void testCreate() throws Exception {
         System.out.println("create");
-        Connection con = ConnexionMySQL.newConnexion();
+        Connection con =  ConnexionMySQL.newConnexion();;
         String nom = "uprint2";
-        Job job = Job.getByDate(con, Utils.stringToTimestamp("2019/04/04 00:00:00"));
-        String fabnom = "FabLab_Victor_Hugo";
+        String fablabnom = "FabLab_Victor_Hugo";
         double nbheures = 0.0;
-        String etat = "TRAVAIL";
-        double dureerestante = 40.0;
         int couthoraire = 80;
-        String expResult = "TRAVAIL";
-        Imprimante3d result = Imprimante3d.create(con, nom, fabnom, nbheures, etat, dureerestante, couthoraire);
-        Imprimante3d imp = Imprimante3d.getByNom(con, nom);
-        assertEquals(expResult, imp.getEtat());
+        String expResult = "uprint2";
+        Imprimante3d result = Imprimante3d.create(con, nom, fablabnom, nbheures, couthoraire);
+        assertEquals(expResult, result.getNom());
         result.delete(con);
     }
-
-    /**
+ /**
      * Test of save method, of class Imprimante3d.
      */
     @Test
@@ -83,9 +79,9 @@ public class Imprimante3dTest {
         System.out.println("getByNom");
         Connection con = ConnexionMySQL.newConnexion();
         String nom = "uprint1";
-        String expResult = "TRAVAIL";
+        String expResult = "uprint1";
         Imprimante3d result = Imprimante3d.getByNom(con, nom);
-        assertEquals(expResult, result.getEtat());
+        assertEquals(expResult, result.getNom());
     }
 
     /**
@@ -111,7 +107,7 @@ public class Imprimante3dTest {
         String nom = "uprint1";
         double expResult = 1500;
         Imprimante3d result = Imprimante3d.getByNom(con, nom);
-        assertEquals(expResult, result.getNbhdetravail(), 0);
+        assertEquals(expResult, result.getNbHrDeTravail(), 0);
 
     }
 
@@ -123,37 +119,11 @@ public class Imprimante3dTest {
         System.out.println("setNbhdetravail");
         Connection con = ConnexionMySQL.newConnexion();
         Imprimante3d instance = Imprimante3d.getByNom(con, "uprint1");
-        instance.setNbhdetravail(18);
+        instance.setNbHrDeTravail(18);
         instance.save(con);
-        assertEquals(18, instance.getNbhdetravail(), 0);
-        instance.setNbhdetravail(1500);
+        assertEquals(18, instance.getNbHrDeTravail(), 0);
+        instance.setNbHrDeTravail(1500);
         instance.save(con);
-    }
-
-    /**
-     * Test of getEtat method, of class Imprimante3d.
-     */
-    @Test
-    public void testGetEtat() throws Exception {
-        System.out.println("getEtat");
-        Connection con = ConnexionMySQL.newConnexion();
-        String nom = "uprint1";
-        String expResult = "TRAVAIL";
-        Imprimante3d result = Imprimante3d.getByNom(con, nom);
-        assertEquals(expResult, result.getEtat());
-    }
-
-    /**
-     * Test of getDureerestante method, of class Imprimante3d.
-     */
-    @Test
-    public void testGetDureerestante() throws Exception {
-        System.out.println("getDureerestante");
-        Connection con = ConnexionMySQL.newConnexion();
-        String nom = "uprint1";
-        double expResult = 22;
-        Imprimante3d result = Imprimante3d.getByNom(con, nom);
-        assertEquals(expResult, result.getDureerestante(), 0);
     }
 
     /**

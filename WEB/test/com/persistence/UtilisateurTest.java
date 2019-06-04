@@ -1,13 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Fichier : UtilisateurTest.java
+ * Description : Classe de test de la classe Utilisateur.java en JUnit
+ * Created on  : Mars 2019
+ * Author      : Vraux
  */
 package com.persistence;
 
 import java.sql.Connection;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -60,11 +60,21 @@ public class UtilisateurTest {
         int nbechecs = 0;
         Utilisateur result = Utilisateur.create(con, code, fabnom, nom, prenom,
                 mail, mdp, etablissement, dateregistered, mailtrue, nbjobs, nbechecs);
-        Utilisateur user = Utilisateur.getByMail(con, mail);
-        assertEquals("user@gmail.com", user.getMail());
+        assertEquals("user@gmail.com", result.getMail());
         result.delete(con);
     }
 
+    /**
+     * Test of delete method, of class Utilisateur.
+     *
+     * @Test public void testDelete() throws Exception {
+     * System.out.println("delete"); Connection con =
+     * ConnexionMySQL.newConnexion(); Utilisateur instance = null; boolean
+     * expResult = false; boolean result = instance.delete(con);
+     * assertEquals(expResult, result); // TODO review the generated test code
+     * and remove the default call to fail. fail("The test case is a
+     * prototype."); }
+     */
     /**
      * Test of save method, of class Utilisateur.
      */
@@ -100,7 +110,7 @@ public class UtilisateurTest {
         System.out.println("getCode");
         Connection con = ConnexionMySQL.newConnexion();
         Utilisateur instance = Utilisateur.getByMail(con, "user1@gmail.com");
-        assertEquals("SDQ5S7GFS98S", instance.getCode(con));
+        assertEquals("SDQ5S7GFS98S", instance.getCode());
     }
 
     /**
@@ -234,17 +244,6 @@ public class UtilisateurTest {
     }
 
     /**
-     * Test of getMdp method, of class Utilisateur.
-     */
-    @Test
-    public void testGetMdp() throws Exception {
-        System.out.println("getMdp");
-        Connection con = ConnexionMySQL.newConnexion();
-        Utilisateur instance = Utilisateur.getByMail(con, "user1@gmail.com");
-        assertEquals(Utils.encryptPassword("mdpuser"), instance.getMdp());
-    }
-
-    /**
      * Test of setMdp method, of class Utilisateur.
      */
     @Test
@@ -255,7 +254,7 @@ public class UtilisateurTest {
         instance.setMdp("mdptest");
         instance.save(con);
         assertEquals(Utils.encryptPassword("mdptest"), instance.getMdp());
-        instance.setMdp("mdpuser");
+        instance.setMdp("user1");
         instance.save(con);
     }
 
@@ -300,7 +299,7 @@ public class UtilisateurTest {
      * Test of setNom method, of class Utilisateur.
      */
     @Test
-    public void testSetNom() throws Exception {
+    public void testSetNom() throws Exception { 
         System.out.println("setNom");
         Connection con = ConnexionMySQL.newConnexion();
         Utilisateur instance = Utilisateur.getByMail(con, "user1@gmail.com");
@@ -315,7 +314,7 @@ public class UtilisateurTest {
      * Test of getPrenom method, of class Utilisateur.
      */
     @Test
-    public void testGetPrenom() throws Exception {
+    public void testGetPrenom()throws Exception {
         System.out.println("getPrenom");
         Connection con = ConnexionMySQL.newConnexion();
         Utilisateur instance = Utilisateur.getByMail(con, "user1@gmail.com");
@@ -335,19 +334,6 @@ public class UtilisateurTest {
         assertEquals(instance.getPrenom(), "nomtest");
         instance.setPrenom("Bertrand");
         instance.save(con);
-    }
-
-    /**
-     * Test of getListeDesUtilisateurs method, of class Utilisateur.
-     */
-    @Test
-    public void testGetListeDesUtilisateurs() throws Exception {
-        System.out.println("getListeDesUtilisateurs");
-        Connection con = ConnexionMySQL.newConnexion();
-        String expResult = "Millet";
-        ArrayList<Utilisateur> resultarray = Utilisateur.getListeDesUtilisateurs(con);
-        Utilisateur result = resultarray.get(1);
-        assertEquals(expResult, result.getNom());
     }
 
 }
