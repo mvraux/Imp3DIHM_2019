@@ -6,6 +6,7 @@
 # Modifiée:    15 Mai 2019
 # ----------------------------------------------------------------------------    
 
+SET GLOBAL sql_mode = '';
 use imp3d;
 
 drop user imp3d@localhost;
