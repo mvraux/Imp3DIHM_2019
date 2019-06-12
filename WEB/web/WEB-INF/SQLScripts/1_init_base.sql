@@ -9,7 +9,6 @@
 #                les durées sont des entiers
 #                le nom de chaque job est maintenant unique
 # ---------------------------------------------------------------------------- 
-
 drop schema if exists imp3d;
 create schema imp3d;
 use imp3d;
@@ -26,7 +25,7 @@ CREATE TABLE Cartouche (
   ID               int(11) NOT NULL AUTO_INCREMENT, 
   Imprimante3dNom  varchar(255) NOT NULL, 
   DateRemplacement timestamp NOT NULL, 
-  DateFabrication  timestamp,
+  DateFabrication  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   IndentifiantType varchar(255) NOT NULL,
   NumeroDeSerie    varchar(255) NOT NULL UNIQUE, 
   QuantiteRestante double, 
