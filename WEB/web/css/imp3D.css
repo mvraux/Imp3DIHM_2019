@@ -1,0 +1,51 @@
+/* 
+    Document    : imp3d.css
+    Description : css pour l'application imp3d
+    Created on  : Février 2019
+    Author      : Tessier
+*/
+
+#formLogin {
+    width:  80%;
+}
+
+/* l'image fait 30% de l'écran en largeur */
+img {
+    width:  30%;
+    height: auto;
+    border-radius: 8px;
+    border-style:  solid;
+    border-width:  0.25px;
+}
+
+/* j'ai augmenté la hautuer du bandeau noir d'entête */
+.header {
+    height: 45px;
+}
+
+/* les tables (operateurs, utilisateurs, jobs) font 90% de l'écran en largeur */
+.table {
+   width:  90%; 
+}
+
+/* progressBar visible si la requête Ajax est longue à répondre */
+.progressBar {
+    width: 200px;
+    height: 22px;
+    border: 1px solid #111;
+    border-radius: 4px;
+    background: #FFF;
+    overflow: hidden;		
+}
+
+.progressBar div {
+    height: 100%;
+    background-image: url(pbar-ani.gif);
+    border-right: 1px solid #AAA;
+}
+
+/* format des popups */
+.mesPopups {
+    padding:0px 20px 0px 20px;
+    max-width:400px;
+}
