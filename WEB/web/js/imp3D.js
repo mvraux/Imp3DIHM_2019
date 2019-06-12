@@ -272,7 +272,7 @@ function afficheJobDelete() {
  * Demande au serveur en Ajax de supprimer un job
  */
 function jobDelete() {
-    var date = $("#jdDateRealisation").text();
+    var nom = $("#jdNom").text();
     var num = $("#jdNum").text();
     
     confirmation = true;
@@ -281,7 +281,7 @@ function jobDelete() {
     $.ajax({
         url  : 'ajax_jobDelete.jsp',
         type : 'POST',
-        data : 'date=' + date,
+        data : 'nom=' + nom,
         dataType : 'html',
         success: function(data) {
             $('#progressBar').hide();

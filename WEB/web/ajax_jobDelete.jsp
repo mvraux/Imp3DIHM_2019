@@ -21,7 +21,7 @@
     Operateur operateur = (Operateur) session.getAttribute("operateur");
     // une personne autorisée est connecté ?
     if ((operateur != null) || (utilisateur != null)) {
-        String nom = request.getParameter("nom").substring(18);
+        String nom = request.getParameter("nom").substring(5);
         //Timestamp nom = Utils.string2ToTimestamp(sNom);
         Job job = Job.getByNom(con, nom);
         // le job existe t'il ?

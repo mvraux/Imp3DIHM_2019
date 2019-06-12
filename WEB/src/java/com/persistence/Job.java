@@ -74,7 +74,7 @@ public class Job {
                 supportConsomme, matiereConsommee, supportEstime, matiereEstimee, prix, imprimante3dNom);
 
         String queryString
-                = "insert into Job (UtilisateurCode,Nom,DateRealisation,Etat,DureeConsommee,ResteAFaireEstimee,"
+                = "insert into job (UtilisateurCode,Nom,DateRealisation,Etat,DureeConsommee,ResteAFaireEstimee,"
                 + "SupportConsomme,MatiereConsommee,SupportEstime,MatiereEstimee,Prix,Imprimante3dNom) "
                 + " values ("
                 + Utils.toString(userCode) + ", "
@@ -103,7 +103,7 @@ public class Job {
      * @throws SQLException impossible d'accéder à la ConnexionMySQL
      */
     public boolean delete(Connection con) throws Exception {
-        String queryString = "delete from Job where nom ='"+nom+"'"
+        String queryString = "delete from job where nom ='"+nom+"'"
                             + "and DateRealisation='" + dateRealisation + "'";
         Statement lStat = con.createStatement();
         lStat.executeUpdate(queryString);
@@ -118,7 +118,7 @@ public class Job {
      */
     public void save(Connection con) throws Exception {
         String queryString
-                = "update Job set "
+                = "update job set "
                 + " UtilisateurCode =" + Utils.toString(userCode) + ","
                 + " Nom =" + Utils.toString(nom) + ","
                 + " DateRealisation =" + Utils.toString(dateRealisation) + ","
@@ -138,7 +138,7 @@ public class Job {
     }
 
     public static Job getByDate(Connection con, Timestamp date) throws Exception {
-        String queryString = "select * from Job where DateRealisation='" + date + "'";
+        String queryString = "select * from job where DateRealisation='" + date + "'";
         Statement lStat = con.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
                 ResultSet.CONCUR_READ_ONLY);
@@ -152,7 +152,7 @@ public class Job {
     }
 
     public static Job getByNom(Connection con, String nom) throws Exception {
-        String queryString = "select * from Job where Nom='" + nom + "'";
+        String queryString = "select * from job where Nom='" + nom + "'";
         Statement lStat = con.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
                 ResultSet.CONCUR_READ_ONLY);
@@ -166,7 +166,7 @@ public class Job {
     }
 
     public static Job getJobEnCours(Connection con) throws Exception {
-        String queryString = "select * from Job where Etat='EN_COURS'";
+        String queryString = "select * from job where Etat='EN_COURS'";
         Statement lStat = con.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
                 ResultSet.CONCUR_READ_ONLY);
@@ -180,7 +180,7 @@ public class Job {
     }
     
     public static int nbJobsParUserCode(Connection con, String code) throws Exception {
-        String queryString = "select count(*) as count from Job where UtilisateurCode='" + code + "'";
+        String queryString = "select count(*) as count from job where UtilisateurCode='" + code + "'";
         Statement lStat = con.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
                 ResultSet.CONCUR_READ_ONLY);
@@ -194,7 +194,7 @@ public class Job {
     public static ArrayList<Job> getListeDesJobs(Connection con) throws Exception {
         ArrayList<Job> jobs = new ArrayList<>();
         
-        String queryString = "select * from Job order by DateRealisation desc";
+        String queryString = "select * from job order by DateRealisation desc";
         Statement lStat = con.createStatement(
                                             ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                             ResultSet.CONCUR_READ_ONLY);
@@ -209,7 +209,7 @@ public class Job {
                                                                 throws Exception {
         ArrayList<Job> jobs = new ArrayList<>();
         
-        String queryString = "select * from Job where UtilisateurCode='"
+        String queryString = "select * from job where UtilisateurCode='"
                             + userCode + "' order by DateRealisation desc";
         Statement lStat = con.createStatement(
                                             ResultSet.TYPE_SCROLL_INSENSITIVE, 
@@ -240,7 +240,7 @@ public class Job {
     }
     
     public int getID(Connection con) throws SQLException {
-        String queryString = "select ID from Job where DateRealisation='" 
+        String queryString = "select ID from job where DateRealisation='" 
                                                         + dateRealisation + "'";
         Statement lStat = con.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
