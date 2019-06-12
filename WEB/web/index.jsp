@@ -1,31 +1,29 @@
 <%-- 
     Document    : index.jsp
-    Description : page accueil anonyme
+    Description : page accueil anonyme du site avant connexion
     Created on  : Février 2019
-
-227c4932-7e86-47ad-9b99-df95a4cb5227
+    Author      : Tessier
 --%>
 
 <%@page import="com.persistence.ConnexionMySQL"%>
 <%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<script src="https://smtpjs.com/v3/smtp.js"></script>
+
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
-        <title>Connection</title> 
+        <title>Acceuil</title> 
         <%@ include file="/includes/header.jspf" %>
     </head>
-    <body><%-- 
+    <body>
         <div data-role="page" id="page1">
-            <div class="header" data-role="header" data-id="main-header" data-tap-toggle="false" 
-                 data-theme="a" data-position="fixed" data-fullscreen="true">
+            <div class="header" data-role="header" data-theme="b" data-position="fixed">
                 <h1>Accueil</h1>
+                <p></p>
             </div>
-            --%>
-            <div role="main" class="ui-content">
+            
+            <div role="main" class="ui-content"><br/><br/><br/>
                 <center>
-                    <br/><br/><br/>
                     <h2>Suivi d'impression 3D au FabLab<br/>
                         du Lycée international Victor Hugo de Colomiers</h2>
                     <br/><br/>
@@ -36,15 +34,15 @@
                             String message = request.getParameter("message");
                             if (message != null) {
                                 if (message.equalsIgnoreCase("pbLogin")) {
-                                    out.print("Vérifiez le mot de passe");
+                                    out.print("Vérifiez l'identifiant ou le mot de passe");
                                 }
                             }
                         %>
                     </div>
-                    <form id="formLogin" class="form" method="post" action="imp3DControl.jsp">
+                    <form id="formLogin" class="form" method="post" action="login_req.jsp">
                         <div data-role="fieldcontain">
-                            <label for="mdp">Adresse mail :</label>
-                            <input type="text" name="mail" id="id"/>
+                            <label for="mail">Adresse mail :</label>
+                            <input type="text" name="mail" id="mail"/>
                         </div>
                         <div data-role="fieldcontain">
                             <label for="mdp">Mot de passe :</label>
@@ -53,7 +51,7 @@
                         <input name="action" id="login" type="hidden" data-theme="b" value="login_req"/><br/>
                         <button type="submit" id="submitOK" name="submitOK">OK</button>
                     </form>
-                    <p class="mini">V0.1 - Février 2019<br/>Développement : BTS SNIR Lycée V.Hugo Colomiers</p>
+                    <p class="mini">V0.3 - Mai 2019<br/>Développement : BTS SNIR Lycée V.Hugo Colomiers</p>
                 </center>
             </div>
         </div>

@@ -1,4 +1,10 @@
-<%-- head.jspf --%>
+<%-- 
+    Document    : head.jspf
+    Description : entête de configuration pour toutes les pages
+    Created on  : Février 2019
+    Author      : Tessier
+--%>
+
 <%@ page pageEncoding="UTF-8" %>
 
 <meta charset="utf-8">
