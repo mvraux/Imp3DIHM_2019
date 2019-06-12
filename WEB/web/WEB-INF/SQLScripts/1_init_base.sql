@@ -32,7 +32,7 @@ CREATE TABLE Cartouche (
   CoutAuCm3        int(10) NOT NULL, 
   PRIMARY KEY (ID));
 
-CREATE TABLE Codenouveau (
+CREATE TABLE CodeNouveau (
   Code      varchar(255) NOT NULL, 
   FablabNom varchar(255) NOT NULL, 
   PRIMARY KEY (Code));
@@ -91,7 +91,7 @@ CREATE TABLE Utilisateur (
   MailValide      tinyint(1) DEFAULT 0 NOT NULL, 
   PRIMARY KEY (Code));
 
-ALTER TABLE Codenouveau ADD CONSTRAINT FKCodenouvea343340 FOREIGN KEY (FablabNom) REFERENCES Fablab (Nom);
+ALTER TABLE CodeNouveau ADD CONSTRAINT FKCodenouvea343340 FOREIGN KEY (FablabNom) REFERENCES Fablab (Nom);
 ALTER TABLE Cartouche ADD CONSTRAINT FKCartouche323632 FOREIGN KEY (Imprimante3dNom) REFERENCES Imprimante3d (Nom);
 ALTER TABLE Operateur ADD CONSTRAINT FKOperateur120528 FOREIGN KEY (FablabNom) REFERENCES Fablab (Nom);
 ALTER TABLE Utilisateur ADD CONSTRAINT FKUtilisateu428262 FOREIGN KEY (FablabNom) REFERENCES Fablab (Nom);

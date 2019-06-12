@@ -36,7 +36,7 @@ public class CodeNouveau {
         CodeNouveau codenv = new CodeNouveau(code);
 
         String queryString
-                = "insert into Codenouveau (Code,FabLabNom) "
+                = "insert into CodeNouveau (Code,FabLabNom) "
                 + " values ("
                 + Utils.toString(code) + ", "
                 + Utils.toString(fabnom)
@@ -54,7 +54,7 @@ public class CodeNouveau {
      * @throws SQLException impossible d'accéder à la ConnexionMySQL
      */
     public boolean delete(Connection con) throws Exception {
-        String queryString = "delete from Codenouveau where Code='" + code + "'";
+        String queryString = "delete from CodeNouveau where Code='" + code + "'";
         Statement lStat = con.createStatement();
         lStat.executeUpdate(queryString);
         return true;
@@ -68,7 +68,7 @@ public class CodeNouveau {
      */
     public void save(Connection con) throws Exception {
         String queryString
-                = "update Codenouveau set "
+                = "update CodeNouveau set "
                 + " Code =" + Utils.toString(code)
                 + " where Code ='" + code + "'";
         Statement lStat = con.createStatement();
@@ -83,7 +83,7 @@ public class CodeNouveau {
      * @throws java.lang.Exception
      */
     public static CodeNouveau getByCode(Connection con, String code) throws Exception {
-        String queryString = "select * from Codenouveau where Code='" + code + "'";
+        String queryString = "select * from CodeNouveau where Code='" + code + "'";
         Statement lStat = con.createStatement(
                                 ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                 ResultSet.CONCUR_READ_ONLY);
