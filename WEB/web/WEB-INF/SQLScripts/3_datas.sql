@@ -47,9 +47,9 @@ insert into Job (UtilisateurCode, Nom, DateRealisation , Etat, DureeConsommee, R
     ("SDQ5S7GFS98S","support","2019-04-04","EN_COURS",9832,2340,10.76,9.11,0,0,1050,"uprint1");
 
 /*CODES*/
-insert into Codenouveau (Code, FabLabNom) values
+insert into CodeNouveau (Code, FabLabNom) values
     ("48876Q9SD4","FabLab_Victor_Hugo");
-insert into Codenouveau (Code, FabLabNom) values
+insert into CodeNouveau (Code, FabLabNom) values
     ("887SDQ657S","FabLab_Victor_Hugo");
 
 /*CARTOUCHE*/
