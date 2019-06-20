@@ -10,7 +10,7 @@
 #                le nom de chaque job est maintenant unique
 # ---------------------------------------------------------------------------- 
 drop schema if exists imp3d;
-create schema imp3d;
+create schema imp3d character set utf8;
 use imp3d;
 
 CREATE TABLE Ambiance (

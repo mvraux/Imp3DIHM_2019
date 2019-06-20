@@ -28,15 +28,15 @@ insert into Operateur (FabLabNom, Nom, Prenom, MotDePasse, Mail ) values
 
 /*UTILISATEURS*/
 insert into Utilisateur (Code, FabLabNom,Nom, Prenom, MotDePasse, Mail ,Etablissement ,DateInscription , NbJobsRealises ,NbEchecs , MailValide ) values
-    ("SDQ5S7GFS98S","FabLab_Victor_Hugo","Millet","Bertrand","24C9E15E52AFC47C225B757E7BEE1F9D"/*= mdp = user1 encrypted*/,"user1@gmail.com","LycÃ©e Bellevue","2018-01-01",2,1,TRUE);
+    ("SDQ5S7GFS98S","FabLab_Victor_Hugo","Millet","Bertrand","24C9E15E52AFC47C225B757E7BEE1F9D"/*= mdp = user1 encrypted*/,"user1@gmail.com","Lycée Bellevue","2018-01-01",2,1,TRUE);
 insert into Utilisateur (Code, FabLabNom,Nom, Prenom, MotDePasse, Mail ,Etablissement ,DateInscription , NbJobsRealises ,NbEchecs , MailValide ) values
     ("45A7W4D73","FabLab_Victor_Hugo","Lobe","Julie","C65A7625E9CE93B77E3F8E5D5EA86","julie.lobe@gmail.com","Rive gauche","2019-01-15",1,0,FALSE);
 insert into Utilisateur (Code, FabLabNom,Nom, Prenom, MotDePasse, Mail ,Etablissement ,DateInscription , NbJobsRealises ,NbEchecs , MailValide ) values
-    ("21F3D4D56","FabLab_Victor_Hugo","Masso","Roland","C65A7625E9CE93B77E3F8E5D5EA86","roland.masso@gmail.com","LycÃ©e Victor Hugo","2019-02-12",0,0,TRUE);
+    ("21F3D4D56","FabLab_Victor_Hugo","Masso","Roland","C65A7625E9CE93B77E3F8E5D5EA86","roland.masso@gmail.com","Lycée Victor Hugo","2019-02-12",0,0,TRUE);
 
 /*JOB*/
 insert into Job (UtilisateurCode, Nom, DateRealisation , Etat, DureeConsommee, ResteAFaireEstimee, SupportConsomme, MatiereConsommee, SupportEstime, MatiereEstimee, Prix, Imprimante3dNom) values
-    ("45A7W4D73","poignÃ©e","2019-01-17 22:00:00","FINI",12000,0,40.32,12.18,0,0,1400,"uprint1");
+    ("45A7W4D73","poignée","2019-01-17 22:00:00","FINI",12000,0,40.32,12.18,0,0,1400,"uprint1");
 insert into Job (UtilisateurCode, Nom, DateRealisation , Etat, DureeConsommee, ResteAFaireEstimee, SupportConsomme, MatiereConsommee, SupportEstime, MatiereEstimee, Prix, Imprimante3dNom) values
     ("SDQ5S7GFS98S","cale","2019-01-17 10:00:00","FINI",32000,0,15.43,12.83,0,0,2620,"uprint1");
 insert into Job (UtilisateurCode, Nom, DateRealisation , Etat, DureeConsommee, ResteAFaireEstimee, SupportConsomme, MatiereConsommee, SupportEstime, MatiereEstimee, Prix, Imprimante3dNom) values
